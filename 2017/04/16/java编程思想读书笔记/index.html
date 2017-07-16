@@ -15,7 +15,7 @@
 <meta property="og:url" content="//litten.me/2017/04/16/java编程思想读书笔记/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。 面向对象的基本特性如果只是用变量，赋值语">
-<meta property="og:updated_time" content="2017-07-16T14:41:55.000Z">
+<meta property="og:updated_time" content="2017-07-16T14:47:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记(一)">
 <meta name="twitter:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。 面向对象的基本特性如果只是用变量，赋值语">
@@ -176,15 +176,14 @@
       
         <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，而面向对象编程也是一种命令式编程。</p>
 <p>命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，<strong>面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。</strong></p>
-<h3 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h3><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题，以及这个问题放在工程生产中产生的新的更为复杂的问题。</p>
-<p><strong>面向对象让我们从指令代码操作变量转变为通过指令操作对象。</strong> 当我们理解了这个以后再去看面向对象的基本特征：</p>
+<h3 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h3><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题，以及这个问题放在工程生产中产生的新的更为复杂的问题。<br><a id="more"></a><br><strong>面向对象让我们从指令代码操作变量转变为通过指令操作对象。</strong> 当我们理解了这个以后再去看面向对象的基本特征：</p>
 <blockquote>
 <p>抽象<br>封装</p>
 </blockquote>
 <p>首先抽象就是建立一个对现实模型的抽象，封装就是将变量，赋值语句，表达式，控制语句进行组合来描述上面的抽象，并且将他们“打包”，看成一个原子结构，之后的程序逻辑都是围绕着这个原子结构进行的。</p>
 <p>最后，面向对象的编程就是将原来的 ”模式一“ 改变为 ”模式二”</p>
 <p>模式一：程序 = （赋值语句+表达式+控制语句）+ 变量</p>
-<p>模式二：程序 = 对象 + 对象（对象之间的调用）<br><a id="more"></a></p>
+<p>模式二：程序 = 对象 + 对象（对象之间的调用）</p>
 <h3 id="面向对象的高级特性"><a href="#面向对象的高级特性" class="headerlink" title="面向对象的高级特性"></a>面向对象的高级特性</h3><h4 id="对象之间的关联关系"><a href="#对象之间的关联关系" class="headerlink" title="对象之间的关联关系"></a>对象之间的关联关系</h4><p>抽象，封装只是对现实模型和冯诺依曼机之间基本的映射关系，而现实世界中模型与模型之间还存在很多关系，如继承、组合、依赖等。</p>
 <p>而维护这些关系也成为面向对象语言的一个特性，并且有相应的语法支持。</p>
 <ol>
@@ -441,7 +440,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,7 +448,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
