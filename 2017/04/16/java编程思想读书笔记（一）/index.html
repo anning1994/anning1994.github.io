@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.coding.me">
-  <title>an`s Blog</title>
+  <title>java编程思想读书笔记（一） | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta name="keywords" content="开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="an`s Blog">
-<meta property="og:url" content="http://anning1994.coding.me/tags/index.html">
+  <meta name="description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。 面向对象的基本特性如果只是用变量，赋值语">
+<meta name="keywords" content="java,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java编程思想读书笔记（一）">
+<meta property="og:url" content="http://anning1994.coding.me/2017/04/16/java编程思想读书笔记（一）/index.html">
 <meta property="og:site_name" content="an`s Blog">
-<meta property="og:description" content="个人博客">
-<meta property="og:updated_time" content="2017-03-12T06:36:26.000Z">
+<meta property="og:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。 面向对象的基本特性如果只是用变量，赋值语">
+<meta property="og:updated_time" content="2017-07-30T14:00:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="an`s Blog">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="java编程思想读书笔记（一）">
+<meta name="twitter:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。 面向对象的基本特性如果只是用变量，赋值语">
   
     <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
   
@@ -154,12 +154,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="tags-undefined" class="article article-type-tags " itemscope itemprop="blogPost">
+            <article id="post-java编程思想读书笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java编程思想读书笔记（一）
+    </h1>
+  
+
+        
+        <a href="/2017/04/16/java编程思想读书笔记（一）/" class="archive-article-date">
+  	<time datetime="2017-04-16T08:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-16</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，而面向对象编程也是一种命令式编程。</p>
+<p>命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，<strong>面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。</strong></p>
+<h4 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h4><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题，以及这个问题放在工程生产中产生的新的更为复杂的问题。<br><a id="more"></a><br><strong>面向对象让我们从指令代码操作变量转变为通过指令操作对象。</strong> 当我们理解了这个以后再去看面向对象的基本特征：</p>
+<blockquote>
+<p>抽象<br>封装</p>
+</blockquote>
+<p>首先抽象就是建立一个对现实模型的抽象，封装就是将变量，赋值语句，表达式，控制语句进行组合来描述上面的抽象，并且将他们“打包”，看成一个原子结构，之后的程序逻辑都是围绕着这个原子结构进行的。</p>
+<p>最后，面向对象的编程就是将原来的 ”模式一“ 改变为 ”模式二”</p>
+<p>模式一：程序 = （赋值语句+表达式+控制语句）+ 变量</p>
+<p>模式二：程序 = 对象 + 对象（对象之间的调用）</p>
+<h4 id="面向对象的高级特性"><a href="#面向对象的高级特性" class="headerlink" title="面向对象的高级特性"></a>面向对象的高级特性</h4><h5 id="对象之间的关联关系"><a href="#对象之间的关联关系" class="headerlink" title="对象之间的关联关系"></a>对象之间的关联关系</h5><p>抽象，封装只是对现实模型和冯诺依曼机之间基本的映射关系，而现实世界中模型与模型之间还存在很多关系，如继承、组合、依赖等。</p>
+<p>而维护这些关系也成为面向对象语言的一个特性，并且有相应的语法支持。</p>
+<p>1.继承is-a组合：一个类继承具有相似功能的另一个类，根据需要在所继承的类基础上进行扩展。<br><strong>优点：</strong> 具有共同属性和方法的类可以将共享信息抽象到父类中，增强代码复用性，同时也是多态的基础。<br><strong>缺点：</strong> 子类中扩展的部分对父类不可见，另外如果共性比较少的时候使用继承会增加冗余代码。</p>
+<p>2.组合has-a组合：has-a组合是在一个类中引用另一个类作为其成员变量。<br><strong>优点：</strong> 可扩展性和灵活性高。在对象组合关系中应优先考虑has-a组合关系。<br><strong>缺点：</strong> 具有共性的类之间看不到派生关系。</p>
+<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><p>多态在代码复用中起着尤为重要的作用，假如对象A依赖对象B，如果有对象C继承对象B，则说明对象C包含对象B,所以当对象C向上转型为对象B时不会出现信息的丢失，大部分静态编程语言都支持向上转型。所以对象A对B的操作完全适用于C，所以当依赖B和依赖C时会有不同的表现，并且这个判断过程实在运行期决定的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(B b)</span></span>&#123;</div><div class="line">        b.fun();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是b"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="comment">//重载</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是c"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        A a = <span class="keyword">new</span> A();</div><div class="line">        B b = <span class="keyword">new</span> B();</div><div class="line">        C c = <span class="keyword">new</span> C();</div><div class="line">        a.fun ( b );</div><div class="line">        a.fun ( c );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">-------------------------------------------------</div><div class="line">Output:</div><div class="line">我是b</div><div class="line">我是c</div></pre></td></tr></table></figure>
+<p>以上是最简单的多态的例子，通过上面例子很难发现多态的好处，这样做的意义是什么？</p>
+<p>观察上面的代码会发现，A的fun（）方法参数为B，但是如果传递别的类型可不可以？答案是可以的，因为上面的代码中我们传递了B的子类C，如果有D、E、F….都继承B的话，也都可以传递到A的fun()中，所以起到了复用的作用。</p>
+<p>但是还是体现不出来多态的好处，传递必须要继承这个类，不符合现实模型，比如A是播放叫声的装置，B是斑点狗，所以将B传递进去时会播放斑点狗的叫声，而C要是继承B,在现实生活世界模型中，C也是斑点狗才行。</p>
+<p>那如果我想播放牧羊犬的叫声怎么办？用抽象类就可以。如果B是抽象类的话，抽象的是狗，所以C可以任何狗，因为B中的所有东西都是抽象的，没有任何描述狗细节的东西，所以可以是任何狗。</p>
+<p>最后还是发现不完善，那如果我要播放猫叫声怎么办？这时候会有个比抽象类还抽象的东西，那就是接口，一个超级有用的家伙，有了他就可以完全和现实世界模型对应起来了，因为接口抽象的是行为，所以当B为接口时，规定B有叫声方法，所以当A的fun方法中传递的B接口时，就可以理解为，只要传递实现叫声方法的就可以，无论什么。所以当猫实现这个接口后，就可以被放到声音播放器当中，同样马、猪、牛都可以，只要他们实现叫声接口就行，但是树可以吧？不可以，因为现实世界中的树不可以叫。所以接口只抽象行为，完全可以实现现实模型的和面向对象的映射。</p>
+<p>所以抽象程度从小到大分别为类&gt;抽象类&gt;接口。</p>
+<p>1.当B为类时，A只能接收B子类。</p>
+<p>2.当B为抽象类时，A能接收符合这个抽象的具体。</p>
+<p>3.当B为接口时，A能接收实现B接口的任何东西，在当前上下文中就是有叫声的任何东西。</p>
+<p>所以当B为普通类时，A就是一个 <strong>斑点狗叫声播放器</strong>。当B为抽象类时，A就为一个 <strong>狗的叫声播放器</strong>。而当B为接口时，A就是一个 <strong>叫声播放器</strong>，可以播放任何声音，这就是多态的意义。</p>
+<p>一个斑点狗播放器和一个可以播放任何声音的播放器不存在那个更好，要根据实际的场景进行判断，一个作用域小一个作用域大。</p>
+<p>其实在框架中或者“造轮子的人”用接口的比较多，而“用轮子的人”用普通类比较多，所以当阅读源码发现各种接口时不要疑惑，那是多数是为了让代码通用、作用域大。</p>
+
       
 
       
@@ -167,6 +210,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -217,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3aQY7CMAwFUO5/6Y40W4bOd5y6VHpZVYDghcWXY+f1itfxu96f3z/z6d3z79y8cHFx29zjdH366s5nktc/bh4XF3eQm4RXvpkclxtwcXG/k7tWb5xvHhcX9+nctcjDxcV9LjcpYs5Dqrq9y89quLi4DW6nYbrreai/i4uL255KVJsgyVjlaCxcXNwZ7vkIJE+S5NCSHH6iPwUXF3ecm0dP//pFXsng4uJOcvN2Rt7IqLZLkhj9oyLDxcW9mJuPQ6qtjerw9Z9YxMXFHeFGFVAxbvIh69qQBhcX9y5ufm0i+fm8rInGq7i4uCPcvHDJjzG7whEXF3eeuxZJ56DqK4Xgw8XFHeRWI2zX6LTaZsXFxb2Xu3ZoyQ82+YZxcXHnuUkrs39Va20cuzj/wcXFbXOrzYv8OHRFewUXF3eSu1aO5C2PzoVOXFzcu7iL7cv8uBLHYsGOi4t7GbcaKGunq5y+djEUFxf3Cm41vJJATMqaxWIIFxd3kNsZoHbGJOULW7i4uF/GrQ5Iqn9BVIvh4uI+hNspX6rhiIuLO8mtDlCr6MLIZFdbBBcXt8GtNkyrI5ZqIFabMri4uFu5P/WTQ/ryLq5QAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7DQAgF0Nz/0u02UmTnA0PrxfMqSlLPPFcaCPB6xdfP2/X5fvK3V3d7//Tz9dWnhy88PDy8wdbvF843dP+d++321rr6B+Dh4eHt8e4P9GpISB5TEgAS6pdd4eHh4T2Ad3kE326o9/h6QQUPDw/vabwkqe0d94+Le3h4eHi3vN7mklLvJHXO2QdqLXh4eHgxL+8iPef1Sn8PDw8Pb9xV32hoJSMF1TBwuVs8PDy8BV51cOpUO786rNDbJx4eHt4GLz+s54FhXnQojzXg4eHhrfHmgSE/+vOBrbzxFrW+8PDw8A7x8sXyVlNvWCp/KPnYAR4eHt4GL0pMWy2xnNH7TrQiHh4e3jKvl0BXR6/OFoW/3AcPDw9vgdfbYrUse+ygL44X4OHh4W3zkoJs/v1q6SFvoZXLxHh4eHhHeac2XR2xyisGear9mkQwPDw8vCKv12TKCwrV4YCkGBGVSPDw8PDWeJOf+tVixKt45WNe0ZJ4eHh4C7xeity7T17GbTbk8PDw8BZ41UZ+deuTlli1sHt5Tzw8PLyjvMmBXi1J9BL03ip4eHh427xqw75XqpgEmLxs8aVKjYeHhzfmNXPwePigek0KuF8eDR4eHt4hXm8QqpcKT8JAc1gBDw8Pb4FXHXKaFHOrR3/U3Mobcnh4eHhHedVRgEmhttr6SlLq6LcCHh4e3jIvKcJO0ug8wDRJeHh4eH/Cq5Zue2MH88JEWYSHh4d3lNdrUOUFgkJrv5iIR48eDw8Pb4FXPWpPLVxtuRUaXZNIgoeHhzcoRuTBoBcwqg220SPGw8PDW+NNDuVqM6z6QM8VXvDw8PD+h5e3piYNrWSwIHofDw8P7wG8fPRq3vrKRxAu74OHh4e3xjs7ONV7p9dsiwIDHh4e3lFe9Rd9st08La5uqJBM4+Hh4Z3n/QJetdpPdkCLRAAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -229,6 +287,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/04/22/java编程思想读书笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java编程思想读书笔记（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/17/代码界的石器时代/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">代码界的石器时代（转载）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -250,7 +327,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#面向对象"><span class="toc-number">1.</span> <span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的基本特性"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象的基本特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的高级特性"><span class="toc-number">1.2.</span> <span class="toc-text">面向对象的高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#对象之间的关联关系"><span class="toc-number">1.2.1.</span> <span class="toc-text">对象之间的关联关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多态"><span class="toc-number">1.2.2.</span> <span class="toc-text">多态</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -259,6 +336,37 @@
     </div>
 </aside>
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'anning1994',
+            repo: 'https://github.com/anning1994/blogComment.git',
+            oauth: {
+                client_id: 'ce63e4321948e45a658a',
+                client_secret: '4ad67ac691a77b25add5d6658106a78c32354eab',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+  
 
 
 
@@ -288,7 +396,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
