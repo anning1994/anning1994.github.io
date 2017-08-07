@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://anning1994.coding.me/2017/04/24/java编程思想读书笔记（二）/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="java对象对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
-<meta property="og:updated_time" content="2017-08-07T14:19:15.000Z">
+<meta property="og:updated_time" content="2017-08-07T14:27:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记（二）">
 <meta name="twitter:description" content="java对象对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
@@ -179,9 +179,9 @@
 <li>用new语句创建对象，这是最常用的创建对象方法。</li>
 <li>运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。</li>
 <li>调用对象的clone()方法。</li>
-<li>运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。<a id="more"></a>
-</li>
+<li>运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。</li>
 </ol>
+<a id="more"></a>
 <h4 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h4><p>java对象在创建时需要在方法区的运行时常量池去查找该类的符号引用，如果没有发现符号引用，说明该类还没有被JVM加载，所以要先进行JVM的加载。当JVM加载完毕时，会在java堆中分配内存。分配内存时会根据堆内存是否规整来分别进行两种方式的分配。<br>1.指针碰撞<br>把内存分为可用的和已用的，在中间放置一个指针，如果要分配对象的空间，则把内存的指针向可用的一端移动当前需要分配对象大小的距离。<br>2.空闲列表<br>当内存并不是很规整时，需要一个列表来维护那些列表是可用的，那些是不可用的。<br>当内存分配完成后需要对分配到内存空间的对象赋予零值（静态字段在类加载中就已经有值，所以不需要赋零值），接下来需要设置对象头的信息，如设置该对象的哈希码，属于哪个类，GC分代年龄等信息。从虚拟机的角度来开至此一个对象就创建完成，但是在java程序的角度看，对象的创建才刚刚开始，因为对象的值还没有设定，对象值得设定是由对象初始化化来完成的，初始化就是调用构造方法过程。</p>
 <h4 id="对象的初始化"><a href="#对象的初始化" class="headerlink" title="对象的初始化"></a>对象的初始化</h4><p>当对象创建完成后，接下来就是进行对象的初始化了，也就是去执行构造方法。</p>
 <h5 id="父类的初始化"><a href="#父类的初始化" class="headerlink" title="父类的初始化"></a>父类的初始化</h5><p>当子类对象创建之前首先会调用父类的构造函数，也就是会初始化父类，但是父类并没有被创建，也就是并没有在堆中给父类分配新的存储空间，而只是对父类的变量进行了赋值。从而达到子类可以使用父类的属性和方法的目的。</p>
@@ -459,6 +459,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -472,10 +476,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
             
             <div class="clearfix"></div>
