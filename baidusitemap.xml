@@ -4,8 +4,25 @@
 
     
   <url>
+    <loc>http://anning1994.coding.me/2017/08/07/Apache-VFS/</loc>
+    <lastmod>2017-08-07T14:23:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>Apache VFS</title>
+        <pubTime>2017-08-07T14:20:02.000Z</pubTime>
+        
+        <tag>编程规范</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://anning1994.coding.me/2017/04/24/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2017-08-06T03:19:11.000Z</lastmod>
+    <lastmod>2017-08-07T14:19:15.000Z</lastmod>
     <data>
         <display>
         <title>java编程思想读书笔记（二）</title>
@@ -23,25 +40,8 @@
 
     
   <url>
-    <loc>http://anning1994.coding.me/2017/03/15/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E7%82%B9%E5%B0%8F%E6%83%B3%E6%B3%95/</loc>
-    <lastmod>2017-08-06T02:05:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>关于写博客的一点小想法</title>
-        <pubTime>2017-03-15T14:04:04.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://anning1994.coding.me/2017/04/16/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2017-07-30T14:00:27.000Z</lastmod>
+    <lastmod>2017-08-07T14:19:09.000Z</lastmod>
     <data>
         <display>
         <title>java编程思想读书笔记（一）</title>
@@ -59,8 +59,25 @@
 
     
   <url>
+    <loc>http://anning1994.coding.me/2017/03/15/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E7%82%B9%E5%B0%8F%E6%83%B3%E6%B3%95/</loc>
+    <lastmod>2017-08-07T14:18:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于写博客的一点小想法</title>
+        <pubTime>2017-03-15T14:04:04.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://anning1994.coding.me/2017/03/17/%E4%BB%A3%E7%A0%81%E7%95%8C%E7%9A%84%E7%9F%B3%E5%99%A8%E6%97%B6%E4%BB%A3/</loc>
-    <lastmod>2017-07-30T13:53:53.000Z</lastmod>
+    <lastmod>2017-08-07T14:18:02.000Z</lastmod>
     <data>
         <display>
         <title>代码界的石器时代（转载）</title>

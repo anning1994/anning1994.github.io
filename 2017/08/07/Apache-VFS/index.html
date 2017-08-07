@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.coding.me">
-  <title>关于写博客的一点小想法 | an`s Blog</title>
+  <title>Apache VFS | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="千里之行，始于足下越来越发现，一件复杂的事情只要满足两个条件就可以做好，一是坚持不懈、二是有个开始。 很早以前就有写博客的想法，直到现在才正式动笔，中间很长一段时间都是在想这件事是如何的复杂，如何困难。">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:    Name Authentication Read Write Create/Delete Random Version Rename      FILE NO Yes Ye">
+<meta name="keywords" content="编程规范">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于写博客的一点小想法">
-<meta property="og:url" content="http://anning1994.coding.me/2017/03/15/关于写博客的一点小想法/index.html">
+<meta property="og:title" content="Apache VFS">
+<meta property="og:url" content="http://anning1994.coding.me/2017/08/07/Apache-VFS/index.html">
 <meta property="og:site_name" content="an`s Blog">
-<meta property="og:description" content="千里之行，始于足下越来越发现，一件复杂的事情只要满足两个条件就可以做好，一是坚持不懈、二是有个开始。 很早以前就有写博客的想法，直到现在才正式动笔，中间很长一段时间都是在想这件事是如何的复杂，如何困难。">
-<meta property="og:updated_time" content="2017-08-07T14:18:21.000Z">
+<meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:    Name Authentication Read Write Create/Delete Random Version Rename      FILE NO Yes Ye">
+<meta property="og:updated_time" content="2017-08-07T14:23:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于写博客的一点小想法">
-<meta name="twitter:description" content="千里之行，始于足下越来越发现，一件复杂的事情只要满足两个条件就可以做好，一是坚持不懈、二是有个开始。 很早以前就有写博客的想法，直到现在才正式动笔，中间很长一段时间都是在想这件事是如何的复杂，如何困难。">
+<meta name="twitter:title" content="Apache VFS">
+<meta name="twitter:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:    Name Authentication Read Write Create/Delete Random Version Rename      FILE NO Yes Ye">
   
     <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
   
@@ -154,37 +154,254 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-关于写博客的一点小想法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Apache-VFS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于写博客的一点小想法
+      Apache VFS
     </h1>
   
 
         
-        <a href="/2017/03/15/关于写博客的一点小想法/" class="archive-article-date">
-  	<time datetime="2017-03-15T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+        <a href="/2017/08/07/Apache-VFS/" class="archive-article-date">
+  	<time datetime="2017-08-07T14:20:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="千里之行，始于足下"><a href="#千里之行，始于足下" class="headerlink" title="千里之行，始于足下"></a>千里之行，始于足下</h3><p>越来越发现，一件复杂的事情只要满足两个条件就可以做好，一是坚持不懈、二是有个开始。</p>
-<p>很早以前就有写博客的想法，直到现在才正式动笔，中间很长一段时间都是在想这件事是如何的复杂，如何困难。<a id="more"></a>直到意识到工作中遇到的一些很难的事，都通过一点一点的努力完成了。回头想想自己之前认为困难的事，难都难在不敢去开始，如果真的开始去解决那些事，也许自己会收获很多。这些新的思想觉悟便是促使自己搭建这个博客的重要条件。</p>
-<h3 id="思所以危则安矣"><a href="#思所以危则安矣" class="headerlink" title="思所以危则安矣"></a>思所以危则安矣</h3><p><strong>避免技术更新导致自我价值降低很重要。</strong></p>
-<p>软件研发技术迭代很快，是一个没有技术积累的行业。所以思维方式，学习方法，核心概念的理解，远远比那些机械的记忆程序的配置，单纯的参考网上的例子实现功能要重要的多。如果仅仅是代码的搬运工，极可能被技术更新的大浪所埋没。所以，透彻的理解技术映射出的本质思想的标签是每一个“优质码农”都具备，看过很多阿里的技术沙龙，每一个主讲人的特点都是去解释思想，本质。而那些技术的用法都是一概而过。抛开技术而言，这些人在分享过程中也是很有特点的：</p>
+        <h1 id="Apache-VFS"><a href="#Apache-VFS" class="headerlink" title="Apache VFS"></a>Apache VFS</h1><h3 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h3><p>VFS （虚拟文件系统），可以通过<strong>程序</strong> 去操作<strong>文件系统</strong>，这里说的文件系统是一个泛称，不同的文件系统有着不同的<strong>操作权限</strong>，它具体包括下表的几种文件系统（<strong>红色标记的是我们之后可能会用到的文件系统</strong>）:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Authentication</th>
+<th>Read</th>
+<th>Write</th>
+<th>Create/Delete</th>
+<th>Random</th>
+<th>Version</th>
+<th>Rename</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <font color="#FF0000">FILE</font></td>
+<td>NO</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read/Write</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> <font color="#FF0000">FTP</font></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> <font color="#FF0000">HTTP</font></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>Read</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> BZIP2</td>
+<td>NO</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> FTPS</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> GZIP</td>
+<td>NO</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> HDFS</td>
+<td>NO</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>Read</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> HTTPS</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>Read</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> Jar</td>
+<td>NO</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> RAM</td>
+<td>NO</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read/Write</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> RES</td>
+<td>NO</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read/Write</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> SFTP</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> Tar</td>
+<td>NO</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td> Temp</td>
+<td>NO</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read/Write</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> WebDAV</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Read/Write</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td> Zip</td>
+<td>NO</td>
+<td>Yes</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
+<p> VFS使得各种不同的文件系统使用一个API。例如本地磁盘上的文件，HTTP服务器上的文件或Zip存档内的文件。</p>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-vfs2 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-vfs2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h4><h5 id="1-FileSystemManager"><a href="#1-FileSystemManager" class="headerlink" title="1.FileSystemManager"></a>1.FileSystemManager</h5><p>管理文件系统的接口，是最上层的接口，必须先得到FileSystemManager（在mybatis中类似于sqlSessionFactory），可以获得具体的FileObject<code>FileObject在下面会有介绍</code>（获取sqlSession）。<br>获取FileSystemManager最常用的方式就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">FileSystemManager fsm = VFS.getManager();</div></pre></td></tr></table></figure></p>
+<h5 id="2-FileObject"><a href="#2-FileObject" class="headerlink" title="2.FileObject"></a>2.FileObject</h5><p>它代表一个文件，和Java File不同，它具有更多延伸的功能和信息。实现FileObject接口的文件对象有很多大部分FileObject实现类都继承AbstractFileObject类,如下是常用的实现类:</p>
+<ol>
+<li><strong>LocalFile</strong></li>
+<li><strong>FtpFileObject</strong></li>
+<li><strong>HttpFileObject</strong></li>
+<li>SftpFileObject</li>
+<li>ZipFileObject</li>
+<li>TarFileObject</li>
+<li>RamFileObject</li>
+<li>UrlFileObject</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> path</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">FileObject fileobject = fsm.resolveFile(path);</div></pre></td></tr></table></figure>
+<p>path是文件的路径，不同的文件系统有不同的<strong>前缀</strong></p>
+<ol>
+<li><p>File</p>
 <blockquote>
-<p>条理清晰 思维缜密 谦逊客观<br>表达能力较差<br>ppt简约<br>技术横纵双向发展<br>善于分析新旧技术的核心区别</p>
+<p>[file://] absolute-path</p>
+<p>Examples:</p>
+<p>file:///home/someuser/somedir<br>file:///C:/Documents and Settings<br>file://///somehost/someshare/afile.txt<br>/home/someuser/somedir<br>c:\program files\some dir<br>c:/program files/some dir</p>
 </blockquote>
-<p>这些天赋异禀的人的特点，看起来就像”成功的**所必备的n个**”的俗鸡汤，但是，不开玩笑的讲，除了表达能力差，这些特点确实是很值得去借鉴和培养的。</p>
-<h3 id="厚积而薄发"><a href="#厚积而薄发" class="headerlink" title="厚积而薄发"></a>厚积而薄发</h3><p>其实自己搭建博客主要是因为<del>可以装逼</del>自主方便，其目的是整理一些印象笔记里平时记录的东西。</p>
-<p>一方面秉承互联网大环境分享精神的大统，另一方面可以在写的过程中可以系统的完善自己的知识体系。在学习新知识的同时也要时不时的回头去沉淀一下自己的旧知识。</p>
-<p>我相信收获一定会有的，一直往前走，它会突然出现在未来的某一天，共勉。</p>
+</li>
+<li><p>Ftp</p>
+<blockquote>
+<p>ftp://[ username[: password]@] hostname[: port][ relative-path]</p>
+<p>Examples:</p>
+<p>ftp://lxsoft:123456@127.0.0.1/pub/downloads/somefile.tgz</p>
+</blockquote>
+</li>
+<li><p>Http</p>
+<blockquote>
+<p>http://[ username[: password]@] hostname[: port][ absolute-path]</p>
+<p>Examples:</p>
+<p><a href="http://127.0.0.1:8080/downloads/somefile.jar" target="_blank" rel="external">http://127.0.0.1:8080/downloads/somefile.jar</a><br><a href="http://username@127.0.0.1/index.html" target="_blank" rel="external">http://username@127.0.0.1/index.html</a></p>
+</blockquote>
+</li>
+</ol>
+<p>FileObject表示一个具体文件，文件有两种类型：</p>
+<ol>
+<li>目录</li>
+<li>普通文件</li>
+</ol>
+<p>普通文件拥有数据或者说内容。而目录不含有内容，只能包含其他文件。</p>
+<p>FileObject提供大量的方法，足以满足读取，删除，复制，重命名等基本操作。</p>
+<p><a href="http://commons.apache.org/proper/commons-vfs/apidocs/index.html" target="_blank" rel="external">FileObject接口的API</a></p>
+<h4 id="高级特性及demo"><a href="#高级特性及demo" class="headerlink" title="高级特性及demo"></a>高级特性及demo</h4><h6 id="文件的监听"><a href="#文件的监听" class="headerlink" title="文件的监听"></a>文件的监听</h6><p>FileListener 有两个实现类DelegateFileObject和WeakRefFileListener，时间有限没有研究这两个实现类是干什么的，有兴趣的同学可以研究一下，但是这个监听类是可以绑定到文件系统上面的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">FileSystemManager fsm = VFS.getManager();</div><div class="line">FileObject fileObject = fsm.resolveFile(path);</div><div class="line"><span class="comment">//在文件系统中添加监听器（lambda和匿名内部类都会方便点，也可以直接new个对象传到addListener方法中）</span></div><div class="line">fileObject.getFileSystem().addListener(fileObject,<span class="keyword">new</span> FileListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fileCreated</span><span class="params">(FileChangeEvent fileChangeEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                String name = fileChangeEvent.getFile().getName().getBaseName();</div><div class="line">                System.out.print(<span class="string">"文件创建了"</span>+name);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fileDeleted</span><span class="params">(FileChangeEvent fileChangeEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                String name = fileChangeEvent.getFile().getName().getBaseName();</div><div class="line">                System.out.print(<span class="string">"文件删除了"</span>+name);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fileChanged</span><span class="params">(FileChangeEvent fileChangeEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                String name = fileChangeEvent.getFile().getName().getBaseName();</div><div class="line">                System.out.print(<span class="string">"文件更改了"</span>+name);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">if</span> (fileObject.exists())&#123;</div><div class="line">          <span class="comment">//删除path对应的文件或者目录</span></div><div class="line">          <span class="comment">//fileObject.delete()</span></div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">          <span class="comment">//创建一个文件        </span></div><div class="line">          fileObject.createFile();</div><div class="line">          <span class="comment">//或者创建文件夹</span></div><div class="line">          <span class="comment">//fileObject.createFolder()</span></div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h6 id="文件过滤"><a href="#文件过滤" class="headerlink" title="文件过滤"></a>文件过滤</h6><p>通过看API试出来的方法，这方面网上的资料太少了，只有以后遇到什么需求在查看API去解决。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">FileSystemManager fsm = VFS.getManager();</div><div class="line">FileObject fileObject = fsm.resolveFile(path);</div><div class="line"><span class="comment">//lambda表达式更加直观方便</span></div><div class="line">FileSelector selector = <span class="keyword">new</span> FileFilterSelector((fileSelectInfo)-&gt;&#123;</div><div class="line">            <span class="keyword">boolean</span> isCSV = fileSelectInfo.getFile().getName().getBaseName().endsWith(<span class="string">".txt"</span>);</div><div class="line">            <span class="keyword">return</span> isCSV;</div><div class="line">        &#125;);</div><div class="line"><span class="comment">//匿名内部类，效果等同于上面的lambda</span></div><div class="line"><span class="comment">// FileSelector selector = new FileFilterSelector(new FileFilter() &#123;</span></div><div class="line"><span class="comment">//             @Override</span></div><div class="line"><span class="comment">//             public boolean accept(FileSelectInfo fileSelectInfo) &#123;</span></div><div class="line"><span class="comment">//                 boolean isCSV = fileSelectInfo.getFile().getName().getBaseName().endsWith(".txt");</span></div><div class="line"><span class="comment">//                 return isCSV;</span></div><div class="line"><span class="comment">//             &#125;</span></div><div class="line"><span class="comment">//         &#125;);</span></div><div class="line">        FileObject[] findFiles = fileObject.findFiles(selector);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; findFiles.length; i++) &#123;</div><div class="line">            String name = findFiles[i].getName().getBaseName();</div><div class="line">            System.out.print(name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这段代码的作用就是过滤出在path下*.txt的所有文件</p>
 
       
 
@@ -198,7 +415,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程规范</a>
         		</li>
       		
 		</ul>
@@ -254,7 +471,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7DQAgF0Nz/0u22UmrnA0OaSs+rKo3tebMYCPB4xNfXj+vnJ89/P3///q7n7yTPOXzh4eHhDZZ+v6z75Sabcv/5ZD2Xz8TDw8Nb4129JgkD93ed+n6yBjw8PLzP5OWpcxV2vyo8PDy8/8urptrVQka1qIGHh4f3V7zkx39+ZPe25r6ssF5rwcPDw4t5eRfpc/5e6e/h4eHhjbvqyTGdvDI56Och5JfV4uHh4S3w8gN3UqidlICr6TIeHh7eNi857ueN/16wyTf08hM8PDy8Nd6ElB/31XsnAanZPcPDw8OLeffH6yThTo776tYUmnN4eHh4y7xJYywPAHlxYfJfPDw8vG1etZCalzDukZNGVxRy8PDw8JZ51bQ1b/z33pWn8pdPw8PDw1vg9fLPqPkUp+N5wMibanh4eHjbvLz1Ve0xVUcHJlWFy6CCh4eHd5Q3GWnKiwX50/J0OUHi4eHhvYeXlwNOlW7PDiWUq8V4eHh449pmPtI0KdRWC7LNgQM8PDy8BV5+BOfpdXVwKg8nk5Xg4eHhvYdXTmGL5ddTQ1dRyo6Hh4d3iDcPA5N9nQ9avdhKPDw8vGVe8vs9L61WNyUv/ia8ckaPh4eHV+T1hgB6jbR8CKC6TVFGj4eHhzfm9V5ZLd32gsFkU6LwgIeHhzfmVX/wl0sDcfKdD3UlxQs8PDy8PV75wC2ObfXGCPJUHg8PD+/9vN4WTMYLqoMIvWoDHh4e3lneV/HqgaOZr1YZ90XSj4eHh7fAmxy+k4GD6vblG1RItfHw8PAGvN7oQHW5eeEjb4NFgQcPDw9vjVcdpeo1rvIib6888ctdeHh4eB/Am7e+kjf2ulp4eHh4n8+bFDLyxH2SxOPh4eHt8U4d8ZOxrV7YeHEvHh4e3gKvmsLmBd9q2SJ/7+PshYeHh5fyvgG9q5KXveh6XQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3azVLrMAwG0L7/S/duYbgNnySHGTvHqw40RicLY/28XvF6f1l3fP/ns687FgYGxraM9+X69J3kTyY7JPtfx4aBgfEcRhJEcrAm4ebHdBIbBgYGxlpq9RDHwMDA6IV4/fk6iCRoDAwMjEkSO78OTmDLcnEMDIwNGdVi/V9+vqW/gYGBsRXjXVz5PtXjMn/qP/tgYGAczcgPuHlTs0cqDHNgYGAczciPueqVMX82eVnLrokYGBhbMfLSWLUcNmmFVl8TBgbG2YxeWHlBv3r2966JGBgYZzNyaxLWHWnqaFoEAwPjCMYksay2HqtDYwsycgwMjCMYeYktvz7mO0xi+PYTDAyMhzF6gxS9pmavUfGxaoiBgXE0IxpiuKEY10t0o2kRDAyMgxj50ZYX2prZc7B/VDvEwMA4mnF9vcuHJ9YewcuGLTAwMLZl5ElpNeFc2xAd9VcxMDAOYuQPV699eepbvSY2y20YGBhbMXoH6CSUapNy8iIwMDBOYvTK/ZOmQvVaGZXhMDAwHsaoFuXzIlqe1ualOgwMjOcw5olor0kwKer9MjmCgYFxBONdXHnBq1AUi4/pj/tgYGAczcjXWlJvmGM+doaBgbEvYzKSNR+byAtwzaohBgbGQYxeCSxvVfbS3UJzAgMDAyMIev5SqvtEv8DAwHgkozpCkWfPyQG9+P8GBgbGVowkia2OWVSvlfmFEgMD42mMPHWsXvIm4a5qjmJgYGzO+AcW35NhaNwHFAAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,15 +485,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/17/代码界的石器时代/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          代码界的石器时代（转载）
-        
-      </div>
-    </a>
   
+    <a href="/2017/04/24/java编程思想读书笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java编程思想读书笔记（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -301,7 +514,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#千里之行，始于足下"><span class="toc-number">1.</span> <span class="toc-text">千里之行，始于足下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思所以危则安矣"><span class="toc-number">2.</span> <span class="toc-text">思所以危则安矣</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#厚积而薄发"><span class="toc-number">3.</span> <span class="toc-text">厚积而薄发</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Apache-VFS"><span class="toc-number">1.</span> <span class="toc-text">Apache VFS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简要介绍"><span class="toc-number">1.0.1.</span> <span class="toc-text">简要介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始使用"><span class="toc-number">1.0.2.</span> <span class="toc-text">开始使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#依赖"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#核心API"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">核心API</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-FileSystemManager"><span class="toc-number">1.0.2.2.1.</span> <span class="toc-text">1.FileSystemManager</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-FileObject"><span class="toc-number">1.0.2.2.2.</span> <span class="toc-text">2.FileObject</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级特性及demo"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">高级特性及demo</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#文件的监听"><span class="toc-number">1.0.2.3.0.1.</span> <span class="toc-text">文件的监听</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#文件过滤"><span class="toc-number">1.0.2.3.0.2.</span> <span class="toc-text">文件过滤</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
