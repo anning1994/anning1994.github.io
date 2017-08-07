@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://anning1994.coding.me">
   <title>Apache VFS | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:    Name Authentication Read Write Create/Delete Random Version Rename      FILE NO Yes Ye">
+  <meta name="description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
 <meta name="keywords" content="编程规范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache VFS">
 <meta property="og:url" content="http://anning1994.coding.me/2017/08/07/Apache-VFS/index.html">
 <meta property="og:site_name" content="an`s Blog">
-<meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:    Name Authentication Read Write Create/Delete Random Version Rename      FILE NO Yes Ye">
-<meta property="og:updated_time" content="2017-08-07T14:23:53.000Z">
+<meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
+<meta property="og:updated_time" content="2017-08-07T14:25:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache VFS">
-<meta name="twitter:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:    Name Authentication Read Write Create/Delete Random Version Rename      FILE NO Yes Ye">
+<meta name="twitter:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
   
     <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
   
@@ -174,183 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Apache-VFS"><a href="#Apache-VFS" class="headerlink" title="Apache VFS"></a>Apache VFS</h1><h3 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h3><p>VFS （虚拟文件系统），可以通过<strong>程序</strong> 去操作<strong>文件系统</strong>，这里说的文件系统是一个泛称，不同的文件系统有着不同的<strong>操作权限</strong>，它具体包括下表的几种文件系统（<strong>红色标记的是我们之后可能会用到的文件系统</strong>）:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Authentication</th>
-<th>Read</th>
-<th>Write</th>
-<th>Create/Delete</th>
-<th>Random</th>
-<th>Version</th>
-<th>Rename</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> <font color="#FF0000">FILE</font></td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> <font color="#FF0000">FTP</font></td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> <font color="#FF0000">HTTP</font></td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>Read</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> BZIP2</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> FTPS</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> GZIP</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> HDFS</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>Read</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> HTTPS</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>Read</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> Jar</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> RAM</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> RES</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> SFTP</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> Tar</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> Temp</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> WebDAV</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> Zip</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-</tbody>
-</table>
+        <h1 id="Apache-VFS"><a href="#Apache-VFS" class="headerlink" title="Apache VFS"></a>Apache VFS</h1><h3 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h3><p>VFS （虚拟文件系统），可以通过<strong>程序</strong> 去操作<strong>文件系统</strong>，这里说的文件系统是一个泛称，不同的文件系统有着不同的<strong>操作权限</strong>，它具体包括下表的几种文件系统（<strong>红色标记的是我们之后可能会用到的文件系统</strong>）:<br><a id="more"></a><br> Name|    Authentication |    Read |    Write |    Create/Delete |    Random |    Version    | Rename<br> ———- |—–|—–|—–|—–|—–|—–|—–<br> <font color="#FF0000">FILE</font>     |NO    |Yes    |Yes    |Yes    |Read/Write    |NO    |Yes<br> <font color="#FF0000">FTP</font>         |Yes    |Yes    |Yes    |Yes    |Read    |NO    |Yes<br> <font color="#FF0000">HTTP</font>     |Yes    |Yes    |NO    |NO    |Read    |NO    |NO<br> BZIP2        |NO    |Yes    |Yes    |NO    |NO    |NO    |NO<br> FTPS        |Yes    |Yes    |Yes    |Yes    |Read    |NO    |Yes<br> GZIP        |NO    |Yes    |Yes    |NO    |NO    |NO    |NO<br> HDFS        |NO    |Yes    |NO    |NO    |Read    |NO    |NO<br> HTTPS        |Yes    |Yes    |NO    |NO    |Read    |NO    |NO<br> Jar        |NO    |Yes    |NO    |NO    |NO    |NO    |NO<br> RAM        |NO    |Yes    |Yes    |Yes    |Read/Write    |NO    |Yes<br> RES        |NO    |Yes    |Yes    |Yes    |Read/Write    |NO    |Yes<br> SFTP        |Yes    |Yes    |Yes    |Yes    |Read    |NO    |Yes<br> Tar        |NO    |Yes    |NO    |NO    |NO    |NO    |NO<br> Temp        |NO    |Yes    |Yes    |Yes    |Read/Write    |NO    |Yes<br> WebDAV        |Yes    |Yes    |Yes    |Yes    |Read/Write    |Yes    |Yes<br> Zip        |NO    |Yes    |NO    |NO    |NO    |NO    |NO</p>
 <p> VFS使得各种不同的文件系统使用一个API。例如本地磁盘上的文件，HTTP服务器上的文件或Zip存档内的文件。</p>
 <h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-vfs2 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-vfs2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
 <h4 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h4><h5 id="1-FileSystemManager"><a href="#1-FileSystemManager" class="headerlink" title="1.FileSystemManager"></a>1.FileSystemManager</h5><p>管理文件系统的接口，是最上层的接口，必须先得到FileSystemManager（在mybatis中类似于sqlSessionFactory），可以获得具体的FileObject<code>FileObject在下面会有介绍</code>（获取sqlSession）。<br>获取FileSystemManager最常用的方式就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">FileSystemManager fsm = VFS.getManager();</div></pre></td></tr></table></figure></p>
@@ -660,10 +484,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -672,11 +492,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
             
             <div class="clearfix"></div>
