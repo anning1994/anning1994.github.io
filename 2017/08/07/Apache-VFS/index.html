@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://anning1994.coding.me/2017/08/07/Apache-VFS/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
-<meta property="og:updated_time" content="2017-08-07T14:30:29.000Z">
+<meta property="og:updated_time" content="2017-08-13T11:23:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache VFS">
 <meta name="twitter:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
@@ -354,7 +354,7 @@
 </table>
 <p> VFS使得各种不同的文件系统使用一个API。例如本地磁盘上的文件，HTTP服务器上的文件或Zip存档内的文件。</p>
 <h4 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h4><h5 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-vfs2 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-vfs2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-<h5 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h5><h6 id="1-FileSystemManager"><a href="#1-FileSystemManager" class="headerlink" title="1.FileSystemManager"></a>1.FileSystemManager</h6><p>管理文件系统的接口，是最上层的接口，必须先得到FileSystemManager（在mybatis中类似于sqlSessionFactory），可以获得具体的FileObject<code>FileObject在下面会有介绍</code>（获取sqlSession）。<br>获取FileSystemManager最常用的方式就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">FileSystemManager fsm = VFS.getManager();</div></pre></td></tr></table></figure></p>
+<h5 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h5><h6 id="1-FileSystemManager"><a href="#1-FileSystemManager" class="headerlink" title="1.FileSystemManager"></a>1.FileSystemManager</h6><p>管理文件系统的接口，是最上层的接口，必须先得到FileSystemManager，可以获得具体的FileObject<code>FileObject在下面会有介绍</code>。<br>获取FileSystemManager最常用的方式就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">FileSystemManager fsm = VFS.getManager();</div></pre></td></tr></table></figure></p>
 <h6 id="2-FileObject"><a href="#2-FileObject" class="headerlink" title="2.FileObject"></a>2.FileObject</h6><p>它代表一个文件，和Java File不同，它具有更多延伸的功能和信息。实现FileObject接口的文件对象有很多大部分FileObject实现类都继承AbstractFileObject类,如下是常用的实现类:</p>
 <ol>
 <li><strong>LocalFile</strong></li>
@@ -661,15 +661,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
              
               <li class="article-tag-list-item">

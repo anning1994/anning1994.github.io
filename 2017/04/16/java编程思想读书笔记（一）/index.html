@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://anning1994.coding.me">
   <title>java编程思想读书笔记（一） | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
+  <meta name="description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java编程思想读书笔记（一）">
 <meta property="og:url" content="http://anning1994.coding.me/2017/04/16/java编程思想读书笔记（一）/index.html">
 <meta property="og:site_name" content="an`s Blog">
-<meta property="og:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
-<meta property="og:updated_time" content="2017-08-07T14:27:29.000Z">
+<meta property="og:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
+<meta property="og:updated_time" content="2017-08-13T11:23:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记（一）">
-<meta name="twitter:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，而面向对象编程也是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
+<meta name="twitter:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
   
     <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
   
@@ -174,10 +174,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，而面向对象编程也是一种命令式编程。</p>
+        <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，面向对象编程是一种命令式编程。</p>
 <p>命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，<strong>面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。</strong></p>
 <a id="more"></a>
-<h4 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h4><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题，以及这个问题放在工程生产中产生的新的更为复杂的问题。</p>
+<h4 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h4><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题。</p>
 <p><strong>面向对象让我们从指令代码操作变量转变为通过指令操作对象。</strong> 当我们理解了这个以后再去看面向对象的基本特征：</p>
 <blockquote>
 <p>抽象<br>封装</p>
@@ -477,15 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
              
               <li class="article-tag-list-item">
