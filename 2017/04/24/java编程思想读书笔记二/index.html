@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.coding.me">
-  <title>java编程思想读书笔记（二） | an`s Blog</title>
+  <title>java编程思想读书笔记二 | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
+  <meta name="description" content="java对象对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java编程思想读书笔记（二）">
-<meta property="og:url" content="http://anning1994.coding.me/2017/04/16/解读面向对象/index.html">
+<meta property="og:title" content="java编程思想读书笔记二">
+<meta property="og:url" content="http://anning1994.coding.me/2017/04/24/java编程思想读书笔记二/index.html">
 <meta property="og:site_name" content="an`s Blog">
-<meta property="og:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
-<meta property="og:updated_time" content="2017-08-15T14:18:01.000Z">
+<meta property="og:description" content="java对象对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
+<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.001.jpeg">
+<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.002.jpeg">
+<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.003.jpeg">
+<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.004.jpeg">
+<meta property="og:updated_time" content="2017-08-15T14:23:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java编程思想读书笔记（二）">
-<meta name="twitter:description" content="面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
+<meta name="twitter:title" content="java编程思想读书笔记二">
+<meta name="twitter:description" content="java对象对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
+<meta name="twitter:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.001.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
   
@@ -154,58 +159,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-解读面向对象" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java编程思想读书笔记二" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java编程思想读书笔记（二）
+      java编程思想读书笔记二
     </h1>
   
 
         
-        <a href="/2017/04/16/解读面向对象/" class="archive-article-date">
-  	<time datetime="2017-04-16T08:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-16</time>
+        <a href="/2017/04/24/java编程思想读书笔记二/" class="archive-article-date">
+  	<time datetime="2017-04-24T13:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，面向对象编程是一种命令式编程。</p>
-<p>命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，<strong>面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。</strong></p>
-<a id="more"></a>
-<h4 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h4><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题。</p>
-<p><strong>面向对象让我们从指令代码操作变量转变为通过指令操作对象。</strong> 当我们理解了这个以后再去看面向对象的基本特征：</p>
-<blockquote>
-<p>抽象<br>封装</p>
-</blockquote>
-<p>首先抽象就是建立一个对现实模型的抽象，封装就是将变量，赋值语句，表达式，控制语句进行组合来描述上面的抽象，并且将他们“打包”，看成一个原子结构，之后的程序逻辑都是围绕着这个原子结构进行的。</p>
-<p>最后，面向对象的编程就是将原来的 ”模式一“ 改变为 ”模式二”</p>
-<p>模式一：程序 = （赋值语句+表达式+控制语句）+ 变量</p>
-<p>模式二：程序 = 对象 + 对象（对象之间的调用）</p>
-<h4 id="面向对象的高级特性"><a href="#面向对象的高级特性" class="headerlink" title="面向对象的高级特性"></a>面向对象的高级特性</h4><h5 id="对象之间的关联关系"><a href="#对象之间的关联关系" class="headerlink" title="对象之间的关联关系"></a>对象之间的关联关系</h5><p>抽象，封装只是对现实模型和冯诺依曼机之间基本的映射关系，而现实世界中模型与模型之间还存在很多关系，如继承、组合、依赖等。</p>
-<p>而维护这些关系也成为面向对象语言的一个特性，并且有相应的语法支持。</p>
-<p>1.继承is-a组合：一个类继承具有相似功能的另一个类，根据需要在所继承的类基础上进行扩展。<br><strong>优点：</strong> 具有共同属性和方法的类可以将共享信息抽象到父类中，增强代码复用性，同时也是多态的基础。<br><strong>缺点：</strong> 子类中扩展的部分对父类不可见，另外如果共性比较少的时候使用继承会增加冗余代码。</p>
-<p>2.组合has-a组合：has-a组合是在一个类中引用另一个类作为其成员变量。<br><strong>优点：</strong> 可扩展性和灵活性高。在对象组合关系中应优先考虑has-a组合关系。<br><strong>缺点：</strong> 具有共性的类之间看不到派生关系。</p>
-<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><p>多态在代码复用中起着尤为重要的作用，假如对象A依赖对象B，如果有对象C继承对象B，则说明对象C包含对象B,所以当对象C向上转型为对象B时不会出现信息的丢失，大部分静态编程语言都支持向上转型。所以对象A对B的操作完全适用于C，所以当依赖B和依赖C时会有不同的表现，并且这个判断过程实在运行期决定的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(B b)</span></span>&#123;</div><div class="line">        b.fun();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是b"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="comment">//重载</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是c"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        A a = <span class="keyword">new</span> A();</div><div class="line">        B b = <span class="keyword">new</span> B();</div><div class="line">        C c = <span class="keyword">new</span> C();</div><div class="line">        a.fun ( b );</div><div class="line">        a.fun ( c );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">-------------------------------------------------</div><div class="line">Output:</div><div class="line">我是b</div><div class="line">我是c</div></pre></td></tr></table></figure>
-<p>以上是最简单的多态的例子，通过上面例子很难发现多态的好处，这样做的意义是什么？</p>
-<p>观察上面的代码会发现，A的fun（）方法参数为B，但是如果传递别的类型可不可以？答案是可以的，因为上面的代码中我们传递了B的子类C，如果有D、E、F….都继承B的话，也都可以传递到A的fun()中，所以起到了复用的作用。</p>
-<p>但是还是体现不出来多态的好处，传递必须要继承这个类，不符合现实模型，比如A是播放叫声的装置，B是斑点狗，所以将B传递进去时会播放斑点狗的叫声，而C要是继承B,在现实生活世界模型中，C也是斑点狗才行。</p>
-<p>那如果我想播放牧羊犬的叫声怎么办？用抽象类就可以。如果B是抽象类的话，抽象的是狗，所以C可以任何狗，因为B中的所有东西都是抽象的，没有任何描述狗细节的东西，所以可以是任何狗。</p>
-<p>最后还是发现不完善，那如果我要播放猫叫声怎么办？这时候会有个比抽象类还抽象的东西，那就是接口，一个超级有用的家伙，有了他就可以完全和现实世界模型对应起来了，因为接口抽象的是行为，所以当B为接口时，规定B有叫声方法，所以当A的fun方法中传递的B接口时，就可以理解为，只要传递实现叫声方法的就可以，无论什么。所以当猫实现这个接口后，就可以被放到声音播放器当中，同样马、猪、牛都可以，只要他们实现叫声接口就行，但是树可以吧？不可以，因为现实世界中的树不可以叫。所以接口只抽象行为，完全可以实现现实模型的和面向对象的映射。</p>
-<p>所以抽象程度从小到大分别为类&gt;抽象类&gt;接口。</p>
+        <h3 id="java对象"><a href="#java对象" class="headerlink" title="java对象"></a>java对象</h3><h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><p>java的对象是在运行时创建的，创建对象的的触发条件有以下几种：</p>
 <ol>
-<li>当B为类时，A只能接收B子类。</li>
-<li>当B为抽象类时，A能接收符合这个抽象的具体。</li>
-<li>当B为接口时，A能接收实现B接口的任何东西，在当前上下文中就是有叫声的任何东西。</li>
+<li>用new语句创建对象，这是最常用的创建对象方法。</li>
+<li>运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。</li>
+<li>调用对象的clone()方法。</li>
+<li>运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。</li>
 </ol>
-<p>所以当B为普通类时，A就是一个 <strong>斑点狗叫声播放器</strong>。当B为抽象类时，A就为一个 <strong>狗的叫声播放器</strong>。而当B为接口时，A就是一个 <strong>叫声播放器</strong>，可以播放任何声音，这就是多态的意义。</p>
-<p>一个斑点狗播放器和一个可以播放任何声音的播放器不存在那个更好，要根据实际的场景进行判断，一个作用域小一个作用域大。</p>
-<p>其实在框架中或者“造轮子的人”用接口的比较多，而“用轮子的人”用普通类比较多，所以当阅读源码发现各种接口时不要疑惑，那是多数是为了让代码通用、作用域大。</p>
+<a id="more"></a>
+<h4 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h4><p>java对象在创建时需要在方法区的运行时常量池去查找该类的符号引用，如果没有发现符号引用，说明该类还没有被JVM加载，所以要先进行JVM的加载。当JVM加载完时，会在java堆中分配内存。分配内存时会根据堆内存是否规整来分别进行两种方式的分配。<br>1.指针碰撞<br>把内存分为可用的和已用的，在中间放置一个指针，如果要分配对象的空间，则把内存的指针向可用的一端移动当前需要分配对象大小的距离。<br>2.空闲列表<br>当内存并不是很规整时，需要一个列表来维护那些列表是可用的，那些是不可用的。</p>
+<p>当内存分配完成后需要对分配到内存空间的对象赋予零值（静态字段在类加载中就已经有值，所以不需要赋零值），接下来需要设置对象头的信息：如设置该对象的哈希码，属于哪个类，GC分代年龄等信息。从虚拟机的角度来看至此一个对象就创建完成，但是在java程序的角度看，对象的创建才刚刚开始，因为对象的值还没有设定，对象值得设定是由对象初始化化来完成的，初始化就是调用构造方法过程。</p>
+<h4 id="对象的初始化"><a href="#对象的初始化" class="headerlink" title="对象的初始化"></a>对象的初始化</h4><p>当对象创建完成后，接下来就是进行对象的初始化了，也就是去执行构造方法。</p>
+<h5 id="父类的初始化"><a href="#父类的初始化" class="headerlink" title="父类的初始化"></a>父类的初始化</h5><p>当子类对象创建之前首先会调用父类的构造函数，也就是会初始化父类，但是父类并没有被创建，也就是并没有在堆中给父类分配新的存储空间，而只是对父类的变量进行了赋值。从而达到子类可以使用父类的属性和方法的目的。</p>
+<h5 id="静态类的初始化"><a href="#静态类的初始化" class="headerlink" title="静态类的初始化"></a>静态类的初始化</h5><p>当一个类中有static修饰的方法或者是变量的话，那么当这个静态方法被第一次调用的时候，那么这个类就会初始化，就会调用此类的类构造器(在类加载过程中被JVM自动加入)，类构造器只初始化一次，触发条件为实例构造器执行，或者是静态任何一个静态成员被引用，也就是说这个类只会初始化一次。</p>
+<h5 id="普通类的初始化"><a href="#普通类的初始化" class="headerlink" title="普通类的初始化"></a>普通类的初始化</h5><p>区别与父类和静态类的初始化，普通类的初始化是建立在对象创建之上的，也就是对象创建完成后会自动的去调用构造方法进行初始化。</p>
+<h4 id="对象创建及初始化实例"><a href="#对象创建及初始化实例" class="headerlink" title="对象创建及初始化实例"></a>对象创建及初始化实例</h4><p>看完上面文字上的简单说明总感觉少些什么东西？就像一碗牛肉拉面没有卤鸡蛋一样。所以笔者要通过一个java代码来将上面的知识点串起来，让你有一个更清晰的认识。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> b = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 静态代码块</span></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        System.out.println(<span class="string">"执行Parent静态代码块：b ="</span> + b);</div><div class="line">        b++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 普通代码块</span></div><div class="line">    &#123;</div><div class="line">        System.out.println(<span class="string">"执行Parent普通代码块： a ="</span> + a);</div><div class="line">        System.out.println(<span class="string">"执行Parent普通代码块： b ="</span> + b);</div><div class="line">        b++;</div><div class="line">        a++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 无参构造函数</span></div><div class="line">    Parent() &#123;</div><div class="line">        System.out.println(<span class="string">"执行Parent无参构造函数： a ="</span> + a);</div><div class="line">        System.out.println(<span class="string">"执行Parent无参构造函数： b ="</span> + b);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 有参构造函数</span></div><div class="line">    Parent(<span class="keyword">int</span> a) &#123;</div><div class="line">        System.out.println(<span class="string">"执行Parent有参构造函数： a ="</span> + a);</div><div class="line">        System.out.println(<span class="string">"执行Parent有参构造函数： b ="</span> + b);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 方法</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"执行Parent的fun方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> c = <span class="number">1</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> d = <span class="number">2</span>;</div><div class="line">    <span class="comment">// 静态代码块</span></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        System.out.println(<span class="string">"执行Child静态代码块：d ="</span> + d);</div><div class="line">        d++;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 普通代码块</span></div><div class="line">    &#123;</div><div class="line">        System.out.println(<span class="string">"执行Child代码块： c ="</span> + c);</div><div class="line">        System.out.println(<span class="string">"执行Child代码块： d ="</span> + d);</div><div class="line">        c++;</div><div class="line">        d++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 构造函数</span></div><div class="line">    Child() &#123;</div><div class="line">        System.out.println(<span class="string">"执行Child构造函数： c ="</span> + c);</div><div class="line">        System.out.println(<span class="string">"执行Child构造函数： d ="</span> + d);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 方法</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"执行Child的fun方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Child demo = <span class="keyword">new</span> Child();</div><div class="line">        demo.fun();</div><div class="line">        System.out.println(<span class="string">"…………………………………………………………………………………………………………………………"</span>);</div><div class="line">        Child child = <span class="keyword">new</span> Child();</div><div class="line">        child.fun();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面有三个很简单的类，一个<strong>Parent</strong>,一个<strong>Child</strong>,一个<strong>Test</strong>。当执行Test的main方法是会输出什么呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输出结果</span></div><div class="line">执行Parent静态代码块：b =<span class="number">2</span></div><div class="line">执行Child静态代码块：d =<span class="number">2</span></div><div class="line">执行Parent普通代码块： a =<span class="number">1</span></div><div class="line">执行Parent普通代码块： b =<span class="number">3</span></div><div class="line">执行Parent无参构造函数： a =<span class="number">2</span></div><div class="line">执行Parent无参构造函数： b =<span class="number">4</span></div><div class="line">执行Child代码块： c =<span class="number">1</span></div><div class="line">执行Child代码块： d =<span class="number">3</span></div><div class="line">执行Child构造函数： c =<span class="number">2</span></div><div class="line">执行Child构造函数： d =<span class="number">4</span></div><div class="line">执行Child的fun方法</div><div class="line">…………………………………………………………………………………………………………………………</div><div class="line">执行Parent普通代码块： a =<span class="number">1</span></div><div class="line">执行Parent普通代码块： b =<span class="number">4</span></div><div class="line">执行Parent无参构造函数： a =<span class="number">2</span></div><div class="line">执行Parent无参构造函数： b =<span class="number">5</span></div><div class="line">执行Child代码块： c =<span class="number">1</span></div><div class="line">执行Child代码块： d =<span class="number">4</span></div><div class="line">执行Child构造函数： c =<span class="number">2</span></div><div class="line">执行Child构造函数： d =<span class="number">5</span></div><div class="line">执行Child的fun方法</div></pre></td></tr></table></figure>
+<p>下面我们一起来看看这些输出是这么一步步产生的。<br> <img src="/img/post/javaBCSX2/Java编程思想二.001.jpeg" alt="图片名称" align="center"><br> <img src="/img/post/javaBCSX2/Java编程思想二.002.jpeg" alt="图片名称" align="center"><br> <img src="/img/post/javaBCSX2/Java编程思想二.003.jpeg" alt="图片名称" align="center"><br> <img src="/img/post/javaBCSX2/Java编程思想二.004.jpeg" alt="图片名称" align="center"></p>
+<p><strong>注：本文的重点不是虚拟机有关的详细执行，之后会专门写一个关于虚拟机加载的文章，所以有关细节问题都一笔带过了</strong></p>
 
       
 
@@ -279,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3au3LCQAwFUP7/p0mTIg3mSlqYePe4Ygix97jQ6PV4xNfzz7Xq96/+mj+lfGFgYNyW8by8Xv2meqBn8crPhoGBcQ4jOcT1ra/Br765DtOFoIyBgYERH7Sav/XuiYGBgZEwksK1+rn6LAwMjNMYScJXDaP5/16/iMW1OAYGxg0Zedf9+58/Mt/AwMC4FaPXrJ+Hy1Xn+b0bBgbG1oxJm6zXIEtg1fNgYGCcwKgG0LxNlpevScgeZbIYGBi3ZfQOPVkaS45eHaNiYGCcxpiEzjwcT74Z9QIxMDBuy6jmj9eBNSluJ2OANzNYDAyMAxj5N0lSWD5QK33EwMDYm7EqXFbxvUNHiSMGBsamjPyIvQckJXEv0cTAwDiBUV2YqLbbei8lX9p4JFEfAwNjC0YS5iaLX5Nli3JSiIGBsSmjl6712mr5KygvW2BgYGzKqBauvWSuupzRHDZgYGBszUgO0Xtk0obrLby+mW9gYGBszagG3CQEz+8WzWAxMDC2ZiQNteqIsRqy86dETTcMDIwDGPlgsroYsWpgEAVcDAyMrRmTENwDJ221N7/HwMDYlDEpXHujx95w4oP1NwYGxr9nVCeDk6ZbniY2ly0wMDC2ZlSDbLWJ37tDOT3FwMA4gPGdVn5hbaJXymJgYGAMFimS1l4Ce1ORY2BgYPQmD8WmWz5yWBBwMTAwbsWYLEzkTbFVJSsGBsZpjLx07KWPk1RyVemLgYFxW8YP05tqmCJnvwAAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7cMAwF0Nz/0inQTRfpeP4npSYFnleBMR7rcQCJIfnxEV+fv6/n+18/8/zU12fz+4cvPDw8vNHSX13565+Rz59JMM/reRkCPDw8vGu8fNOfIV99MtnPk0Po5X08PDy8b+Ulm36blLcHDB4eHt7/zmu38nxZP+JgwMPDw3vkJcWI5KmkcJCk7Hlaf6zWgoeHhxfz2gbYT/j7Yn8PDw8Pb9FVT672kGiHElZrw8PDw7u17UXpb1vM3QwHtIF78148PDy8y7wZeDN2kIevbbnh4eHh3eDNqhezQYEWPCvUvkym8fDw8I7y8hR2Q82/uT0eXgYLDw8P7xovSZ33Xae8MLEpjgwLuHh4eHgj3mywKQ9EOxCQp93HCrh4eHh4I96mJJEk6LNK8zDRx8PDw7vAS7bXth3VHiHJQjffj4eHh3eW1w4wtWMEs6HVWXm3GFTFw8PDW/BmbaoDrakgoLPQH+jC4eHh4QW8/AVtsTUP1iZAbwoceHh4eNd4bSO/bZvlodkfUX/5vwEPDw/vAm/TvM+T3dmgVTs6gIeHh3ePd6oQMBsymI0gFCMFeHh4eBd4sybTZhQgD2VbAo7GufDw8PAO8dpGVBSnsrC7aXG9eRYPDw/vAm9ffi2GnzatrMUb8fDw8E7x9q2p/dLzrL99Lx4eHt4NXluKzYu5OWAWjjboeHh4eKd4+008p7akfIihqEnj4eHhrXmzheZbdps0b5LjouKCh4eHt+B9ltdzIPJltQdJHj48PDy827x22z11VOTl2jbtxsPDw/s3vLxYsEmC2xGr/YGBh4eHd5vXbvr5K2eAfYsODw8P76fx8jZVvqG3AY1+Bjw8PLxv5SXLmgWoZRdFEzw8PLxrvHYTb1PtWbk2L/sOBwjw8PDwRrx9AyzfrPPmVpugXxwdwMPDw/tz5xenEXOo4EMlmgAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/24/创建对象详解/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java编程思想读书笔记（二）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/17/代码界的石器时代/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">代码界的石器时代（转载）</div>
+    <a href="/2017/04/16/java编程思想读书笔记一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java编程思想读书笔记一</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -331,7 +317,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#面向对象"><span class="toc-number">1.</span> <span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的基本特性"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象的基本特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的高级特性"><span class="toc-number">1.2.</span> <span class="toc-text">面向对象的高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#对象之间的关联关系"><span class="toc-number">1.2.1.</span> <span class="toc-text">对象之间的关联关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多态"><span class="toc-number">1.2.2.</span> <span class="toc-text">多态</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java对象"><span class="toc-number">1.</span> <span class="toc-text">java对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对象的创建"><span class="toc-number">1.1.</span> <span class="toc-text">对象的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象创建过程"><span class="toc-number">1.2.</span> <span class="toc-text">对象创建过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象的初始化"><span class="toc-number">1.3.</span> <span class="toc-text">对象的初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#父类的初始化"><span class="toc-number">1.3.1.</span> <span class="toc-text">父类的初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#静态类的初始化"><span class="toc-number">1.3.2.</span> <span class="toc-text">静态类的初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#普通类的初始化"><span class="toc-number">1.3.3.</span> <span class="toc-text">普通类的初始化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象创建及初始化实例"><span class="toc-number">1.4.</span> <span class="toc-text">对象创建及初始化实例</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -455,6 +441,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
              
@@ -464,14 +458,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
             
             <div class="clearfix"></div>
