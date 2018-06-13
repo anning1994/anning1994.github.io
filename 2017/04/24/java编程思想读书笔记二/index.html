@@ -5,27 +5,27 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning.site">
-  <title>java编程思想读书笔记二 | an`s Blog</title>
+  <link rel="dns-prefetch" href="http://anning1994.github.io">
+  <title>java编程思想读书笔记二 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java编程思想读书笔记二">
-<meta property="og:url" content="http://anning.site/2017/04/24/java编程思想读书笔记二/index.html">
-<meta property="og:site_name" content="an`s Blog">
+<meta property="og:url" content="http://anning1994.github.io/2017/04/24/java编程思想读书笔记二/index.html">
+<meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
-<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.001.jpeg">
-<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.002.jpeg">
-<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.003.jpeg">
-<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.004.jpeg">
+<meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.001.jpeg">
+<meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.002.jpeg">
+<meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.003.jpeg">
+<meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.004.jpeg">
 <meta property="og:updated_time" content="2017-08-15T14:32:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记二">
 <meta name="twitter:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
-<meta name="twitter:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.001.jpeg">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.001.jpeg">
   
-    <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -304,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQW6EQAwFUe5/abKNxAzUt2Ek3MUqItDpRyTLbnvb8LUfrv/3+bvH+9+e3564ZMiQ8VrGfnodlz5/kgMIj+xNhgwZ6zDOA1+6XXKH/JUgKMuQIUNGaaPn4ZuvIEOGDBmc8e15EkZrQVaGDBky0iKWFKU8+NZC8w21uAwZMl7I4Kfuv//5kf6GDBkyXsXYSxdPK3kSyYPsh/3IkCFjNCMNgneVr/1Dug/ry5AhYzHGcwVnJ3BflK8yZMhYgJGWjjw0k03UBjVkyJCxGuOu9mRaiHaSSBkyZKzDIKMMtcN9vl2eDsqQIWNNBn+tdohfC6Npy0GGDBlTGbVFSYhME9AaSYYMGSswyMv90ElST14Af11HhgwZoxn99gBBpsG3lnrKkCFjKqM/PMGL4eC7piMXMmTIGMqoNQDSlgD/HOS3t/UxZMiQ8RJGOuCVDljw++d34rArQ4aMcYz0cK02zcEbAylehgwZsxm1o/+0DZkmiARW/A/IkCHjhYw0BewPUnQamRdvyZAhYygjDXC19C5tiMaNVRkyZIxm8FBIMKQl2dro+WeSIUPGUEa/3ZgORnBq0JaQIUPGaEaatPHgyNuinYEPGTJkrMPoBFn+TGewDAVcGTJkLMDoBM1+YpcWsRfTbTJkyFiYwQcy4qm0RoCWIUOGDJK68aKUU+MGqgwZMhZg1A70ybtkhf6hngwZMmYz0hGH2hF/7Tw/HcWQIUPGOMYfVlBb0VCIPSEAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3ay27cQAwEQP//TydATg4QrbvJGa8DlE7CPqQpHXa4TX58xMevP8fn88+vPH3y6btP18nfPXzg4eHhjZb+dCSXfg1ur5A8uGTNeHh4eLd5s80geQTJI2sfUL4t4eHh4b2Xl2wGyUJn18fDw8P7H3mb7aFNCWbBBB4eHt538tob7GPfJEpI1nMsa8HDw8OLebPlvvf8en8PDw8Pb1HU5pvEbLyg3RiK1eLh4eFd4L2OUJO/+slCN2MB7Ssf7aLx8PDw1rx2cXnLPw8O9iMLjxsDHh4e3mVeHgTk8cGwLA7uEpXUeHh4eGvea0a7JWzaV2dbaHh4eHj3eEn5OyttXy+6LcRneDw8PLwbvBsB62yhecle3AUPDw/vAi8ftGq3jfZm+b02oQkeHh7enjdrX7XDBG1jbIb/x33x8PDwLvDan/V8dGBToG/2ty/+N+Dh4eFd4OVjBEnbbBMozK4wTKbx8PDw1rxZ+6odzJqFs8O4Fg8PD+8C7wa1bXodwDyFEXh4eHhHeW3kmv98z1r7bTRcDKri4eHhHeXNvjD7cc/jj7zRVSDx8PDwFry8gM5L4XbpbXusuCYeHh7eBd5s6XmxO9s8Zi23KIzAw8PDO8Sbhbb5FtIOGbR3/+IR4+Hh4R3lbeLR+imWm0Q+CRA1vfDw8PCu8dqBqnbUYDaMlTfY/jrHw8PDu8BrP5oPP7VldB5DtJsHHh4e3lleXhbPwLP2/2ZI63F0AA8PD+8CLx91akvkWfSwGdWKni4eHh7eiJcfbVG7aWKdLe7x8PDwbvDawjcfFMjHCNpWWVF84+Hh4V3j5X/y8/hgM3YwG8mKUmo8PDy8b+Tl77Yt/1UH7/XreHh4eD+A146xbkKKtun1mFXj4eHhXeAlYUQSELSNq80IAh4eHt67eG0DbAaYFdyrYhoPDw/vPO83rIl9gsZYteEAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -496,11 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
             
             <div class="clearfix"></div>

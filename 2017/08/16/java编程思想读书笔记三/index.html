@@ -5,22 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning.site">
-  <title>java编程思想读书笔记三 | an`s Blog</title>
+  <link rel="dns-prefetch" href="http://anning1994.github.io">
+  <title>java编程思想读书笔记三 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java编程思想读书笔记三">
-<meta property="og:url" content="http://anning.site/2017/08/16/java编程思想读书笔记三/index.html">
-<meta property="og:site_name" content="an`s Blog">
+<meta property="og:url" content="http://anning1994.github.io/2017/08/16/java编程思想读书笔记三/index.html">
+<meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
 <meta property="og:updated_time" content="2017-08-18T16:22:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记三">
 <meta name="twitter:description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
   
-    <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -292,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aS27DMAwFwNz/0uk2QGv7kZKDWhqvgiAfjhYESfH1ip/3x/P5ztHro+f8u0fvTHswMDAey8j/OAmox8v/9/dnMDAw9mEcZbDeZ47S6Hko5wdxETMGBgZGkARHMPkvYGBgYPSS6fm3Rn4fAwMDo5cEkx+tloDJQUzrxTEwMB7IyKfu3399y/0GBgbGoxi9YX0+kuv9QjkqDAyMpRl5gqsWjnc0rhfFJQYGxjaM6tVjnmTzIVoysLuYGmJgYGzAyNez5vaYvQUODAyMHRjjI/5egdhbHYvKRwwMjIUYs0ZsVerISf9xcBgYGEsz7rgfHC/+Co3rfdecGBgY/4ZRbU17jWtSdA7Fg4GBsQGjeulYbVzz8rE3+MPAwFibUQ0lx+RJedbgDwMDYx/G+MVANb02VyuqczgMDIzHMvIGshdufhDVwdxFE4uBgbEQIy8EzxNi73Jx7nUmBgbG2ow8xKSYS1LnSDMctbIYGBjbMKqNa3Ic4+VgYfECAwNjIUZvyFVdlagGWh4OYmBgbMDIA81LwOpIbmi0h4GBsQGjt/6Vj+qqLW55RQMDA2NRxrv45I1lnohHUjkGBsYOjGrrmK+I5eFWy8Ty1hsGBsYSjLlJNoHlzXPhCDAwMDZg9EZg1YxeGJ/FFxIYGBgYs64zq8E1t0UwMDAwBlLqSDKNls8wMDA2YCRN7KzFr2ThNbn+xMDA2IdRXXHIwfeVkkP3GxgYGE9i/ABZKEHPq1grzwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQU4kMQwFUO5/aUaazbCgi//tBBjp1apUVKfzghS77by9xdf73+vj/cfr+fmr0c6Oubrw8PDwRlN/dT2/87wQz5hkJvkSv5wVHh4e3jVeEgwSRkttg0c+Zzw8PLzfwMu35oTaBg88PDy8/5c3S7jPJuJ4eHh4v4GXAJItPhm5LQ1/U60FDw8PL+bNGmA/e3+9v4eHh4c36qrnafRz0pyUIdqtP5onHh4e3gVentq2gM3hgFkRJKq14OHh4R3itRt9u923xdz8uNUwvcbDw8Nb8zYBoA0Ms+NZeaE26u/h4eHhLXizpHaTiCcTbcPDy7CBh4eHd4GXlFNnE20Z+4WLihF4eHh4h3htgyr5ytnhg7YAUf/f8PDw8A7x2gJrHm1m77ffXlRc8PDw8Na8ferc1kv3LbFiyfDw8PCu8faTTtLlvNk/K+9+8lc8PDy8y7yz7ai8NZUvzfNifREY8PDw8A7x8oNQLSYvYcye56VePDw8vHu8vBixIc1CS95si5B4eHh4C94shW2PWM2CQcv75B4PDw/vAq+dXHsoqk3W82JxEYTw8PDwvp2Xb9x5o+v5nbwMEf1iwMPDw7vAm6W/ydRPlWjbIwV4eHh493jtdp9v6LOtv03Q62QaDw8P7xCvLQrMwkMbANp0+eVvBTw8PLyjvDYVPnX4KQ9Cs1YZHh4e3j1eO3RbUJgVOPIRosoKHh4e3lFe26bap9QHkuO4wIGHh4d3g/deXsOu2uLowCqo4OHh4V3gbfLPtqk/K9e2aTceHh7e9/A2RwfyNUvGb0c4cD4CDw8Pb8FrW2K3AbPQhYeHh/c7eUk7qg02m1D0xafw8PDwfpSXFwvaUJE3w+qyCB4eHt41XrtNb0JCu0xJqBgeIMDDw8Mb8fYNsPyz+/Q6WbLD/T08PDy8f0/+AMV6+T4RrrHmAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -484,11 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
             
             <div class="clearfix"></div>

@@ -5,22 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning.site">
-  <title>Apache VFS | an`s Blog</title>
+  <link rel="dns-prefetch" href="http://anning1994.github.io">
+  <title>Apache VFS | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
 <meta name="keywords" content="编程规范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache VFS">
-<meta property="og:url" content="http://anning.site/2017/03/16/Apache-VFS/index.html">
-<meta property="og:site_name" content="an`s Blog">
+<meta property="og:url" content="http://anning1994.github.io/2017/03/16/Apache-VFS/index.html">
+<meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
 <meta property="og:updated_time" content="2017-08-15T14:22:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache VFS">
 <meta name="twitter:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
   
-    <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -501,7 +501,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aQY6EMAwEwP3/p3elvY6Atp1kZqTihBCEgoMVd/LzEx+//8fV+dWV1+PqqcUHLi7umJu/oEq8f7b6kbi4uOe5SfF6vfP+2funrj7pYXxcXNwP4/ZY+VQJFxf3G7n5BOW+bOHi4n4LdwLKXz8JU3BxcU9y54Hp/PxovouLiztYlUgC0EmMUn47Li7uEW4SXuQhSF4K8+WZ8kC4uLiLuPfDVZuiZLNF3hqV/zEuLu4ibi/6zDdnVJdpH67g4uIe4U7Qk4KYT6einAYXF3cDNy86+YvzK71fg4uLu4/bw+WTm3x5ptCl4eLibuPuWCaZL8AU6isuLu42bnKelKfq9KX8qbi4uAe5PVDS9iTjJw0PLi7ueW6+sJoXozyELWznwsXFPcKtbqGoToB6LVMhMMXFxd3AnZSnScCaBK+4uLjv5T5sgVoUhVRHxsXFfS83P/JwM297mhuwcHFxt3F7BStpeJISmUSuzSKIi4s75vZikd7kplrgytUXFxd3KXdf3Fltrh7uwcXF/TBuUgTzMZtzMVxc3I/nrl1uiTZ84OLiHuRWY9Bew1P94FEsgouLO+CuXUyd3JPQcXFxN3P/AKdqlYxkCZvSAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQW7DMAwFUd//0inQVYHU6vBTLWpqvAqQSNbLgiBFXhd+Xp/P18/r533V3dr1uzY/MmTIeCyDH+juWOt91qQ1j5xNhgwZ5zCqQZb8kq+9AxeCsgwZMmTghG+9c3UfGTJkyMgYZNN1mUpCswwZMmRkRSwJo9XASt61uRaXIUPGAxlZY+BvPv96f0OGDBn/nvEqPqRkXSdznfB6eyoZMmSMZvAXdILv3vBayHBlyJAxgtEZp8hGKPhAWKGFIEOGjNEMHvI4gKR9/aamDBkyzmFk4w689Zit5S2EK/tHZciQ8XBGlhSSQ1RX8fanDBkyZjN4vKoeetewV6E5IUOGjNEMkmVlxScJ5Z0wLUOGjNMY5EKfbEoaAJ2QWihoZciQMYLBX0amNqrtz6zQ/eZbGTJkHMMoD4zia30e9VHH9f33MmTIGM3gJSJP8naNX5CUUYYMGScwMgDZulPQkj1Rz1OGDBmDGGRB51qNF71Z20CGDBmzGdmQxIYuRBRkf/gjZMiQMZSRAXgjIUsQyyMdMmTIOIaRvT4rUKttzkKGK0OGjHGM6oGyErfaPAgBMmTIGMrIxiw6FXPnj7gNzTJkyBjNyIrJXYfjq7KLPBkyZExi9IMsHx3L2gPoAk6GDBkHMLJL+eplHA+s1Ws7GTJkyODFKvk2Sy5RaihDhgwZxQK1GrhbzU4ZMmQcwOBFLB8dyxLBsEUqQ4aM0Yxd12GFqzFSlLaHM2TIkDGC8QFrSVvRC0IAuQAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -693,11 +693,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
             
             <div class="clearfix"></div>
