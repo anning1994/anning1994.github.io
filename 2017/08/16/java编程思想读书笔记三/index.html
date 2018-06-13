@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://anning1994.github.io/2017/08/16/java编程思想读书笔记三/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
-<meta property="og:updated_time" content="2017-08-18T16:22:19.000Z">
+<meta property="og:updated_time" content="2018-06-13T14:07:41.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记三">
 <meta name="twitter:description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
@@ -175,6 +175,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="java容器详解"><a href="#java容器详解" class="headerlink" title="java容器详解"></a>java容器详解</h3><h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>Map是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的拓展，添加些简化操作的default方法。</p>
+<a id="more"></a>
 <h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><p>HashMap应该是Map接口中出场率最高的一个实现类了，所以先从这个HashMap说起。HashMap的主干部分是一个数组，每个数组中存放的都是一个链表,当链表超过一个设定的阈值时，又会转变为一个红黑树。</p>
 <p>有的同学可能会疑惑HashMap为什么要用怎么复杂的数据结构？弄清楚这点其实很简单，我们先跳出这个HashMap，什么性能、什么时间复杂度都不去考虑的情况下，如何实现一个存放Key,Value的数据结构呢？那就直接定义一个Entry<k,v>[]数组往里面放东西就好了嘛，这样我们就实现了Map的功能了，但是这样做的问题来了，Map的主要工作是要通过Key来查找Value的，我们要是去查找这个数组的时间复杂度是O(n)，这种复杂度作为一个优秀编程语言的常用集合容器那是不能接受的。</k,v></p>
 <p>那如何去优化这个数据结构呢？其实Map主要就是要通过Key去查找Value,也就是一个映射过程，并且Key的值还不能够重复，这恰好可以使用Hash函数，于是就有了用Hash函数直接将Key映射为内存地址的做法，所以同样还是之前的数组，但是插入的时候不是按内存地址顺序插入，而是通过Key直接映射为内存地址进行存储。但是设计再好的Hash函数也会有碰撞的时候，如果碰撞了，那么这个地址到底该存什么就是个问题。于是有了进一步的改变，就是hash冲突了，那么就把冲突的多个值以链表的形式存放起来（散列表）。这样一来，如果hash算法设计的好的话，那么这个时间复杂度就近似于一个常数级别的，大大的提高的查找的速度，这也就是java 1.7以前的HashMap的数据结构了。</p>
@@ -354,7 +355,7 @@
             verify: verify,
             app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
             app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
-            placeholder: "...#评论框占位符",
+            placeholder: "温馨提示 请添加昵称后发表评论",
             avatar: "monsterid",
             avatar_cdn: "undefined",
             pageSize: 15
@@ -485,11 +486,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
             
             <div class="clearfix"></div>
