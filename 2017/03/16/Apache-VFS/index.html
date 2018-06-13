@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning1994.coding.me">
+  <link rel="dns-prefetch" href="http://anning.site">
   <title>Apache VFS | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
 <meta name="keywords" content="编程规范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache VFS">
-<meta property="og:url" content="http://anning1994.coding.me/2017/03/16/Apache-VFS/index.html">
+<meta property="og:url" content="http://anning.site/2017/03/16/Apache-VFS/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
 <meta property="og:updated_time" content="2017-08-15T14:22:31.000Z">
@@ -156,6 +156,35 @@
           <div id="js-content" class="content-ll">
             <article id="post-Apache-VFS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "...#评论框占位符",
+            avatar: "monsterid",
+            avatar_cdn: "undefined",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+
     
       <header class="article-header">
         
@@ -472,7 +501,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3awY7DIAyE4bz/S6fXldqSGQ90hflzWq1SytfDyDZcl/zcf54V779/9lrxwIABY1vGPXy+vaN8pbKCsv54bzBgwDiHoWxivLS+XT2mlb3BgAEDhh6d43VqIQ4DBgwYCUPfqB6p/xC4MGDA2IqhFHzjL1PKwQQ2rReHAQPGhgx3WP/Lv5ecb8CAAWMrxm0++gpuXOqf+rAODBgwWjP0gMsPNWsk4zIHDBgwmjKS1rR2eDDe7ngPRt0KAwaMdowVMaqP2/JjVBgwYPRmuBGcjM/0gs8tE2HAgNGboV/JcovIWW2qfc0CBgwY7RgPczgzOsdf4F4aq0U2DBgw+jFqTawSpm6U12I66sVhwICxIUMZqLnXI5J+Wr/GAQMGjBMYtRhNCsGk0X24LQIDBoymDD0uFaTdPZvh/uE/MGDAOIZRO27US8BaBE+4MwIDBozNGbXQ1Eds+ZUOuwGGAQNGO0Y+YlvRANt7gAEDRmtGMpR3C77kCKF42AADBoxGDOWl23zcAHUHecbQDQYMGI0Yc8dqbnOr/4gPgQsDBowjGcn1CCV8a23tw80RGDBgNGLMKvjcAK3F9Nd1YMCA0ZqRHHC6h5F6sai0rNPOaWHAgLEJo3YlSw9WN7L1wIUBA8ZpDDf4lIPJvN1VylkYMGDAmFVdThj9Kx05DBgwYJifdfFRGwwDBowDGEoTW7tg6m6rONqDAQNGa0ZS2LnDMn27sw5HYcCAsTnjBSn6slAgDiYQAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aQY6EMAwEwP3/p3elvY6Atp1kZqTihBCEgoMVd/LzEx+//8fV+dWV1+PqqcUHLi7umJu/oEq8f7b6kbi4uOe5SfF6vfP+2funrj7pYXxcXNwP4/ZY+VQJFxf3G7n5BOW+bOHi4n4LdwLKXz8JU3BxcU9y54Hp/PxovouLiztYlUgC0EmMUn47Li7uEW4SXuQhSF4K8+WZ8kC4uLiLuPfDVZuiZLNF3hqV/zEuLu4ibi/6zDdnVJdpH67g4uIe4U7Qk4KYT6einAYXF3cDNy86+YvzK71fg4uLu4/bw+WTm3x5ptCl4eLibuPuWCaZL8AU6isuLu42bnKelKfq9KX8qbi4uAe5PVDS9iTjJw0PLi7ueW6+sJoXozyELWznwsXFPcKtbqGoToB6LVMhMMXFxd3AnZSnScCaBK+4uLjv5T5sgVoUhVRHxsXFfS83P/JwM297mhuwcHFxt3F7BStpeJISmUSuzSKIi4s75vZikd7kplrgytUXFxd3KXdf3Fltrh7uwcXF/TBuUgTzMZtzMVxc3I/nrl1uiTZ84OLiHuRWY9Bew1P94FEsgouLO+CuXUyd3JPQcXFxN3P/AKdqlYxkCZvSAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -551,7 +580,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 an
+    		&copy; 2018 an
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -646,6 +675,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编程规范</a>

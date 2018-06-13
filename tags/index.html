@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning1994.coding.me">
+  <link rel="dns-prefetch" href="http://anning.site">
   <title>an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="个人博客">
 <meta name="keywords" content="开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,java">
 <meta property="og:type" content="website">
 <meta property="og:title" content="an`s Blog">
-<meta property="og:url" content="http://anning1994.coding.me/tags/index.html">
+<meta property="og:url" content="http://anning.site/tags/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="个人博客">
 <meta property="og:updated_time" content="2017-03-12T06:36:26.000Z">
@@ -157,6 +157,35 @@
             <article id="tags-undefined" class="article article-type-tags " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "...#评论框占位符",
+            avatar: "monsterid",
+            avatar_cdn: "undefined",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+
+    
     <div class="article-entry" itemprop="articleBody">
       
         
@@ -217,7 +246,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3aQY7CMAwFUO5/6Y40W4bOd5y6VHpZVYDghcWXY+f1itfxu96f3z/z6d3z79y8cHFx29zjdH366s5nktc/bh4XF3eQm4RXvpkclxtwcXG/k7tWb5xvHhcX9+nctcjDxcV9LjcpYs5Dqrq9y89quLi4DW6nYbrreai/i4uL255KVJsgyVjlaCxcXNwZ7vkIJE+S5NCSHH6iPwUXF3ecm0dP//pFXsng4uJOcvN2Rt7IqLZLkhj9oyLDxcW9mJuPQ6qtjerw9Z9YxMXFHeFGFVAxbvIh69qQBhcX9y5ufm0i+fm8rInGq7i4uCPcvHDJjzG7whEXF3eeuxZJ56DqK4Xgw8XFHeRWI2zX6LTaZsXFxb2Xu3ZoyQ82+YZxcXHnuUkrs39Va20cuzj/wcXFbXOrzYv8OHRFewUXF3eSu1aO5C2PzoVOXFzcu7iL7cv8uBLHYsGOi4t7GbcaKGunq5y+djEUFxf3Cm41vJJATMqaxWIIFxd3kNsZoHbGJOULW7i4uF/GrQ5Iqn9BVIvh4uI+hNspX6rhiIuLO8mtDlCr6MLIZFdbBBcXt8GtNkyrI5ZqIFabMri4uFu5P/WTQ/ryLq5QAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABSElEQVR42u3aQQ6DMBBDUe5/6XTTBVJFZM+EIuKfVdWW4bEITByOQx7jNM7f/P46/+fiAQvWRqwxHS5LuZj5uWDBSmZdzVBlkl+WluvAggWrVm5+U4AFC9Y/WbX2GhYsWJ2mubP0vbGXhwVrC1atdO3zLfkWLFgvZw1z6PRa/W8FWLDCWPoEdrm1S4IFC1Y/zNW3XqTWHBasGFZ/U0SJltwIGBasNJZeblVbbDzOYcGKYblblf3AVzoKFqwwVudR6rbCxfAXFqwYllLaDZjcxa29OwoL1qasflH9FZ/57QMWrGRW500ANwVSYl9YsHJYa2OgYo4FC1Y8Sx/uYXaLXBuwYG3EUqa6/gKBvg61e3lYsAJYj9173F4eFixY7aDWuDxYsGAtimhrG5+wYCWzahuW+uLWjpBgwQpjdYKhWv6zuNeGBevdrA9AvBcOPJKuNwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,7 +298,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 an
+    		&copy; 2018 an
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -364,6 +393,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编程规范</a>

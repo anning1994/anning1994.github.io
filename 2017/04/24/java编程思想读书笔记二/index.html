@@ -5,25 +5,25 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning1994.coding.me">
+  <link rel="dns-prefetch" href="http://anning.site">
   <title>java编程思想读书笔记二 | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java编程思想读书笔记二">
-<meta property="og:url" content="http://anning1994.coding.me/2017/04/24/java编程思想读书笔记二/index.html">
+<meta property="og:url" content="http://anning.site/2017/04/24/java编程思想读书笔记二/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
-<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.001.jpeg">
-<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.002.jpeg">
-<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.003.jpeg">
-<meta property="og:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.004.jpeg">
+<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.001.jpeg">
+<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.002.jpeg">
+<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.003.jpeg">
+<meta property="og:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.004.jpeg">
 <meta property="og:updated_time" content="2017-08-15T14:32:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java编程思想读书笔记二">
 <meta name="twitter:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
-<meta name="twitter:image" content="http://anning1994.coding.me/img/post/javaBCSX2/Java编程思想二.001.jpeg">
+<meta name="twitter:image" content="http://anning.site/img/post/javaBCSX2/Java编程思想二.001.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="an`s Blog" type="application/atom+xml">
   
@@ -162,6 +162,35 @@
             <article id="post-java编程思想读书笔记二" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "...#评论框占位符",
+            avatar: "monsterid",
+            avatar_cdn: "undefined",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+
+    
       <header class="article-header">
         
   
@@ -275,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7cMAwF0Nz/0inQTRfpeP4npSYFnleBMR7rcQCJIfnxEV+fv6/n+18/8/zU12fz+4cvPDw8vNHSX13565+Rz59JMM/reRkCPDw8vGu8fNOfIV99MtnPk0Po5X08PDy8b+Ulm36blLcHDB4eHt7/zmu38nxZP+JgwMPDw3vkJcWI5KmkcJCk7Hlaf6zWgoeHhxfz2gbYT/j7Yn8PDw8Pb9FVT672kGiHElZrw8PDw7u17UXpb1vM3QwHtIF78148PDy8y7wZeDN2kIevbbnh4eHh3eDNqhezQYEWPCvUvkym8fDw8I7y8hR2Q82/uT0eXgYLDw8P7xovSZ33Xae8MLEpjgwLuHh4eHgj3mywKQ9EOxCQp93HCrh4eHh4I96mJJEk6LNK8zDRx8PDw7vAS7bXth3VHiHJQjffj4eHh3eW1w4wtWMEs6HVWXm3GFTFw8PDW/BmbaoDrakgoLPQH+jC4eHh4QW8/AVtsTUP1iZAbwoceHh4eNd4bSO/bZvlodkfUX/5vwEPDw/vAm/TvM+T3dmgVTs6gIeHh3ePd6oQMBsymI0gFCMFeHh4eBd4sybTZhQgD2VbAo7GufDw8PAO8dpGVBSnsrC7aXG9eRYPDw/vAm9ffi2GnzatrMUb8fDw8E7x9q2p/dLzrL99Lx4eHt4NXluKzYu5OWAWjjboeHh4eKd4+008p7akfIihqEnj4eHhrXmzheZbdps0b5LjouKCh4eHt+B9ltdzIPJltQdJHj48PDy827x22z11VOTl2jbtxsPDw/s3vLxYsEmC2xGr/YGBh4eHd5vXbvr5K2eAfYsODw8P76fx8jZVvqG3AY1+Bjw8PLxv5SXLmgWoZRdFEzw8PLxrvHYTb1PtWbk2L/sOBwjw8PDwRrx9AyzfrPPmVpugXxwdwMPDw/tz5xenEXOo4EMlmgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQW6EQAwFUe5/abKNxAzUt2Ek3MUqItDpRyTLbnvb8LUfrv/3+bvH+9+e3564ZMiQ8VrGfnodlz5/kgMIj+xNhgwZ6zDOA1+6XXKH/JUgKMuQIUNGaaPn4ZuvIEOGDBmc8e15EkZrQVaGDBky0iKWFKU8+NZC8w21uAwZMl7I4Kfuv//5kf6GDBkyXsXYSxdPK3kSyYPsh/3IkCFjNCMNgneVr/1Dug/ry5AhYzHGcwVnJ3BflK8yZMhYgJGWjjw0k03UBjVkyJCxGuOu9mRaiHaSSBkyZKzDIKMMtcN9vl2eDsqQIWNNBn+tdohfC6Npy0GGDBlTGbVFSYhME9AaSYYMGSswyMv90ElST14Af11HhgwZoxn99gBBpsG3lnrKkCFjKqM/PMGL4eC7piMXMmTIGMqoNQDSlgD/HOS3t/UxZMiQ8RJGOuCVDljw++d34rArQ4aMcYz0cK02zcEbAylehgwZsxm1o/+0DZkmiARW/A/IkCHjhYw0BewPUnQamRdvyZAhYygjDXC19C5tiMaNVRkyZIxm8FBIMKQl2dro+WeSIUPGUEa/3ZgORnBq0JaQIUPGaEaatPHgyNuinYEPGTJkrMPoBFn+TGewDAVcGTJkLMDoBM1+YpcWsRfTbTJkyFiYwQcy4qm0RoCWIUOGDJK68aKUU+MGqgwZMhZg1A70ybtkhf6hngwZMmYz0hGH2hF/7Tw/HcWQIUPGOMYfVlBb0VCIPSEAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,6 +317,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/08/16/java编程思想读书笔记三/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java编程思想读书笔记三
+        
+      </div>
+    </a>
   
   
     <a href="/2017/04/16/java编程思想读书笔记一/" id="article-nav-older" class="article-nav-link-wrap">
@@ -345,7 +383,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 an
+    		&copy; 2018 an
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -440,6 +478,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编程规范</a>

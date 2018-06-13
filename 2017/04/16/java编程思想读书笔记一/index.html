@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning1994.coding.me">
+  <link rel="dns-prefetch" href="http://anning.site">
   <title>java编程思想读书笔记一 | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="解读面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java编程思想读书笔记一">
-<meta property="og:url" content="http://anning1994.coding.me/2017/04/16/java编程思想读书笔记一/index.html">
+<meta property="og:url" content="http://anning.site/2017/04/16/java编程思想读书笔记一/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="解读面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程式面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（内存引用和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
 <meta property="og:updated_time" content="2017-08-15T14:32:02.000Z">
@@ -157,6 +157,35 @@
             <article id="post-java编程思想读书笔记一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "...#评论框占位符",
+            avatar: "monsterid",
+            avatar_cdn: "undefined",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+
+    
       <header class="article-header">
         
   
@@ -279,7 +308,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW4bMQwF0Nz/0inQVYF0nP9JKXWBNytjYEt6Wkg0yY+P+Pn8/SRv/nz/9Tuvv5m/P/zg4eHhjZb+9Hxd6NNk+XL3W5ysGQ8PD+82LxkuOeJf/zaZ6/A4eHh4eP+U114e7RGfRMV4eHh4/xdvk4bYJCbw8PDw3pOXDBf9+R8lFPbp3QO5Fjw8PLwz6ykuiZ/8fLG+h4eHh7eoqidP3mQwK62t1oaHh4d3gZcnUvPUw6wYli+3bkfAw8PDu8DbNA1sFponhfdbjIeHh3eWNyvkb1K0yeUxG+Gb+h4eHh7emtemBtoDPU9MzBIWRWUPDw8P7xCvTbYmqYHkEE/GnF0Gj0g8PDy8o7x8cXlAnIfjs80q1oCHh4d3lJeEqrOExQ12fVXg4eHhXebNwus2jN4kgpMRHi8GPDw8vEO8fLK20JW3drWNAnVPBB4eHt413qZxKgmC88+zbaobCPDw8PDWvDZB0KZ92yJWEspHITgeHh7eUd7sSpi1Q+Xj5E1aURoCDw8P7xovP77zdO2sJLYptv2lAIaHh4d3jTcrVuVNVEmAXicaXm8HHh4e3gVeXsTKGwWScU4ldqOtxMPDw7vAmy23DXzbcHzGfhwTDw8P7yivLXS1R3wSHOebVVwGeHh4eJd5bVH/1LXRbkrbcICHh4d3gzc7yts0wezEztsOvimS4eHh4R3l5YtrmwbyZc1SFVELFx4eHt6P8NoQdk9qL6riesPDw8M7yvssnyJCL4tq7bxRigQPDw/vAm924LbT5Gnis+1ceHh4ePd4+aHcXgCbLWvZUX0PDw8P7yhvX9TPp2xTGMMsCx4eHt6b8fKQNw/HT7UX4OHh4b0P7/VkbZpgn6ookhF4eHh4F3ib4tMsW9wuPQ/o8fDw8G7zZn/129LUrJmgDaAP1Pfw8PDwXs31C01r+T58s19DAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aO27DMBAFwNz/0g6Q1oj83lIuRI4qQ7YpjooF9/PzE1+vvyv5zfX1vtr7ysmzhhcGBsZjGSsPvv799TrJnWRvGBgY5zCug2wLa1fOv/33PgYGBkZ8XEu2uHJwxMDAwJgF3OuMst0cBgYGxkoSmwfKZP38Zd2ci2NgYDyQsXLg+/bnL/Y3MDAwHsJ4lVfbJFgJwcWuMDAwtma04w5J+WxW4k9IH8IxBgbG1oxZ0W02fjErtxWjYxgYGJsy1vPg5MH5aEW7AgYGxjmM2bEvD4izdkLxojEwMI5ktKE5T2WHIfV6DxgYGMcw2gS1DbttCC5KeBgYGAcw2pC6nu6ujHd8aGFiYGBsxJgNjM6OenlKnIRjDAyMcxh3JZA5dSUBLmprGBgY2zFmYXe2xfZYmYMxMDB2ZcyKZbNxirwVWpfeMDAwDmAkIS8f/MpXWCn21TU8DAyMxzLa8v29oxJ5qjx7FgYGxn6MdmA0L661rYL26RgYGHszkjbhSiVvpbWZFPIwMDDOYcwOZ8Mx04WGAQYGxpmM2eEvD7t5k2ClqYmBgbE341Ve68e7tpEQvQgMDIytGe3S+bfrKfH1OhgYGKcxkiD7jUS0bZR++C8GBsYBjPWi23Uq247J1vvBwMDAiI9obYktuR/hMTAwMOIhsJWMOR/auC3gYmBgPIoxK/G3LYRZy/OGRiYGBsbDGTckkOW/2rZBnhJjYGBsx/gFElt0ct6P8iYAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -358,7 +387,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 an
+    		&copy; 2018 an
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -453,6 +482,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编程规范</a>

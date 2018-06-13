@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://anning1994.coding.me">
+  <link rel="dns-prefetch" href="http://anning.site">
   <title>代码界的石器时代（转载） | an`s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="原文链接： https://github.com/justinyhuang/Functional-Programming-For-The-Rest-of-Us-Cn 公园漫步时间机器启动……我们来到公元前380年，也就是2000多年前的雅典城外。这是一个阳光明媚的久违的春天，柏拉图和一个帅气的小男仆走在一片橄榄树荫下。他们正准备前往一个学院。天气很好，吃得很饱，渐渐的，两人的谈话转向了哲学。">
 <meta name="keywords" content="宏观编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码界的石器时代（转载）">
-<meta property="og:url" content="http://anning1994.coding.me/2017/03/17/代码界的石器时代/index.html">
+<meta property="og:url" content="http://anning.site/2017/03/17/代码界的石器时代/index.html">
 <meta property="og:site_name" content="an`s Blog">
 <meta property="og:description" content="原文链接： https://github.com/justinyhuang/Functional-Programming-For-The-Rest-of-Us-Cn 公园漫步时间机器启动……我们来到公元前380年，也就是2000多年前的雅典城外。这是一个阳光明媚的久违的春天，柏拉图和一个帅气的小男仆走在一片橄榄树荫下。他们正准备前往一个学院。天气很好，吃得很饱，渐渐的，两人的谈话转向了哲学。">
 <meta property="og:updated_time" content="2017-08-15T14:24:05.000Z">
@@ -157,6 +157,35 @@
             <article id="post-代码界的石器时代" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "...#评论框占位符",
+            avatar: "monsterid",
+            avatar_cdn: "undefined",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+
+    
       <header class="article-header">
         
   
@@ -254,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQW7DMAwEQP//0+21QJp4SYppCoxPRZHYGh9EZqnriq+vh+vn/x8/8+xbyfX66dfGhYeHhzde+uuFPsKq93l2h956bl4QHh4e3hrv2WOSAvB6E89fU/46kjXj4eHhfRqvupXnS3z9FDw8PLz/yMub4MnLykMQPDw8vL/i5SFCHk8kUWwS4ybsA1kLHh4eXm3GFE2RPufvlfkeHh4e3niq3mtnJxt0byT2dLV4eHh4C7x8w50M7/OhV3L/6jrx8PDwtnnJIL8XGZxqqcuhMx4eHt5RXjUMzePdauuclIeVfBoPDw+vNRvqNcRJVDEfbvXweHh4eO/h5Rt3dbufFJikgb56VQgPDw+vxeuNsvIyUD1o1RvFlUdfeHh4eGu8Humd58VuVoKHh4e3wEseUy0P+eB/8lLKWTUeHh7eIV71YNN8NDUpAOX74+Hh4S3wqtFAUiqqAUf1/9WjXXh4eHhneUlbnJSBfMRVLQzVRrz8WwEPDw+vxctrSDWAqDbup+6Ah4eHt8fbO3qVPL4af+Sjr5usGg8PD2/A6x262utde4eumicj8PDw8Ma8aquaPLga/s5LBR4eHt57eGejgV7DnbfveZONh4eHt8fbKAzVEjIZfRXme3h4eHhjXr6V5wehTkUSvUMMv6wNDw8Pb403P0R1dovvxRlXL5PGw8PDG/N6Q6nku9VBWvL5m/4ZDw8Pb5k3j1CrOUCOab4aPDw8vKO83nafFJVJc5wHxzdIPDw8vAXevKrkvOQ4QlKuqtEzHh4e3gavt8Q8Dp6Un+r4DQ8PD++dvOTQQB6q5gWgEMi2gl08PDy8z+H1DgpMwMna8PDw8D6TV22XkzC311JHpQsPDw9vjTc/PlV9BfOSUygMeHh4eEd51R/5yVY+j2XPhhR4eHh4h3jfOwf5Pl2QuhUAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS07DQBAFQO5/6bBFgjjv9YRInimvIhPZU1k0/fv6iq/Hjyu58+yv15+f3XnbhYGBcVvG4/LKj/j7fvuu/L1/vAUDA+MAxrNXXofFNoxeH+X6mS/OjIGBgXH5nSQdTBJEDAwMjP8IuHl1eY2f/XwYGBinMVaaZbOD5qnhm2txDAyMGzLaoPnJz/8y38DAwLgV41FeyWgzL1CTb0anwsDA2JqRB7gZb6WF1y5/YGBgnMBYX/CalcR5EVu02zAwMDZltG21WfOrOFZb3GJgYBzAaIvM6zvJCsVsdQwDAwMjWa1YGSu2iWbRvMPAwNiUMWv6z145G5EOQy0GBsZGjDaZmxWis5SxbvZhYGAcwJgNBtoBw0rMjJYtMDAwNmV88qHtKDRvC2JgYOzKmC14tS3+fBSRJ50YGBjnMFYCYn7odmy5MkLAwMDYlZGkaO14sg2j7fihni1gYGDcnJG02NpUsv1mnnq++FkxMDAOYLTt/tmqRD2ezN+CgYGxKaNtbz3KayX5K4YHGBgYBzDaUrMNwXkzLl/7iB6BgYGxESM/aLsY0SaFSfB98X8DAwNjI8ZKkjdbpGgDdFF/Y2BgbMqYTQZnL5utfK009TAwMHZitM2yWbjMi9vZGTAwME5gtP2rqAW2MLCsRwUYGBgYCysR+Z1iYNlui2BgYBzGWAmR7y10lwIuBgbGDRmzYcCsTE0aeW2iiYGBsTdjpXRsH5Svf62DMTAwtmB8A5b3IuAxnUxyAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -333,7 +362,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 an
+    		&copy; 2018 an
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -428,6 +457,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
