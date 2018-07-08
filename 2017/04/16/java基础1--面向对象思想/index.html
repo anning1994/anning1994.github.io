@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>java编程思想读书笔记三 | an&#39;s Blog</title>
+  <title>java基础1--面向对象思想 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
+  <meta name="description" content="解读面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程是面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（引用存储单元和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java编程思想读书笔记三">
-<meta property="og:url" content="http://anning1994.github.io/2017/08/16/java编程思想读书笔记三/index.html">
+<meta property="og:title" content="java基础1--面向对象思想">
+<meta property="og:url" content="http://anning1994.github.io/2017/04/16/java基础1--面向对象思想/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
-<meta property="og:updated_time" content="2018-06-13T14:07:41.324Z">
+<meta property="og:description" content="解读面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程是面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（引用存储单元和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
+<meta property="og:updated_time" content="2018-06-23T09:53:34.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java编程思想读书笔记三">
-<meta name="twitter:description" content="java容器详解MapMap是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的">
+<meta name="twitter:title" content="java基础1--面向对象思想">
+<meta name="twitter:description" content="解读面向对象我们常见的编程范式有命令式编程，函数式编程，逻辑式编程，面向对象编程是一种命令式编程。 命令式编程是面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（引用存储单元和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -47,10 +47,10 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/touxiang.jpeg" class="js-avatar">
+			<img src="/img/touxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">an</a></h1>
+		  <h1 class="header-author"><a href="/">an power by Yilai Litten</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">逻辑会把你从A带到B，想象力能带你去任何地方。</p>
@@ -103,10 +103,10 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/touxiang.jpeg" class="js-avatar">
+				<img src="/img/touxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">an</h1>
+			  <h1 class="header-author js-header-author">an power by Yilai Litten</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>逻辑会把你从A带到B，想象力能带你去任何地方。<i class="icon icon-quo-right"></i></p>
@@ -154,43 +154,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java编程思想读书笔记三" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java基础1--面向对象思想" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java编程思想读书笔记三
+      java基础1--面向对象思想
     </h1>
   
 
         
-        <a href="/2017/08/16/java编程思想读书笔记三/" class="archive-article-date">
-  	<time datetime="2017-08-16T14:51:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+        <a href="/2017/04/16/java基础1--面向对象思想/" class="archive-article-date">
+  	<time datetime="2017-04-16T08:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="java容器详解"><a href="#java容器详解" class="headerlink" title="java容器详解"></a>java容器详解</h3><h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>Map是一个接口，也就意味着它规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的，也就是对它所有的实现类都适用的。在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟现有实现架构产生兼容问题（背着历史沉重包袱前进的男人。。。），有兴趣的同学可以查下，这里就不展开说了。Map的接口中也在1.8版本有了新的拓展，添加些简化操作的default方法。</p>
+        <h3 id="解读面向对象"><a href="#解读面向对象" class="headerlink" title="解读面向对象"></a>解读面向对象</h3><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，面向对象编程是一种命令式编程。</p>
+<p>命令式编程是面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（引用存储单元和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，<strong>面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。</strong></p>
 <a id="more"></a>
-<h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><p>HashMap应该是Map接口中出场率最高的一个实现类了，所以先从这个HashMap说起。HashMap的主干部分是一个数组，每个数组中存放的都是一个链表,当链表超过一个设定的阈值时，又会转变为一个红黑树。</p>
-<p>有的同学可能会疑惑HashMap为什么要用怎么复杂的数据结构？弄清楚这点其实很简单，我们先跳出这个HashMap，什么性能、什么时间复杂度都不去考虑的情况下，如何实现一个存放Key,Value的数据结构呢？那就直接定义一个Entry<k,v>[]数组往里面放东西就好了嘛，这样我们就实现了Map的功能了，但是这样做的问题来了，Map的主要工作是要通过Key来查找Value的，我们要是去查找这个数组的时间复杂度是O(n)，这种复杂度作为一个优秀编程语言的常用集合容器那是不能接受的。</k,v></p>
-<p>那如何去优化这个数据结构呢？其实Map主要就是要通过Key去查找Value,也就是一个映射过程，并且Key的值还不能够重复，这恰好可以使用Hash函数，于是就有了用Hash函数直接将Key映射为内存地址的做法，所以同样还是之前的数组，但是插入的时候不是按内存地址顺序插入，而是通过Key直接映射为内存地址进行存储。但是设计再好的Hash函数也会有碰撞的时候，如果碰撞了，那么这个地址到底该存什么就是个问题。于是有了进一步的改变，就是hash冲突了，那么就把冲突的多个值以链表的形式存放起来（散列表）。这样一来，如果hash算法设计的好的话，那么这个时间复杂度就近似于一个常数级别的，大大的提高的查找的速度，这也就是java 1.7以前的HashMap的数据结构了。</p>
-<p>在java 1.8时，进一步对HashMap做了优化，主要是针对Hash碰撞很多时，导致链表的长度越来越长，遍历链表的时间越来越久的问题，引入了红黑树去加快查找时间的方案。</p>
-<h6 id="分析类图"><a href="#分析类图" class="headerlink" title="分析类图"></a>分析类图</h6><p>上面已经讲了HashMap的数据结构，接下来说一说HashMap是怎么实现的，首先我们去看下HashMap的类图。</p>
-<p>AbstractMap是HashMap, TreeMap, ConcurrentHashMap 等类的父类。当我们宏观去理解Map时会发现，<strong>其实Map就是一个保存Entry<k,v>的集合</k,v></strong>。AbstractMap类的设计就是映射了笔者上面的那句话。</p>
-<p>如果我们自己去设计AbstractMap的思路是什么呢？最容易想到的其实就是仅仅去实现Map接口，之后将全部为实现方法都设计为抽象类，这样的确是可以，也很容易理解。但是我们打开源码时会发现AbstractMap的作者想法要比我们想到复杂的多，并且也合理的多。AbstractMap作为一个抽象类，里面的抽象方法确只有一个。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> Set&lt;Entry&lt;K,V&gt;&gt; entrySet();</div></pre></td></tr></table></figure>
-<p>还有一个虽然实现了，但是只是抛出异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();&#125;</div></pre></td></tr></table></figure>
-<p>也就是说其他的方法都已经被这个抽象类所实现了。抽象类这样设计的意义是什么呢？既然都实现了为什么不去定义一个非抽象类去实现？带着这两个问题，我们来看下AbstractMap的主要方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//根据key获取value</span></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">       Iterator&lt;Entry&lt;K,V&gt;&gt; i = @ entrySet().iterator();</div><div class="line">       <span class="keyword">if</span> (key==<span class="keyword">null</span>) &#123;</div><div class="line">           <span class="keyword">while</span> (i.hasNext()) &#123;</div><div class="line">               Entry&lt;K,V&gt; e = i.next();</div><div class="line">               <span class="keyword">if</span> (e.getKey()==<span class="keyword">null</span>)</div><div class="line">                   <span class="keyword">return</span> e.getValue();</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           <span class="keyword">while</span> (i.hasNext()) &#123;</div><div class="line">               Entry&lt;K,V&gt; e = i.next();</div><div class="line">               <span class="keyword">if</span> (key.equals(e.getKey()))</div><div class="line">                   <span class="keyword">return</span> e.getValue();</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   &#125;</div><div class="line"><span class="comment">//判断value是否存在</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span> </span>&#123;</div><div class="line">        Iterator&lt;Entry&lt;K,V&gt;&gt; i = @ entrySet().iterator();</div><div class="line">        <span class="keyword">if</span> (value==<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">while</span> (i.hasNext()) &#123;</div><div class="line">                Entry&lt;K,V&gt; e = i.next();</div><div class="line">                <span class="keyword">if</span> (e.getValue()==<span class="keyword">null</span>)</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">while</span> (i.hasNext()) &#123;</div><div class="line">                Entry&lt;K,V&gt; e = i.next();</div><div class="line">                <span class="keyword">if</span> (value.equals(e.getValue()))</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//判断key是否存在</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">        Iterator&lt;Map.Entry&lt;K,V&gt;&gt; i = @ entrySet().iterator();</div><div class="line">        <span class="keyword">if</span> (key==<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">while</span> (i.hasNext()) &#123;</div><div class="line">                Entry&lt;K,V&gt; e = i.next();</div><div class="line">                <span class="keyword">if</span> (e.getKey()==<span class="keyword">null</span>)</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">while</span> (i.hasNext()) &#123;</div><div class="line">                Entry&lt;K,V&gt; e = i.next();</div><div class="line">                <span class="keyword">if</span> (key.equals(e.getKey()))</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>细心的同学可能会发现，笔者在这段代码中添加了@符号。上面问题的答案和我@符号后面的entrySet()方法有着密切的关系。一个抽象类，作为其他Map的父类，它保证AbstractMap实现的方法要适合于每个Map，就是因为AbstractMap中其他方法都是依赖于entrySet()而实现的，也就是说我们只要继承AbstractMap，并且自己去实现 <strong>public abstract Set<entry<k,v>&gt; entrySet()</entry<k,v></strong> 方法，之后 <strong>根据key获取value</strong>、 <strong>判断value是否存在</strong> 等等方法AbstractMap都已经帮你实现好了。</p>
-<p>我们回头来总结一下，并且去解释上面的两个问题。首先它作为抽象类，主要原因并不是要去将Map接口中的所有方法都去实现为抽象类，而是为了避免被实例化。这样设计意义就是它将抽象的粒度缩小到最低，低到只对外提供一个抽象方法，而却将应用范围扩大,大到成为基本所有Map实现类的父类。这种将依赖分离，不就是解耦合的重要体现吗？所以解耦合并不一定只适用类于类之间。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleEntry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span></div><div class="line">        <span class="keyword">implements</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">8499721149061103585L</span>;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> K key;</div><div class="line">        <span class="keyword">private</span> V value;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SimpleEntry</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key   = key;</div><div class="line">            <span class="keyword">this</span>.value = value;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SimpleEntry</span><span class="params">(Entry&lt;? extends K, ? extends V&gt; entry)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key   = entry.getKey();</div><div class="line">            <span class="keyword">this</span>.value = entry.getValue();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> key;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> value;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">setValue</span><span class="params">(V value)</span> </span>&#123;</div><div class="line">            V oldValue = <span class="keyword">this</span>.value;</div><div class="line">            <span class="keyword">this</span>.value = value;</div><div class="line">            <span class="keyword">return</span> oldValue;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Map.Entry))</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;</div><div class="line">            <span class="keyword">return</span> eq(key, e.getKey()) &amp;&amp; eq(value, e.getValue());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> (key   == <span class="keyword">null</span> ? <span class="number">0</span> :   key.hashCode()) ^</div><div class="line">                   (value == <span class="keyword">null</span> ? <span class="number">0</span> : value.hashCode());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> key + <span class="string">"="</span> + value;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleImmutableEntry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span></div><div class="line">        <span class="keyword">implements</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">7138329143949025153L</span>;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> K key;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> V value;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SimpleImmutableEntry</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key   = key;</div><div class="line">            <span class="keyword">this</span>.value = value;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SimpleImmutableEntry</span><span class="params">(Entry&lt;? extends K, ? extends V&gt; entry)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key   = entry.getKey();</div><div class="line">            <span class="keyword">this</span>.value = entry.getValue();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> key;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> value;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">setValue</span><span class="params">(V value)</span> </span>&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h4 id="面向对象的基本特性"><a href="#面向对象的基本特性" class="headerlink" title="面向对象的基本特性"></a>面向对象的基本特性</h4><p>如果只是用变量，赋值语句，表达式，控制语句去构建现实世界模型的话会非常困难，所以面向对象的出现的根本原因就是就是为了解决这个问题。</p>
+<p><strong>面向对象让我们从指令代码操作变量转变为通过指令操作对象。</strong> 当我们理解了这个以后再去看面向对象的基本特征：</p>
+<blockquote>
+<p>抽象<br>封装</p>
+</blockquote>
+<p>首先抽象就是建立一个对现实模型的抽象，封装就是将变量，赋值语句，表达式，控制语句进行组合来描述上面的抽象，并且将他们“打包”，看成一个原子结构，之后的程序逻辑都是围绕着这个原子结构进行的。</p>
+<p>最后，面向对象的编程就是将原来的 ”模式一“ 改变为 ”模式二”</p>
+<p>模式一：程序 = （赋值语句+表达式+控制语句）+ 变量</p>
+<p>模式二：程序 = 对象 + 对象（对象之间的调用）</p>
+<h4 id="面向对象的高级特性"><a href="#面向对象的高级特性" class="headerlink" title="面向对象的高级特性"></a>面向对象的高级特性</h4><h5 id="对象之间的关联关系"><a href="#对象之间的关联关系" class="headerlink" title="对象之间的关联关系"></a>对象之间的关联关系</h5><p>抽象，封装只是对现实模型和冯诺依曼机之间基本的映射关系，而现实世界中模型与模型之间还存在很多关系，如继承、组合、依赖等。</p>
+<p>而维护这些关系也成为面向对象语言的一个特性，并且有相应的语法支持。</p>
+<p>1.继承is-a组合：一个类继承具有相似功能的另一个类，根据需要在所继承的类基础上进行扩展。<br><strong>优点：</strong> 具有共同属性和方法的类可以将共享信息抽象到父类中，增强代码复用性，同时也是多态的基础。<br><strong>缺点：</strong> 子类中扩展的部分对父类不可见，另外如果共性比较少的时候使用继承会增加冗余代码。</p>
+<p>2.组合has-a组合：has-a组合是在一个类中引用另一个类作为其成员变量。<br><strong>优点：</strong> 可扩展性和灵活性高。在对象组合关系中应优先考虑has-a组合关系。<br><strong>缺点：</strong> 具有共性的类之间看不到派生关系。</p>
+<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><p>多态在代码复用中起着尤为重要的作用，如：对象A依赖对象B；对象C继承对象B；（说明对象C包含对象B，所以当对象C向上转型为对象B时不会出现信息的丢失，大部分静态编程语言都支持向上转型。）对象A引用对象B的操作也完全适用于对象C，依赖对象B和依赖C时有不同的表现，并且这个判断过程在运行期根据真实对象所决定的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(B b)</span></span>&#123;</div><div class="line">        b.fun();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是b"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="comment">//重载</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是c"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        A a = <span class="keyword">new</span> A();</div><div class="line">        B b = <span class="keyword">new</span> B();</div><div class="line">        C c = <span class="keyword">new</span> C();</div><div class="line">        a.fun ( b );</div><div class="line">        a.fun ( c );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">-------------------------------------------------</div><div class="line">Output:</div><div class="line">我是b</div><div class="line">我是c</div></pre></td></tr></table></figure>
+<p>以上是最简单的多态的例子，通过上面例子很难发现多态的好处，这样做的意义是什么？</p>
+<p>观察上面的代码会发现，A的fun( )方法参数为B，但是如果传递别的类型可不可以？答案是可以的，因为上面的代码中我们传递了B的子类C，如果有D、E、F….都继承B的话，也都可以传递到A的fun( )中，这样便起到了复用的作用。</p>
+<p>但是还是体现不出来多态的好处，传递必须要继承这个类，不符合现实模型，比如A是播放叫声的装置，B是斑点狗，所以将B传递进去时会播放斑点狗的叫声，而C要是继承B,在现实生活世界模型中，C也是斑点狗才行。</p>
+<p>那如果我想播放牧羊犬的叫声怎么办？用抽象类就可以。如果B是抽象类的话，抽象的是狗，所以C可以是任何狗，因为B中的所有东西都是抽象的，没有任何描述狗细节的东西，所以可以是任何狗。</p>
+<p>最后还是发现不完善，那如果我要播放猫叫声怎么办？这时候会有个比抽象类还抽象的东西，那就是接口，一个超级有用的家伙，有了他就可以完全和现实世界模型对应起来了，因为接口抽象的是行为，所以当B为接口时，规定B有叫声方法，所以当A的fun方法中传递的B接口时，就可以理解为，只要传递实现叫声方法的就可以，无论什么。所以当猫实现这个接口后，就可以被放到声音播放器当中，同样马、猪、牛都可以，只要他们实现叫声接口就行，但是树可以吧？很显然是不可以的，因为现实世界中的树不可以叫，放到程序中即为树无法实现叫声接口，因为无法实现叫的方法。所以接口只抽象行为，完全可以实现现实模型的和面向对象的映射。</p>
+<p>所以抽象程度从小到大分别为类&gt;抽象类&gt;接口。</p>
+<ol>
+<li>当B为类时，A只能接收B子类。</li>
+<li>当B为抽象类时，A能接收符合这个抽象的具体。</li>
+<li>当B为接口时，A能接收实现B接口的任何东西，在当前上下文中就是有叫声的任何东西。</li>
+</ol>
+<p>所以当B为普通类时，A就是一个 <strong>斑点狗叫声播放器</strong>。当B为抽象类时，A就为一个 <strong>狗的叫声播放器</strong>。而当B为接口时，A就是一个 <strong>叫声播放器</strong>，可以播放任何声音，这就是多态的意义。</p>
+<p>一个斑点狗播放器和一个可以播放任何声音的播放器不存在那个更好，要根据实际的场景进行判断，一个作用域小一个作用域大。</p>
+<p>其实在框架中或者“造轮子的人”用接口的比较多，而“用轮子的人”用普通类比较多，所以当阅读源码发现各种接口时不要疑惑，那多数是为了让代码更通用、作用域更大。</p>
 
       
 
@@ -264,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQU4kMQwFUO5/aUaazbCgi//tBBjp1apUVKfzghS77by9xdf73+vj/cfr+fmr0c6Oubrw8PDwRlN/dT2/87wQz5hkJvkSv5wVHh4e3jVeEgwSRkttg0c+Zzw8PLzfwMu35oTaBg88PDy8/5c3S7jPJuJ4eHh4v4GXAJItPhm5LQ1/U60FDw8PL+bNGmA/e3+9v4eHh4c36qrnafRz0pyUIdqtP5onHh4e3gVentq2gM3hgFkRJKq14OHh4R3itRt9u923xdz8uNUwvcbDw8Nb8zYBoA0Ms+NZeaE26u/h4eHhLXizpHaTiCcTbcPDy7CBh4eHd4GXlFNnE20Z+4WLihF4eHh4h3htgyr5ytnhg7YAUf/f8PDw8A7x2gJrHm1m77ffXlRc8PDw8Na8ferc1kv3LbFiyfDw8PCu8faTTtLlvNk/K+9+8lc8PDy8y7yz7ai8NZUvzfNifREY8PDw8A7x8oNQLSYvYcye56VePDw8vHu8vBixIc1CS95si5B4eHh4C94shW2PWM2CQcv75B4PDw/vAq+dXHsoqk3W82JxEYTw8PDwvp2Xb9x5o+v5nbwMEf1iwMPDw7vAm6W/ydRPlWjbIwV4eHh493jtdp9v6LOtv03Q62QaDw8P7xCvLQrMwkMbANp0+eVvBTw8PLyjvDYVPnX4KQ9Cs1YZHh4e3j1eO3RbUJgVOPIRosoKHh4e3lFe26bap9QHkuO4wIGHh4d3g/deXsOu2uLowCqo4OHh4V3gbfLPtqk/K9e2aTceHh7e9/A2RwfyNUvGb0c4cD4CDw8Pb8FrW2K3AbPQhYeHh/c7eUk7qg02m1D0xafw8PDwfpSXFwvaUJE3w+qyCB4eHt41XrtNb0JCu0xJqBgeIMDDw8Mb8fYNsPyz+/Q6WbLD/T08PDy8f0/+AMV6+T4RrrHmAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aQU7DQAwF0N7/0rBhgVQSvu1xKdLrCpGSzBukqfvtxyN+fTy9vv/++Z1Xv3n+uXf18AsPDw9vvPSrW1evPr/zaun5U/I14+Hh4W3zrk7U/FC+Z1fP7eTO92vGw8PDex/e/SKqsPwqHh4e3v/l9eKJ+81KtgkPDw/v3XjVIODU3/YO/ZWsBQ8PDy/m5V2k9/l5pb+Hh4eHN+6qJwdur2GWBxa9dX7dEw8PD2+BN29u9Rpa1Q2arBMPDw/vLC8/+icFbvUoPzXUhYeHh7fBS1pQkweUlxKMIFQHFPDw8PDO8npBat4MOzWwVS3Q8fDw8F7Jyx/fa+EnW5CU7FFxj4eHh7fGyw/i3gfDpNbNY4sfnoiHh4e3wMvjiVPvrI4XVLemmb7g4eHhxbxqlJAPDfTK4qQJV9gaPDw8vDVer02Vd9iqowPHNhEPDw9v63w+EZjG7++NcPXCYjw8PLxX8qqt/bMFdHUlj8kt8PDw8Iq83pf8vKjtRbTJc6PoBA8PD2+BVw0Uqld7hfKk8fbDffDw8PDWeKe+/PdGtZKGXHPkCw8PD+8orwooFLIxLNmO6ngBHh4e3h4vWUrS0Lr/2/mgwKTIxsPDwzvLqx7o1ZI6/2CYx7uFmQg8PDy8Aa/X5u8d+nm4MCnxoy3Dw8PDG/OSULU3gJUHuL1Aufm/wsPDwzvEi3plg3ZXryyeR7p4eHh4e7xqUyovi/PY4rHxwsPDw1uAVcvWebncC2SrIQUeHh7eBq93xuZRQm9sq7d9xz5C8PDw8MaVZz4ckEfASbjQK9YvG2B4eHh4C7xqY2wSW1TL62NZCx4eHt4f8XpldK8Qz9d8GUPg4eHhvQ0vP+J7bbb86i/RLR4eHt4ab9706rWjevcsXMXDw8Nb4FVL2LycnbTETmUOeHh4eEd5n6Ygc6g5vLRYAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +293,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/07/2017我的书单/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/24/java基础2--对象的创建/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2017我的书单
+          java基础2--对象的创建
         
       </div>
     </a>
   
   
-    <a href="/2017/04/24/java编程思想读书笔记二/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java编程思想读书笔记二</div>
+    <a href="/2017/03/17/代码界的石器时代/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">代码界的石器时代（转载）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -316,7 +331,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java容器详解"><span class="toc-number">1.</span> <span class="toc-text">java容器详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Map"><span class="toc-number">1.1.</span> <span class="toc-text">Map</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashMap"><span class="toc-number">1.1.1.</span> <span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#分析类图"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">分析类图</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#解读面向对象"><span class="toc-number">1.</span> <span class="toc-text">解读面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的基本特性"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象的基本特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的高级特性"><span class="toc-number">1.2.</span> <span class="toc-text">面向对象的高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#对象之间的关联关系"><span class="toc-number">1.2.1.</span> <span class="toc-text">对象之间的关联关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多态"><span class="toc-number">1.2.2.</span> <span class="toc-text">多态</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -372,7 +387,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 an
+    		&copy; 2018 an power by Yilai Litten
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -473,10 +488,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -485,11 +496,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
             
             <div class="clearfix"></div>

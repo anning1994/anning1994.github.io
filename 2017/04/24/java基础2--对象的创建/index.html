@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>java编程思想读书笔记二 | an&#39;s Blog</title>
+  <title>java基础2--对象的创建 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java编程思想读书笔记二">
-<meta property="og:url" content="http://anning1994.github.io/2017/04/24/java编程思想读书笔记二/index.html">
+<meta property="og:title" content="java基础2--对象的创建">
+<meta property="og:url" content="http://anning1994.github.io/2017/04/24/java基础2--对象的创建/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.001.jpeg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.002.jpeg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.003.jpeg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.004.jpeg">
-<meta property="og:updated_time" content="2017-08-15T14:32:18.000Z">
+<meta property="og:updated_time" content="2018-06-23T10:03:56.083Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java编程思想读书笔记二">
+<meta name="twitter:title" content="java基础2--对象的创建">
 <meta name="twitter:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
 <meta name="twitter:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.001.jpeg">
   
@@ -52,10 +52,10 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/touxiang.jpeg" class="js-avatar">
+			<img src="/img/touxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">an</a></h1>
+		  <h1 class="header-author"><a href="/">an power by Yilai Litten</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">逻辑会把你从A带到B，想象力能带你去任何地方。</p>
@@ -108,10 +108,10 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/touxiang.jpeg" class="js-avatar">
+				<img src="/img/touxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">an</h1>
+			  <h1 class="header-author js-header-author">an power by Yilai Litten</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>逻辑会把你从A带到B，想象力能带你去任何地方。<i class="icon icon-quo-right"></i></p>
@@ -159,19 +159,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java编程思想读书笔记二" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java基础2--对象的创建" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java编程思想读书笔记二
+      java基础2--对象的创建
     </h1>
   
 
         
-        <a href="/2017/04/24/java编程思想读书笔记二/" class="archive-article-date">
+        <a href="/2017/04/24/java基础2--对象的创建/" class="archive-article-date">
   	<time datetime="2017-04-24T13:39:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-24</time>
 </a>
         
@@ -188,8 +188,9 @@
 </ol>
 <a id="more"></a>
 <h4 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h4><p>java对象在创建时需要在方法区的运行时常量池去查找该类的符号引用，如果没有发现符号引用，说明该类还没有被JVM加载，所以要先进行JVM的加载。当JVM加载完时，会在java堆中分配内存。分配内存时会根据堆内存是否规整来分别进行两种方式的分配。</p>
-<p>1.指针碰撞<br>把内存分为可用的和已用的，在中间放置一个指针，如果要分配对象的空间，则把内存的指针向可用的一端移动当前需要分配对象大小的距离。<br>2.空闲列表<br>当内存并不是很规整时，需要一个列表来维护那些列表是可用的，那些是不可用的。</p>
-<p>当内存分配完成后需要对分配到内存空间的对象赋予零值（静态字段在类加载中就已经有值，所以不需要赋零值），接下来需要设置对象头的信息：如设置该对象的哈希码，属于哪个类，GC分代年龄等信息。从虚拟机的角度来看至此一个对象就创建完成，但是在java程序的角度看，对象的创建才刚刚开始，因为对象的值还没有设定，对象值得设定是由对象初始化化来完成的，初始化就是调用构造方法过程。</p>
+<p>1.指针碰撞<br>把内存分为可用的和已用的，在中间放置一个指针，如果要分配对象的空间，则把内存的指针向可用的一端移动当前需要分配对象大小的距离。</p>
+<p>2.空闲列表<br>当内存并不是很规整时，需要一个列表来维护那些地址是可用的，那些是不可用的。</p>
+<p>当内存分配完成后需要对分配到内存空间的对象赋予零值（静态字段在类加载中就已经有值，所以不需要赋零值），接下来需要设置对象头的信息：如设置该对象的哈希码，属于哪个类，GC分代年龄等信息。从虚拟机的角度来看至此一个对象就创建完成，但是在java程序的角度看，对象的创建才刚刚开始，因为对象的值还没有设定，对象值得设定是由对象初始化来完成的，初始化就是调用构造方法过程。</p>
 <h4 id="对象的初始化"><a href="#对象的初始化" class="headerlink" title="对象的初始化"></a>对象的初始化</h4><p>当对象创建完成后，接下来就是进行对象的初始化了，也就是去执行构造方法。</p>
 <h5 id="父类的初始化"><a href="#父类的初始化" class="headerlink" title="父类的初始化"></a>父类的初始化</h5><p>当子类对象创建之前首先会调用父类的构造函数，也就是会初始化父类，但是父类并没有被创建，也就是并没有在堆中给父类分配新的存储空间，而只是对父类的变量进行了赋值。从而达到子类可以使用父类的属性和方法的目的。</p>
 <h5 id="静态类的初始化"><a href="#静态类的初始化" class="headerlink" title="静态类的初始化"></a>静态类的初始化</h5><p>当一个类中有static修饰的方法或者是变量的话，那么当这个静态方法被第一次调用的时候，那么这个类就会初始化，就会调用此类的类构造器(在类加载过程中被JVM自动加入)，类构造器只初始化一次，触发条件为实例构造器执行，或者是静态任何一个静态成员被引用，也就是说这个类只会初始化一次。</p>
@@ -275,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3ay27cQAwEQP//TydATg4QrbvJGa8DlE7CPqQpHXa4TX58xMevP8fn88+vPH3y6btP18nfPXzg4eHhjZb+dCSXfg1ur5A8uGTNeHh4eLd5s80geQTJI2sfUL4t4eHh4b2Xl2wGyUJn18fDw8P7H3mb7aFNCWbBBB4eHt538tob7GPfJEpI1nMsa8HDw8OLebPlvvf8en8PDw8Pb1HU5pvEbLyg3RiK1eLh4eFd4L2OUJO/+slCN2MB7Ssf7aLx8PDw1rx2cXnLPw8O9iMLjxsDHh4e3mVeHgTk8cGwLA7uEpXUeHh4eGvea0a7JWzaV2dbaHh4eHj3eEn5OyttXy+6LcRneDw8PLwbvBsB62yhecle3AUPDw/vAi8ftGq3jfZm+b02oQkeHh7enjdrX7XDBG1jbIb/x33x8PDwLvDan/V8dGBToG/2ty/+N+Dh4eFd4OVjBEnbbBMozK4wTKbx8PDw1rxZ+6odzJqFs8O4Fg8PD+8C7wa1bXodwDyFEXh4eHhHeW3kmv98z1r7bTRcDKri4eHhHeXNvjD7cc/jj7zRVSDx8PDwFry8gM5L4XbpbXusuCYeHh7eBd5s6XmxO9s8Zi23KIzAw8PDO8Sbhbb5FtIOGbR3/+IR4+Hh4R3lbeLR+imWm0Q+CRA1vfDw8PCu8dqBqnbUYDaMlTfY/jrHw8PDu8BrP5oPP7VldB5DtJsHHh4e3lleXhbPwLP2/2ZI63F0AA8PD+8CLx91akvkWfSwGdWKni4eHh7eiJcfbVG7aWKdLe7x8PDwbvDawjcfFMjHCNpWWVF84+Hh4V3j5X/y8/hgM3YwG8mKUmo8PDy8b+Tl77Yt/1UH7/XreHh4eD+A146xbkKKtun1mFXj4eHhXeAlYUQSELSNq80IAh4eHt67eG0DbAaYFdyrYhoPDw/vPO83rIl9gsZYteEAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQW7DMAwEwPz/0+21QGtnV5SSFBifgiaWNTyYKsnHI76+fl1X3/78y9W996sla26+8PDw8MZbv1r6ftNJOPLPk5Dh4eHhvYZ39Ua9+k2+oeQv9/vJkwQeHh7eZ/KSlJAH5f4k3N6Lh4eH9x95k0SydrzGw8PDexcvKUZcHXCTl3temGhX21ZrwcPDw+v6TY926fd+PtLfw8PDwxt31fMX7ukYfy1deHh4eCd47XE2aWitHabnIb7cDx4eHt5WXjJK1aaHNdha0eHJCnh4eHjHeE/yRpwY7ptSeblhbdirmD7Aw8PDG/DaQYG23LDWlFoL4pO94eHh4W3itcNP7cMm7A2FYzw8PLw38ZLjdT6wlRzQk6dEgcbDw8M7xktetW0I1ga2ktd9ka7w8PDwXsJrX9aTIm+eTtp7H+3W8fDw8GLerkJAnjaSJtmknYaHh4d3mtduKH98Dlj7fbQHPDw8vAO8yTBTcoCeDFQlT1nMdXh4eHhjXt52Sl7NLbsNTdtsw8PDwzvHWyuq5mMBeSjzA3o0zoWHh4d3mLerqJrAJmmpKJTg4eHhbeWttd7zu3L2qF93FTI8PDy8Y7xJWXaOyQu49bgDHh4e3jFeu4kWVhdey1R0uRoeHh7eAV676FqhYVICnjTn8PDw8M7x5sfltnzQHqzbcEeVZjw8PLwxb8Joj+BtWWFS1MDDw8N7JW+t9bW2WlGc3dAZw8PDw1vnrf17PxmHyhNJ++0fK+Ph4eEd4E3KB2tN/Twc+ecNFx4eHt6BHnp78N3Vl0tC8+RbPDw8vGO8tnM0TwD50MC2WgseHh7eW3lt+z8pbeQF3KLZhoeHh/cBvLxUMYGtjatuSAx4eHh4Ma/dSrutvBmWPKU4P+Ph4eEd4E2aWHt/k2wuSWN4eHh4x3jf3OaSl6E5FUMAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,18 +290,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/java编程思想读书笔记三/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/16/java基础3--Map/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          java编程思想读书笔记三
+          java基础3--Map
         
       </div>
     </a>
   
   
-    <a href="/2017/04/16/java编程思想读书笔记一/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java编程思想读书笔记一</div>
+    <a href="/2017/04/16/java基础1--面向对象思想/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java基础1--面向对象思想</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -383,7 +384,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 an
+    		&copy; 2018 an power by Yilai Litten
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -484,10 +485,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -496,11 +493,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
               </li>
             
             <div class="clearfix"></div>
