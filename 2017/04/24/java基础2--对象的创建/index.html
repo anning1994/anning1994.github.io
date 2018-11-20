@@ -8,22 +8,23 @@
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>java基础2--对象的创建 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
+  <meta name="description" content="对象的创建详解 对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：">
 <meta name="keywords" content="java,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java基础2--对象的创建">
 <meta property="og:url" content="http://anning1994.github.io/2017/04/24/java基础2--对象的创建/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
+<meta property="og:description" content="对象的创建详解 对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：">
+<meta property="og:image" content="http://anning1994.github.io/img/post/head/cjdx.jpg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.001.jpeg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.002.jpeg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.003.jpeg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.004.jpeg">
-<meta property="og:updated_time" content="2018-06-23T10:03:56.083Z">
+<meta property="og:updated_time" content="2018-11-20T15:17:54.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java基础2--对象的创建">
-<meta name="twitter:description" content="对象的创建详解对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：  用new语句创建对象，这是最常用的创建对象方法。 运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。 调用对象的clone()方法。 运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。">
-<meta name="twitter:image" content="http://anning1994.github.io/img/post/javaBCSX2/Java编程思想二.001.jpeg">
+<meta name="twitter:description" content="对象的创建详解 对象的创建java的对象是在运行时创建的，创建对象的的触发条件有以下几种：">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/cjdx.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -179,14 +180,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="对象的创建详解"><a href="#对象的创建详解" class="headerlink" title="对象的创建详解"></a>对象的创建详解</h3><h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><p>java的对象是在运行时创建的，创建对象的的触发条件有以下几种：</p>
+        <h3 id="对象的创建详解"><a href="#对象的创建详解" class="headerlink" title="对象的创建详解"></a>对象的创建详解</h3><p><img src="/img/post/head/cjdx.jpg" alt="图片名称" align="center"></p>
+<h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><p>java的对象是在运行时创建的，创建对象的的触发条件有以下几种：</p>
+<a id="more"></a>
 <ol>
 <li>用new语句创建对象，这是最常用的创建对象方法。</li>
 <li>运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。</li>
 <li>调用对象的clone()方法。</li>
 <li>运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。</li>
 </ol>
-<a id="more"></a>
+<!--more-->
 <h4 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h4><p>java对象在创建时需要在方法区的运行时常量池去查找该类的符号引用，如果没有发现符号引用，说明该类还没有被JVM加载，所以要先进行JVM的加载。当JVM加载完时，会在java堆中分配内存。分配内存时会根据堆内存是否规整来分别进行两种方式的分配。</p>
 <p>1.指针碰撞<br>把内存分为可用的和已用的，在中间放置一个指针，如果要分配对象的空间，则把内存的指针向可用的一端移动当前需要分配对象大小的距离。</p>
 <p>2.空闲列表<br>当内存并不是很规整时，需要一个列表来维护那些地址是可用的，那些是不可用的。</p>

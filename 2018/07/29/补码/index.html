@@ -8,19 +8,20 @@
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>补码 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本概念在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。 假设字长为4，其中最高位为符号位：正数为0，负数为1。剩下的3位表示该数的绝对值。正数的原码反码补码都是一样的。 1.原码  +3的原码：0011 -3的原码：1011  2.反码 反码就是在原码的基础上，符号位不变其他位按位取反(就是0变1，1变0)就可以了。  +3的反码：0011">
+  <meta name="description" content="基本概念 在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。">
 <meta name="keywords" content="计算机原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="补码">
 <meta property="og:url" content="http://anning1994.github.io/2018/07/29/补码/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="基本概念在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。 假设字长为4，其中最高位为符号位：正数为0，负数为1。剩下的3位表示该数的绝对值。正数的原码反码补码都是一样的。 1.原码  +3的原码：0011 -3的原码：1011  2.反码 反码就是在原码的基础上，符号位不变其他位按位取反(就是0变1，1变0)就可以了。  +3的反码：0011">
+<meta property="og:description" content="基本概念 在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。">
+<meta property="og:image" content="http://anning1994.github.io/img/post/head/bm.jpg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/buma/1.jpg">
-<meta property="og:updated_time" content="2018-11-14T14:21:42.779Z">
+<meta property="og:updated_time" content="2018-11-20T15:27:12.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="补码">
-<meta name="twitter:description" content="基本概念在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。 假设字长为4，其中最高位为符号位：正数为0，负数为1。剩下的3位表示该数的绝对值。正数的原码反码补码都是一样的。 1.原码  +3的原码：0011 -3的原码：1011  2.反码 反码就是在原码的基础上，符号位不变其他位按位取反(就是0变1，1变0)就可以了。  +3的反码：0011">
-<meta name="twitter:image" content="http://anning1994.github.io/img/post/buma/1.jpg">
+<meta name="twitter:description" content="基本概念 在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/bm.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -176,7 +177,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。</p>
+        <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="/img/post/head/bm.jpg" alt="图片名称" width="80%" height="43%" align="center"></p>
+<p>在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。</p>
+<a id="more"></a>
 <p>假设字长为4，其中最高位为符号位：正数为0，负数为1。剩下的3位表示该数的绝对值。<br>正数的原码反码补码都是一样的。</p>
 <p><strong>1.原码</strong></p>
 <blockquote>

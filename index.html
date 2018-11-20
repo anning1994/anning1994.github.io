@@ -175,273 +175,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。</p>
-<p>假设字长为4，其中最高位为符号位：正数为0，负数为1。剩下的3位表示该数的绝对值。<br>正数的原码反码补码都是一样的。</p>
-<p><strong>1.原码</strong></p>
-<blockquote>
-<p>+3的原码：0011</p>
-<p>-3的原码：1011</p>
-</blockquote>
-<p><strong>2.反码</strong></p>
-<p>反码就是在原码的基础上，符号位不变其他位按位取反(就是0变1，1变0)就可以了。</p>
-<blockquote>
-<p>+3的反码：0011</p>
-<p>-3的反码：1100</p>
-</blockquote>
-<p><strong>3.补码</strong></p>
-<p>补码也非常的简单，就是在反码的基础上按照正常的加法运算加1。</p>
-<blockquote>
-<p>+3的补码：0011</p>
-<p>-3的补码：1101</p>
-</blockquote>
-<p>从前面的三种数字编码类型的定义，我们可以看出数据的原码，使用符号位来区分了正负数，更加符合人脑直观识别并且用于计算的表达方式。但是在计算机中，是通过补码的形式保存数据，下面将解释为什么计算机系统要用补码存放数据。</p>
-<h3 id="周期系统"><a href="#周期系统" class="headerlink" title="周期系统"></a>周期系统</h3><blockquote>
-<p>若一组事件或现象按同样的顺序重复出现，则把完成这一组事件或现象的时间或空间间隔，称为周期。</p>
-</blockquote>
-<h5 id="周期性原码累加系统"><a href="#周期性原码累加系统" class="headerlink" title="周期性原码累加系统"></a>周期性原码累加系统</h5><p>定义一个字长为4的二进制累加系统，该系统的规则就是从左到右依次累加0001；</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">0000</th>
-<th style="text-align:left">0001</th>
-<th style="text-align:left">0010</th>
-<th style="text-align:left">0011</th>
-<th style="text-align:left">0100</th>
-<th style="text-align:left">0101</th>
-<th style="text-align:left">0110</th>
-<th style="text-align:left">0111</th>
-<th style="text-align:left">1000</th>
-<th style="text-align:left">1001</th>
-<th style="text-align:left">1010</th>
-<th style="text-align:left">1011</th>
-<th style="text-align:left">1100</th>
-<th style="text-align:left">1101</th>
-<th style="text-align:left">1110</th>
-<th style="text-align:left">1111</th>
-<th style="text-align:left">0000</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">0</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">4</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">6</td>
-<td style="text-align:left">7</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">9</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">11</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">13</td>
-<td style="text-align:left">14</td>
-<td style="text-align:left">15</td>
-<td style="text-align:left">0</td>
-</tr>
-</tbody>
-</table>
-<p>如果最高位是符号位时，图表第二行表示原码对应的10进制数，不难发现，如果在确定字长为4时，累加过程是符合周期性变化的，原因就是当1111+1时会出现字节溢出的情况，10000的最高位溢出失效，导致结果变为0000；</p>
-<h5 id="周期性时钟系统"><a href="#周期性时钟系统" class="headerlink" title="周期性时钟系统"></a>周期性时钟系统</h5><p><img src="/img/post/buma/1.jpg" width="25%" height="25%"></p>
-<p>在现实生活中，时钟显然是符合周期性的，12点过后是1点，人们早已习惯了这种思维方式，所以会忽略对时钟这种表示时间方式的思考。凌晨12点加1个小时，其实表式的时间是天数加1之后的1点，但是对于时钟系统而言，天数不是自己所能表示的，这就相当于上面图表中1111+1=0000(1|0000 1是溢出位，在字长为4的系统中是不能表示的)。</p>
-<p>时钟系统和二进制数原码的累加系统都有周期性，具有周期性的原因是当前层次系统中有其不能表示或未能感知的其他层次系统。</p>
-<p>计算机运算系统正是利用了周期性的这一特性。</p>
-<h3 id="周期系统中的加减转化"><a href="#周期系统中的加减转化" class="headerlink" title="周期系统中的加减转化"></a>周期系统中的加减转化</h3><h5 id="时钟系统加减法转化"><a href="#时钟系统加减法转化" class="headerlink" title="时钟系统加减法转化"></a>时钟系统加减法转化</h5><p>假设时针向顺时针方向拨动为加，逆时针拨动为减。</p>
-<blockquote>
-<p>7点顺时针拨动1格表示的是：7+1=8</p>
-<p>7点逆时针拨动1格表示的是：7-1=6</p>
-<p>7点顺时针拨动11格表示的是：7+11=6</p>
-</blockquote>
-<p>所以很容易发现，在时钟中7-1=7+11，这就是周期系统中加减法发的转化方式，其实和简单，也很符合我们的直觉。</p>
-<p>所以重新考虑原码的减法问题，n-m = n+(MAX-m),其中MAX就是该周期中所能表示的所有数的数量，放到上面原码的例子中就是16个，而放到时钟系统中就是12个。如：</p>
-<blockquote>
-<p>周期性的时钟系统:</p>
-<p>12 - 1 = 12 + （12 -1）；</p>
-<p>7 - 4 = 7 +（12-4）；</p>
-</blockquote>
-<h5 id="累加系统加减法转化"><a href="#累加系统加减法转化" class="headerlink" title="累加系统加减法转化"></a>累加系统加减法转化</h5><p>在说原码累加系统加减法转化例子之前，我们再看下图表</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">A</th>
-<th style="text-align:left">0000</th>
-<th style="text-align:left">0001</th>
-<th style="text-align:left">0010</th>
-<th style="text-align:left">0011</th>
-<th style="text-align:left">0100</th>
-<th style="text-align:left">0101</th>
-<th style="text-align:left">0110</th>
-<th style="text-align:left">0111</th>
-<th style="text-align:left">1000</th>
-<th style="text-align:left">1001</th>
-<th style="text-align:left">1010</th>
-<th style="text-align:left">1011</th>
-<th style="text-align:left">1100</th>
-<th style="text-align:left">1101</th>
-<th style="text-align:left">1110</th>
-<th style="text-align:left">1111</th>
-<th style="text-align:left">0000</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">A1</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">4</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">6</td>
-<td style="text-align:left">7</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">9</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">11</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">13</td>
-<td style="text-align:left">14</td>
-<td style="text-align:left">15</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:left">A2</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">4</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">6</td>
-<td style="text-align:left">7</td>
-<td style="text-align:left">-0</td>
-<td style="text-align:left">-1</td>
-<td style="text-align:left">-2</td>
-<td style="text-align:left">-3</td>
-<td style="text-align:left">-4</td>
-<td style="text-align:left">-5</td>
-<td style="text-align:left">-6</td>
-<td style="text-align:left">-7</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:left">B</td>
-<td style="text-align:left">0000</td>
-<td style="text-align:left">0001</td>
-<td style="text-align:left">0010</td>
-<td style="text-align:left">0011</td>
-<td style="text-align:left">0100</td>
-<td style="text-align:left">0101</td>
-<td style="text-align:left">0110</td>
-<td style="text-align:left">0111</td>
-<td style="text-align:left">1111</td>
-<td style="text-align:left">1110</td>
-<td style="text-align:left">1101</td>
-<td style="text-align:left">1100</td>
-<td style="text-align:left">1011</td>
-<td style="text-align:left">1010</td>
-<td style="text-align:left">1001</td>
-<td style="text-align:left">1000</td>
-<td style="text-align:left">0000</td>
-</tr>
-<tr>
-<td style="text-align:left">B1</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">4</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">6</td>
-<td style="text-align:left">7</td>
-<td style="text-align:left">-7</td>
-<td style="text-align:left">-6</td>
-<td style="text-align:left">-5</td>
-<td style="text-align:left">-4</td>
-<td style="text-align:left">-3</td>
-<td style="text-align:left">-2</td>
-<td style="text-align:left">-1</td>
-<td style="text-align:left">-0</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:left">B2</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">4</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">6</td>
-<td style="text-align:left">7</td>
-<td style="text-align:left">-8</td>
-<td style="text-align:left">-7</td>
-<td style="text-align:left">-6</td>
-<td style="text-align:left">-5</td>
-<td style="text-align:left">-4</td>
-<td style="text-align:left">-3</td>
-<td style="text-align:left">-2</td>
-<td style="text-align:left">-1</td>
-<td style="text-align:left">0</td>
-</tr>
-</tbody>
-</table>
-<p>为了方便说明在每一行的开始定义了该行的名称分别为A、A1、A2、B、B1、B2.</p>
-<p>累加系统不同于周期系统的一点是会有负数的概念出现，C行就是最高位表示符号位时原码解码后表示的十进制数。在图表中发现，当有符号位时二进制原码的累加转换为十进制数时，出现了与我们现实生活数学公理相违背的现象，错误发生在最高位为1后，如1001+1=1010(-1+1=-2)，原因是在定义这个累加系统在运算时就没有让系统知道高位0与1有不同之处，也就是累加的计算过程中无法感知符号。</p>
-<p>解决问题的方式有两种</p>
-<ol>
-<li>去重新完善这个累加系统，让他在最高位为1换一套计算方式，也就是说在运算过程中去感知最高位的意义。</li>
-<li>转化出现问题的状态，使状态转移为当前系统能使用的，也就是在编码过程中去让无法感知符号的运算系统计算出正确的结果。</li>
-</ol>
-<p>在计算机系统中，解决这个问题的方式显然是用第二种，cpu是无法感知符号位的，这样做可以减少cpu设计难度，极大地提高运行效率。<br>所以也就是说cpu运算时还是按照A行进行累加，但在解码运算结果时做一些处理，即将A转变为B，而B1是不考虑溢出和临界值时的十进制正确结果。A解码为B的算法就是当最高位为1时，符号位不变，其他位取反，不难发现这就是反码的定义。</p>
-<p>当这样转化后会发现出现了0和-0两个0并且会出现0 - 1 = -0这种情况(将0向左移动)。所以还得做一个简单的处理，就是去加一个1，也就是B1转化为B2,而B2就是最终的正确十进制值。</p>
-<p>其实按照直觉可以发现，当符号位转化时，其他位应该取反才能得到正确结果，正数越加越大，负数越加越小。</p>
-<p>根据我们的努力将A通过反码的解码方式转变为B,而让B的解码结果加1(补码)，得到了B2,从而使累加系统当出现负数时变得合理起来。在转变为B2之后，我们需要解决的是如何用累加系统去表示减法。本质上和前面的时钟系统转化是一样的。可以借助上面的时钟系统以及下面的例子去理解累加系统的减法运算。</p>
-<p>在看例子之前，稍微介绍一下“模” 的概念:<br>模是指一个计量系统的计数范围，取模运算实质上是计量器产生“溢出”的量，前面的周期系统中n-m = n+(MAX-m)得出的加减转化其实就是用到了模的概念，MAX就是模。</p>
-<blockquote>
-<p>计算 4 - 3 </p>
-<ol>
-<li>编码 0100 - 0011 </li>
-</ol>
-<p>//n-m = n+(MAX-m) ==》(10000-0011) 其结果就是0011的补码</p>
-<ol>
-<li><p>转化为 0100 + (10000-0011) = 0100 + 1101 </p>
-</li>
-<li><p>cpu调用加法器得出 10001 </p>
-</li>
-<li><p>最高位溢出 0001</p>
-</li>
-<li><p>解码 1</p>
-</li>
-</ol>
-<p>重新计算 3 - 4 </p>
-<ol>
-<li><p>编码 0011 - 0100 </p>
-</li>
-<li><p>转化为 0011 + (10000-0100) = 0011 + 1100</p>
-</li>
-<li><p>cpu调用加法器得出 1111</p>
-</li>
-</ol>
-<p>//参考A转变B2(也就是原码转补码)</p>
-<ol>
-<li>解码-0001= -1</li>
-</ol>
-</blockquote>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在计算机系统中，计算整数加减法时，需要经过以下步骤：</p>
-<ol>
-<li><p>转变为2进制数；</p>
-</li>
-<li><p>运算时原码解码为补码；n-m = n+(MAX-m)，(MAX-m)也就是m的补码，理解时参考时钟系统。</p>
-</li>
-<li><p>cpu调用加法器；</p>
-</li>
-<li><p>解码；再进行一次补码解码，理解时参考A转化为B2。</p>
-</li>
-</ol>
-
+        <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="/img/post/head/bm.jpg" alt="图片名称" width="80%" height="43%" align="center"></p>
+<p>在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。</p>
+        
+          <a class="article-more-a" href="/2018/07/29/补码/#more">more >></a>
+        
       
 
       
@@ -517,6 +255,7 @@
         <h4 id="计算机相关"><a href="#计算机相关" class="headerlink" title="计算机相关"></a>计算机相关</h4><ol>
 <li>java编程思想（★★★★★☆）</li>
 </ol>
+<p><img src="/img/post/head/sd.jpeg" alt="图片名称" align="center"></p>
         
           <a class="article-more-a" href="/2018/01/07/2017我的书单/#more">more >></a>
         
@@ -592,7 +331,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>Map接口规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的。笔者在下文所引用的源码都是基于java 1.8，在Java 1.8中，添加了default来修饰接口的方法，default的出现是为了优化接口的同时，避免跟之前实现架构产生兼容问题（背着沉重历史包袱前进），有兴趣的同学可以查下，这里就不展开说了。</p>
+        <h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p><img src="/img/post/head/hashmap.jpg" alt="图片名称" align="center"></p>
+<p>Map接口规定了一系列的操作，作为一个总规范它所定义的方法也是最基础，最通用的。</p>
         
           <a class="article-more-a" href="/2017/08/16/java基础3--HashMap/#more">more >></a>
         
@@ -672,13 +412,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="对象的创建详解"><a href="#对象的创建详解" class="headerlink" title="对象的创建详解"></a>对象的创建详解</h3><h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><p>java的对象是在运行时创建的，创建对象的的触发条件有以下几种：</p>
-<ol>
-<li>用new语句创建对象，这是最常用的创建对象方法。</li>
-<li>运用反射手段，调用java.lang.reflect.Constructor类的newInstance()实例方法。</li>
-<li>调用对象的clone()方法。</li>
-<li>运用反序列化手段，调用java.io.ObjectInputStream对象的readObject()方法。</li>
-</ol>
+        <h3 id="对象的创建详解"><a href="#对象的创建详解" class="headerlink" title="对象的创建详解"></a>对象的创建详解</h3><p><img src="/img/post/head/cjdx.jpg" alt="图片名称" align="center"></p>
+<h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><p>java的对象是在运行时创建的，创建对象的的触发条件有以下几种：</p>
         
           <a class="article-more-a" href="/2017/04/24/java基础2--对象的创建/#more">more >></a>
         
@@ -758,8 +493,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="解读面向对象"><a href="#解读面向对象" class="headerlink" title="解读面向对象"></a>解读面向对象</h3><p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，面向对象编程是一种命令式编程。</p>
-<p>命令式编程是面向计算机硬件的一种抽象，有变量（存储单元），赋值语句（获取存储指令），表达式（引用存储单元和算术运算）和控制语句（跳转指令），命令式程序就是对一个冯诺依曼机的指令序列的抽象，<strong>面向对象是对我们现实世界模型的一个抽象，之后在映射到冯诺依曼机的指令序列。</strong></p>
+        <h3 id="解读面向对象"><a href="#解读面向对象" class="headerlink" title="解读面向对象"></a>解读面向对象</h3><p><img src="/img/post/head/oop.jpg" alt="图片名称" align="center"></p>
+<p>我们常见的编程范式有<strong>命令式编程</strong>，<strong>函数式编程</strong>，<strong>逻辑式编程</strong>，面向对象编程是一种命令式编程。</p>
         
           <a class="article-more-a" href="/2017/04/16/java基础1--面向对象思想/#more">more >></a>
         
@@ -841,7 +576,8 @@
       
         <hr>
 <p>原文链接： <a href="https://github.com/justinyhuang/Functional-Programming-For-The-Rest-of-Us-Cn" target="_blank" rel="external">https://github.com/justinyhuang/Functional-Programming-For-The-Rest-of-Us-Cn</a></p>
-<h3 id="公园漫步"><a href="#公园漫步" class="headerlink" title="公园漫步"></a>公园漫步</h3><p>时间机器启动……我们来到公元前380年，也就是2000多年前的雅典城外。这是一个阳光明媚的久违的春天，柏拉图和一个帅气的小男仆走在一片橄榄树荫下。他们正准备前往一个学院。天气很好，吃得很饱，渐渐的，两人的谈话转向了哲学。</p>
+<h3 id="公园漫步"><a href="#公园漫步" class="headerlink" title="公园漫步"></a>公园漫步</h3><p><img src="/img/post/head/sqsd.jpg" alt="图片名称" align="center"></p>
+<p>时间机器启动……我们来到公元前380年，也就是2000多年前的雅典城外。这是一个阳光明媚的久违的春天，柏拉图和一个帅气的小男仆走在一片橄榄树荫下。他们正准备前往一个学院。天气很好，吃得很饱，渐渐的，两人的谈话转向了哲学。</p>
         
           <a class="article-more-a" href="/2017/03/17/代码界的石器时代/#more">more >></a>
         
@@ -993,7 +729,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/post/xiangfa/1.jpg" alt="图片名称" align="center"></p>
+        <p><img src="/img/post/head/1.jpg" alt="图片名称" align="center"></p>
 <h3 id="千里之行，始于足下"><a href="#千里之行，始于足下" class="headerlink" title="千里之行，始于足下"></a>千里之行，始于足下</h3><p>越来越发现，一件复杂的事情只要满足两个条件就可以做好，一是坚持不懈、二是有个开始。</p>
         
           <a class="article-more-a" href="/2017/03/15/关于写博客的一点小想法/#more">more >></a>
