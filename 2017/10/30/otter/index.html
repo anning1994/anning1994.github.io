@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>otter浅析 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="otter otter girthub链接： https://github.com/alibaba/otter 整体架构">
+  <meta name="description" content="otter girthub链接： https://github.com/alibaba/otter 整体架构">
 <meta name="keywords" content="数据库,实施细节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="otter浅析">
 <meta property="og:url" content="http://anning1994.github.io/2017/10/30/otter/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="otter otter girthub链接： https://github.com/alibaba/otter 整体架构">
+<meta property="og:description" content="otter girthub链接： https://github.com/alibaba/otter 整体架构">
 <meta property="og:image" content="https://camo.githubusercontent.com/2988fbbc7ddfe94ed027cd71720b1ffa5912a635/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313138392f64343230636131342d326438302d336435352d383038312d6239303833363036613830312e6a7067">
 <meta property="og:image" content="https://camo.githubusercontent.com/f2adbd6f319120b1fb14b8f51542d362fada1c79/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f333037332f36643665346630332d323364662d333735392d623764622d3337306530386337623334632e706e67">
 <meta property="og:image" content="https://camo.githubusercontent.com/c0f55f62b38b9f4f4a565a5ddab0d1e9d1dd13d0/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313937352f64656465323263382d353963612d333738612d393064352d3466343562323839616233302e6a7067">
 <meta property="og:image" content="https://camo.githubusercontent.com/0c25597a349c862f35ea5be12c823b3776b2429a/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f333038372f36363937303039642d613662342d333639662d613332342d6136633835306365306135642e706e67">
-<meta property="og:updated_time" content="2018-11-24T15:49:10.311Z">
+<meta property="og:updated_time" content="2018-11-24T15:59:34.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="otter浅析">
-<meta name="twitter:description" content="otter otter girthub链接： https://github.com/alibaba/otter 整体架构">
+<meta name="twitter:description" content="otter girthub链接： https://github.com/alibaba/otter 整体架构">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/2988fbbc7ddfe94ed027cd71720b1ffa5912a635/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313138392f64343230636131342d326438302d336435352d383038312d6239303833363036613830312e6a7067">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
@@ -179,11 +179,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="otter"><a href="#otter" class="headerlink" title="otter"></a>otter</h3><hr>
+        <hr>
 <p>otter girthub链接： <a href="https://github.com/alibaba/otter" target="_blank" rel="external">https://github.com/alibaba/otter</a></p>
-<h4 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h4><p><img src="https://camo.githubusercontent.com/2988fbbc7ddfe94ed027cd71720b1ffa5912a635/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313138392f64343230636131342d326438302d336435352d383038312d6239303833363036613830312e6a7067" alt=""></p>
+<h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="https://camo.githubusercontent.com/2988fbbc7ddfe94ed027cd71720b1ffa5912a635/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313138392f64343230636131342d326438302d336435352d383038312d6239303833363036613830312e6a7067" alt=""></p>
 <a id="more"></a>
-<h6 id="子模块解释"><a href="#子模块解释" class="headerlink" title="子模块解释"></a>子模块解释</h6><ol>
+<h5 id="子模块解释"><a href="#子模块解释" class="headerlink" title="子模块解释"></a>子模块解释</h5><ol>
 <li><p>zooKeeper</p>
 <p>分布式一致性协调服务，主要用来调度配置好的node模块。</p>
 </li>
@@ -194,7 +194,7 @@
 <p>node模块内嵌Canal,Canal监听数据库binlog中的变化传送给node的SETL模块。<br><img src="https://camo.githubusercontent.com/f2adbd6f319120b1fb14b8f51542d362fada1c79/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f333037332f36643665346630332d323364662d333735392d623764622d3337306530386337623334632e706e67" alt=""></p>
 </li>
 </ol>
-<h6 id="原理描述"><a href="#原理描述" class="headerlink" title="原理描述"></a>原理描述</h6><p>  <img src="https://camo.githubusercontent.com/c0f55f62b38b9f4f4a565a5ddab0d1e9d1dd13d0/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313937352f64656465323263382d353963612d333738612d393064352d3466343562323839616233302e6a7067" alt=""></p>
+<h5 id="原理描述"><a href="#原理描述" class="headerlink" title="原理描述"></a>原理描述</h5><p>  <img src="https://camo.githubusercontent.com/c0f55f62b38b9f4f4a565a5ddab0d1e9d1dd13d0/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f313937352f64656465323263382d353963612d333738612d393064352d3466343562323839616233302e6a7067" alt=""></p>
 <ol>
 <li><p>基于Canal开源产品，获取数据库增量日志数据。</p>
 </li>
@@ -205,7 +205,7 @@
 <li><p>基于zookeeper，解决分布式状态调度的，允许多node节点之间协同工作.</p>
 </li>
 </ol>
-<h4 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h4><p>1.mysql</p>
+<h3 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h3><p>1.mysql</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 开启binlog</span></div><div class="line"><span class="built_in">log</span>-bin=mysql-bin</div><div class="line"><span class="comment"># 设置模式为ROW</span></div><div class="line">binlog-<span class="built_in">format</span>=ROW</div><div class="line"><span class="comment"># 设置默认字符集</span></div><div class="line">init_connect=<span class="string">'SET collation_connection = utf8_unicode_ci'</span></div><div class="line">init_connect=<span class="string">'SET NAMES utf8'</span></div><div class="line"><span class="keyword">character</span>-<span class="built_in">set</span>-server=utf8</div><div class="line">collation-server=utf8_unicode_ci</div><div class="line">skip-<span class="keyword">character</span>-<span class="built_in">set</span>-client-handshake</div></pre></td></tr></table></figure>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 验证</div><div class="line"><span class="section">mysql&gt; show variables like '%binlog_format%';</span></div><div class="line">+---------------+-------+</div><div class="line"><span class="section">| Variable_name | Value |</span></div><div class="line">+---------------+-------+</div><div class="line"><span class="section">| binlog_format | ROW   |</span></div><div class="line">+---------------+-------+</div></pre></td></tr></table></figure>
 <p>2.安装aria2</p>
@@ -233,7 +233,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 配置</span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># otter node dir</span></span></div><div class="line">otter.htdocs.dir = $&#123;otter.nodeHome&#125;/htdocs</div><div class="line">otter.download.dir = $&#123;otter.nodeHome&#125;/download</div><div class="line">otter.extend.dir= $&#123;otter.nodeHome&#125;/extend</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"><span class="comment"># default zookeeper sesstion timeout = 60s</span></span></div><div class="line">otter.zookeeper.sessionTimeout = 60000</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"><span class="comment"># otter communication pool size</span></span></div><div class="line">otter.communication.pool.size = 10</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"><span class="comment"># otter arbitrate &amp; node connect manager config</span></span></div><div class="line">otter.manager.address = 114.215.29.139:8290</div></pre></td></tr></table></figure>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动</span></div><div class="line"><span class="keyword">sh </span>startup.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 验证</span></div><div class="line">vi logs/<span class="keyword">node</span><span class="title">/node</span>.log</div><div class="line"><span class="number">2018</span>-<span class="number">03</span>-<span class="number">08</span> <span class="number">10</span>:<span class="number">42</span>:<span class="number">16.886</span> [main] <span class="literal">INF</span>O  com.alibaba.otter.node.deployer.OtterLauncher - <span class="literal">INF</span>O <span class="comment">## the otter server is running now ......</span></div></pre></td></tr></table></figure>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
 <li><p>添加数据库</p>
 <p>a.  源库 jdbc:mysql://host:3306</p>
 <p>b.  目标库 jdbc:mysql://host:3306</p>
@@ -259,26 +259,25 @@
 <li><p>测试数据</p>
 </li>
 </ol>
-<h4 id="manager说明及参数"><a href="#manager说明及参数" class="headerlink" title="manager说明及参数"></a>manager说明及参数</h4><p>otter系统自带了manager，所以简化了一些admin管理上的操作成本，比如可以通过manager发布同步任务配置，接收同步任务反馈的状态信息等。</p>
-<h6 id="同步配置管理"><a href="#同步配置管理" class="headerlink" title="同步配置管理"></a>同步配置管理</h6><ol>
+<h3 id="manager说明及参数"><a href="#manager说明及参数" class="headerlink" title="manager说明及参数"></a>manager说明及参数</h3><p>otter系统自带了manager，所以简化了一些admin管理上的操作成本，比如可以通过manager发布同步任务配置，接收同步任务反馈的状态信息等。</p>
+<h5 id="同步配置管理"><a href="#同步配置管理" class="headerlink" title="同步配置管理"></a>同步配置管理</h5><ol>
 <li>添加数据源</li>
 <li>canal解析配置</li>
 <li>添加数据表</li>
 <li>同步任务</li>
 </ol>
-<h6 id="同步状态查询"><a href="#同步状态查询" class="headerlink" title="同步状态查询"></a>同步状态查询</h6><ol>
+<h5 id="同步状态查询"><a href="#同步状态查询" class="headerlink" title="同步状态查询"></a>同步状态查询</h5><ol>
 <li>查询延迟</li>
 <li>查询吞吐量</li>
 <li>查询同步进度</li>
 <li>查询报警&amp;异常日志</li>
 </ol>
-<h6 id="用户权限："><a href="#用户权限：" class="headerlink" title="用户权限："></a>用户权限：</h6><ol>
+<h5 id="用户权限："><a href="#用户权限：" class="headerlink" title="用户权限："></a>用户权限：</h5><ol>
 <li>ADMIN : 超级管理员</li>
 <li>OPERATOR : 普通用户，管理某个同步任务下的同步配置，添加数据表，修改canal配置等</li>
 <li>ANONYMOUS : 匿名用户，只能进行同步状态查询的操作.</li>
 </ol>
-<h6 id="具体配置参数"><a href="#具体配置参数" class="headerlink" title="具体配置参数"></a>具体配置参数</h6><p>####### channel参数</p>
-<ol>
+<h5 id="具体配置参数"><a href="#具体配置参数" class="headerlink" title="具体配置参数"></a>具体配置参数</h5><h6 id="channel参数"><a href="#channel参数" class="headerlink" title="channel参数"></a>channel参数</h6><ol>
 <li><p>同步一致性. ==&gt; 基于数据库反查(根据binlog反查数据库)，基于当前变更(binlog数据)。针对数据库反查，在延迟比较大时比较有效，可将最新的版本快速同步到目标，但会对源库有压力.</p>
 </li>
 <li><p>同步模式. ==&gt; 行模式，列模式。行模式特点：如果目标库不存在记录时，执行插入。列模式主要是变更哪个字段，只会单独修改该字段，在双Ａ同步时，为减少数据冲突，建议选择列模式。</p>
@@ -288,8 +287,7 @@
 <p>b. 一致性反查数据库延迟阀值</p>
 </li>
 </ol>
-<p>####### pipeline参数</p>
-<ol>
+<h6 id="pipeline参数"><a href="#pipeline参数" class="headerlink" title="pipeline参数"></a>pipeline参数</h6><ol>
 <li><p>并行度. ==&gt; 查看文档：Otter调度模型，主要是并行化调度参数.(滑动窗口大小)</p>
 </li>
 <li><p>数据反查线程数. ==&gt; 如果选择了同步一致性为反查数据库，在反查数据库时的并发线程数大小</p>
@@ -305,8 +303,7 @@
 <li><p>获取批次超时时间. ==&gt; 获取canal数据的timeout参数</p>
 </li>
 </ol>
-<p>####### pipeline 高级设置</p>
-<ol>
+<h6 id="pipeline-高级设置"><a href="#pipeline-高级设置" class="headerlink" title="pipeline 高级设置"></a>pipeline 高级设置</h6><ol>
 <li><p>使用batch. ==&gt; 是否使用jdbc batch提升效率，部分分布式数据库系统不一定支持batch协议</p>
 </li>
 <li><p>跳过load异常. ==&gt; 比如同步时出现目标库主键冲突，开启该参数后，可跳过数据库执行异常</p>
@@ -346,8 +343,7 @@
 <li><p>自定义同步标记 ==&gt; 级联同步中屏蔽同步的功能.</p>
 </li>
 </ol>
-<p>####### Canal参数</p>
-<ol>
+<h6 id="Canal参数"><a href="#Canal参数" class="headerlink" title="Canal参数"></a>Canal参数</h6><ol>
 <li><p>connectionCharset ==&gt; 获取binlog时指定的编码</p>
 </li>
 <li><p>位点自定义设置 ==&gt; 格式：{“journalName”:””,”position”:0,”timestamp”:0};<br>指定位置：{“journalName”:””,”position”:0};<br>指定时间：{“timestamp”:0};</p>
@@ -357,8 +353,7 @@
 <li><p>心跳SQL配置 ==&gt; 可配置对应心跳SQL，如果配置 是否启用心跳HA，当心跳ＳＱＬ检测失败后，canal就会自动进行主备切换.</p>
 </li>
 </ol>
-<p>####### Node参数</p>
-<ol>
+<h6 id="Node参数"><a href="#Node参数" class="headerlink" title="Node参数"></a>Node参数</h6><ol>
 <li><p>机器名称 ==&gt; 自定义名称，方便记忆</p>
 </li>
 <li><p>机器ip ==&gt; 机器外部可访问的ip，不能选择127.0.0.1</p>
@@ -372,14 +367,13 @@
 <li><p>zookeeper集群 ==&gt; 就近选择zookeeper集群</p>
 </li>
 </ol>
-<p>####### Zookeeper集群参数</p>
-<ol>
+<h6 id="Zookeeper集群参数"><a href="#Zookeeper集群参数" class="headerlink" title="Zookeeper集群参数"></a>Zookeeper集群参数</h6><ol>
 <li><p>集群名字 ==&gt; 自定义名称，方便记忆</p>
 </li>
 <li><p>zookeeper集群 ==&gt; zookeeper集群机器列表，逗号分隔，最后以分号结束</p>
 </li>
 </ol>
-<h4 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h4><h6 id="数据合并"><a href="#数据合并" class="headerlink" title="数据合并"></a>数据合并</h6><ol>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><h5 id="数据合并"><a href="#数据合并" class="headerlink" title="数据合并"></a>数据合并</h5><ol>
 <li>insert + insert -&gt; insert (数据迁移+数据增量场景)</li>
 <li>insert + update -&gt; insert  (update字段合并到insert)</li>
 <li>insert + delete -&gt; delete</li>
@@ -390,14 +384,14 @@
 <li>delete + update -&gt; update (数据迁移+数据增量场景)</li>
 <li>delete + delete -&gt; delete</li>
 </ol>
-<h6 id="数据入库算法"><a href="#数据入库算法" class="headerlink" title="数据入库算法"></a>数据入库算法</h6><p>入库算法采取了按pk hash并行载入+batch合并的优化</p>
+<h5 id="数据入库算法"><a href="#数据入库算法" class="headerlink" title="数据入库算法"></a>数据入库算法</h5><p>入库算法采取了按pk hash并行载入+batch合并的优化</p>
 <ol>
 <li><p>打散原始数据库事务，预处理数据，合并insert/update/delete数据(参见合并算法)，然后按照table + pk进行并行(相同table的数据，先执行delete,后执行insert/update，串行保证，解决唯一性约束数据变更问题)，相同table的sql会进行batch合并处理</p>
 </li>
 <li><p>提供table权重定义，根据权重定义不同支持”业务上类事务功能”，并行中同时有串行权重控制.<br>业务类事务描述：比如用户的一次交易付款的流程，先产生一笔交易记录，然后修改订单状态为已付款. 用户对这事件的感知，是通过订单状态的已付款，然后进行查询交易记录。<br>所以，可以对同步进行一次编排： 先同步完交易记录，再同步订单状态。 (给同步表定义权重，权重越高的表相对重要，放在后面同步，最后达到的效果可以保证业务事务可见性的功能，快的等慢的. )</p>
 </li>
 </ol>
-<h6 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h6><p>仲裁器设计了三种异常机制指令：</p>
+<h5 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h5><p>仲裁器设计了三种异常机制指令：</p>
 <ol>
 <li>WARNING</li>
 </ol>
@@ -414,7 +408,7 @@
 <blockquote>
 <p>两个节点通讯时网络异常，节点发起ROLLBACK<br>节点执行S/E/T/L模块，比如写数据库出现网络异常，节点发起ROLLBACK<br>节点发生了CRASH，由manager进行监听，manager发现后发起RESTART</p>
 </blockquote>
-<h6 id="拓展性"><a href="#拓展性" class="headerlink" title="拓展性"></a>拓展性</h6><p>通过Otter Manager直接发布source文件代码，然后推送到node节点上即时生效，不需要重启任何java进程，有点动态语言的味道<br>可以将class文件放置到extend目录或者打成jar包，放置在node启动classpath中，也可以通过Otter Manager指定类名的方式进行加载，这样允许业务完全自定义。(但有个缺点，如果使用了一些外部包加入到node classpath中，比如远程接口调用，目前EventProcessor的调用是串行处理，针对串行进行远程调用执行，效率会比较差.)</p>
+<h5 id="拓展性"><a href="#拓展性" class="headerlink" title="拓展性"></a>拓展性</h5><p>通过Otter Manager直接发布source文件代码，然后推送到node节点上即时生效，不需要重启任何java进程，有点动态语言的味道<br>可以将class文件放置到extend目录或者打成jar包，放置在node启动classpath中，也可以通过Otter Manager指定类名的方式进行加载，这样允许业务完全自定义。(但有个缺点，如果使用了一些外部包加入到node classpath中，比如远程接口调用，目前EventProcessor的调用是串行处理，针对串行进行远程调用执行，效率会比较差.)</p>
 <p><img src="https://camo.githubusercontent.com/0c25597a349c862f35ea5be12c823b3776b2429a/687474703a2f2f646c322e69746579652e636f6d2f75706c6f61642f6174746163686d656e742f303038382f333038372f36363937303039642d613662342d333639662d613332342d6136633835306365306135642e706e67" alt=""></p>
 <p>EventProcessor接口示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 业务自定义处理过程</div><div class="line"> *</div><div class="line"> * <span class="doctag">@author</span> jianghang 2012-6-25 下午02:26:36</div><div class="line"> * <span class="doctag">@version</span> 4.1.0</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EventProcessor</span> </span>&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 自定义处理单条EventData对象</div><div class="line"> *</div><div class="line"> * <span class="doctag">@return</span> &#123;<span class="doctag">@link</span> EventData&#125; 返回值=null，需要忽略该条数据</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> EventData <span class="title">process</span><span class="params">(EventData eventData)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -543,7 +537,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#otter"><span class="toc-number">1.</span> <span class="toc-text">otter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#整体架构"><span class="toc-number">1.1.</span> <span class="toc-text">整体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#子模块解释"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">子模块解释</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#原理描述"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">原理描述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装部署"><span class="toc-number">1.2.</span> <span class="toc-text">安装部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-number">1.3.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#manager说明及参数"><span class="toc-number">1.4.</span> <span class="toc-text">manager说明及参数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#同步配置管理"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">同步配置管理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#同步状态查询"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">同步状态查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#用户权限："><span class="toc-number">1.4.0.3.</span> <span class="toc-text">用户权限：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#具体配置参数"><span class="toc-number">1.4.0.4.</span> <span class="toc-text">具体配置参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展"><span class="toc-number">1.5.</span> <span class="toc-text">拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#数据合并"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">数据合并</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据入库算法"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">数据入库算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#高可用"><span class="toc-number">1.5.0.3.</span> <span class="toc-text">高可用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#拓展性"><span class="toc-number">1.5.0.4.</span> <span class="toc-text">拓展性</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#整体架构"><span class="toc-number">1.</span> <span class="toc-text">整体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#子模块解释"><span class="toc-number">1.0.1.</span> <span class="toc-text">子模块解释</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#原理描述"><span class="toc-number">1.0.2.</span> <span class="toc-text">原理描述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装部署"><span class="toc-number">2.</span> <span class="toc-text">安装部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#manager说明及参数"><span class="toc-number">4.</span> <span class="toc-text">manager说明及参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#同步配置管理"><span class="toc-number">4.0.1.</span> <span class="toc-text">同步配置管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#同步状态查询"><span class="toc-number">4.0.2.</span> <span class="toc-text">同步状态查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#用户权限："><span class="toc-number">4.0.3.</span> <span class="toc-text">用户权限：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#具体配置参数"><span class="toc-number">4.0.4.</span> <span class="toc-text">具体配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#channel参数"><span class="toc-number">4.0.4.1.</span> <span class="toc-text">channel参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#pipeline参数"><span class="toc-number">4.0.4.2.</span> <span class="toc-text">pipeline参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#pipeline-高级设置"><span class="toc-number">4.0.4.3.</span> <span class="toc-text">pipeline 高级设置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Canal参数"><span class="toc-number">4.0.4.4.</span> <span class="toc-text">Canal参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Node参数"><span class="toc-number">4.0.4.5.</span> <span class="toc-text">Node参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Zookeeper集群参数"><span class="toc-number">4.0.4.6.</span> <span class="toc-text">Zookeeper集群参数</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展"><span class="toc-number">5.</span> <span class="toc-text">拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#数据合并"><span class="toc-number">5.0.1.</span> <span class="toc-text">数据合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#数据入库算法"><span class="toc-number">5.0.2.</span> <span class="toc-text">数据入库算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高可用"><span class="toc-number">5.0.3.</span> <span class="toc-text">高可用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#拓展性"><span class="toc-number">5.0.4.</span> <span class="toc-text">拓展性</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -696,6 +690,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
@@ -717,10 +715,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
               <li class="article-tag-list-item">

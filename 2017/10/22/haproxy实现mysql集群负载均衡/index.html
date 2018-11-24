@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>haproxy实现mysq集群负载均衡 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="haproxy实现mysq集群负载均衡 开始使用Ubuntu 下载安装">
+  <meta name="description" content="开始使用 Ubuntu 下载安装">
 <meta name="keywords" content="数据库,实施细节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="haproxy实现mysq集群负载均衡">
 <meta property="og:url" content="http://anning1994.github.io/2017/10/22/haproxy实现mysql集群负载均衡/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="haproxy实现mysq集群负载均衡 开始使用Ubuntu 下载安装">
+<meta property="og:description" content="开始使用 Ubuntu 下载安装">
 <meta property="og:image" content="http://anning1994.github.io/img/post/head/hmysql.jpg">
-<meta property="og:updated_time" content="2018-11-24T15:41:46.716Z">
+<meta property="og:updated_time" content="2018-11-24T15:58:14.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="haproxy实现mysq集群负载均衡">
-<meta name="twitter:description" content="haproxy实现mysq集群负载均衡 开始使用Ubuntu 下载安装">
+<meta name="twitter:description" content="开始使用 Ubuntu 下载安装">
 <meta name="twitter:image" content="http://anning1994.github.io/img/post/head/hmysql.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
@@ -176,13 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="haproxy实现mysq集群负载均衡"><a href="#haproxy实现mysq集群负载均衡" class="headerlink" title="haproxy实现mysq集群负载均衡"></a>haproxy实现mysq集群负载均衡</h3><p><img src="/img/post/head/hmysql.jpg" width="77%" height="37%" alt="图片名称" align="center"></p>
-<h4 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h4><p>Ubuntu 下载安装</p>
+        <h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p><img src="/img/post/head/hmysql.jpg" width="77%" height="37%" alt="图片名称" align="center"></p>
+<p>Ubuntu 下载安装</p>
 <a id="more"></a>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-<span class="keyword">get</span> install haproxy</div></pre></td></tr></table></figure>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">global</div><div class="line">        log <span class="regexp">/dev/</span>log    local0</div><div class="line">        log <span class="regexp">/dev/</span>log    local1 notice</div><div class="line">        chroot <span class="regexp">/var/</span>lib/haproxy</div><div class="line">        user haproxy</div><div class="line">        group haproxy</div><div class="line">        daemon</div><div class="line"></div><div class="line">defaults</div><div class="line">        log     global</div><div class="line">        mode    tcp</div><div class="line">        option  dontlognull</div><div class="line">        contimeout <span class="number">5000</span></div><div class="line">        clitimeout <span class="number">50000</span></div><div class="line">        srvtimeout <span class="number">50000</span></div><div class="line">        errorfile <span class="number">400</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">400.</span>http</div><div class="line">        errorfile <span class="number">403</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">403.</span>http</div><div class="line">        errorfile <span class="number">408</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">408.</span>http</div><div class="line">        errorfile <span class="number">500</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">500.</span>http</div><div class="line">        errorfile <span class="number">502</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">502.</span>http</div><div class="line">        errorfile <span class="number">503</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">503.</span>http</div><div class="line">        errorfile <span class="number">504</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">504.</span>http</div><div class="line">listen status</div><div class="line">        mode http</div><div class="line">        bind *:<span class="number">11199</span></div><div class="line">        stats enable</div><div class="line">        stats uri /admin</div><div class="line">        stats auth <span class="string">admin:</span>admin</div><div class="line">        stats admin <span class="keyword">if</span> TRUE</div><div class="line">        stats realm Haproxy\statistics</div><div class="line">frontend main</div><div class="line">        bind <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">3506</span></div><div class="line">        default_backend mysql</div><div class="line">backend mysql</div><div class="line">        balance leastconn</div><div class="line">        server mysql1 <span class="number">114.215</span><span class="number">.29</span><span class="number">.139</span>:<span class="number">3406</span> check</div><div class="line">        server mysql2 <span class="number">114.215</span><span class="number">.29</span><span class="number">.139</span>:<span class="number">3407</span> check</div></pre></td></tr></table></figure>
-<h4 id="linux启动"><a href="#linux启动" class="headerlink" title="linux启动"></a>linux启动</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">haproxy -f <span class="regexp">/etc/</span>haproxy<span class="regexp">/haproxy.cfg</span></div></pre></td></tr></table></figure>
-<h4 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h4><ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">global</div><div class="line">        log <span class="regexp">/dev/</span>log    local0</div><div class="line">        log <span class="regexp">/dev/</span>log    local1 notice</div><div class="line">        chroot <span class="regexp">/var/</span>lib/haproxy</div><div class="line">        user haproxy</div><div class="line">        group haproxy</div><div class="line">        daemon</div><div class="line"></div><div class="line">defaults</div><div class="line">        log     global</div><div class="line">        mode    tcp</div><div class="line">        option  dontlognull</div><div class="line">        contimeout <span class="number">5000</span></div><div class="line">        clitimeout <span class="number">50000</span></div><div class="line">        srvtimeout <span class="number">50000</span></div><div class="line">        errorfile <span class="number">400</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">400.</span>http</div><div class="line">        errorfile <span class="number">403</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">403.</span>http</div><div class="line">        errorfile <span class="number">408</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">408.</span>http</div><div class="line">        errorfile <span class="number">500</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">500.</span>http</div><div class="line">        errorfile <span class="number">502</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">502.</span>http</div><div class="line">        errorfile <span class="number">503</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">503.</span>http</div><div class="line">        errorfile <span class="number">504</span> <span class="regexp">/etc/</span>haproxy<span class="regexp">/errors/</span><span class="number">504.</span>http</div><div class="line">listen status</div><div class="line">        mode http</div><div class="line">        bind *:<span class="number">11199</span></div><div class="line">        stats enable</div><div class="line">        stats uri /admin</div><div class="line">        stats auth <span class="string">admin:</span>admin</div><div class="line">        stats admin <span class="keyword">if</span> TRUE</div><div class="line">        stats realm Haproxy\statistics</div><div class="line">frontend main</div><div class="line">        bind <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">3506</span></div><div class="line">        default_backend mysql</div><div class="line">backend mysql</div><div class="line">        balance leastconn</div><div class="line">        server mysql1 <span class="number">114.215</span><span class="number">.29</span><span class="number">.139</span>:<span class="number">3406</span> check</div><div class="line">        server mysql2 <span class="number">114.215</span><span class="number">.29</span><span class="number">.139</span>:<span class="number">3407</span> check</div></pre></td></tr></table></figure>
+<h3 id="linux启动"><a href="#linux启动" class="headerlink" title="linux启动"></a>linux启动</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">haproxy -f <span class="regexp">/etc/</span>haproxy<span class="regexp">/haproxy.cfg</span></div></pre></td></tr></table></figure>
+<h3 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h3><ol>
 <li><p>roundrobin，表示简单的轮询，每个服务器根据权重轮流使用，在服务器的处理时间平均分配的情况下这是最流畅和公平的算法。该算法是动态的，对于实例启动慢的服务器权重会在运行中调整。</p>
 </li>
 <li><p>static-rr，表示根据权重，建议关注；每个服务器根据权重轮流使用，类似roundrobin，但它是静态的，意味着运行时修改权限是无效的。另外，它对服务器的数量没有限制。</p>
@@ -200,7 +200,7 @@
 <li><p>rdp-cookie(name)，表示根据据cookie(name)来锁定并哈希每一次TCP请求。为每个进来的TCP请求查询并哈希RDP cookie<name>；该机制用于退化的持久模式，可以使同一个用户或者同一个会话ID总是发送给同一台服务器。如果没有cookie，则使用roundrobin算法代替；该算法默认是静态的，所以运行时修改服务器的权重是无效的，但是算法会根据“hash-type”的变化做调整。</name></p>
 </li>
 </ol>
-<h4 id="acl规则"><a href="#acl规则" class="headerlink" title="acl规则"></a>acl规则</h4><p>######<br> ACL策略定义</p>
+<h3 id="acl规则"><a href="#acl规则" class="headerlink" title="acl规则"></a>acl规则</h3><p> ACL策略定义</p>
 <ol>
 <li><p>如果请求的域名满足正则表达式返回true -i是忽略大小写<br>acl denali_policy hdr_reg(host) -i ^(www.inbank.com|image.inbank.com)$</p>
 </li>
@@ -213,7 +213,7 @@
 <li><p>当请求的header中Content-length等于0时返回 true<br>acl missing_cl hdr_cnt(Content-length) eq 0</p>
 </li>
 </ol>
-<h5 id="acl策略匹配相应"><a href="#acl策略匹配相应" class="headerlink" title="acl策略匹配相应"></a>acl策略匹配相应</h5><ol>
+<h4 id="acl策略匹配相应"><a href="#acl策略匹配相应" class="headerlink" title="acl策略匹配相应"></a>acl策略匹配相应</h4><ol>
 <li><p>当请求中header中Content-length等于0 阻止请求返回403<br>block if missing_cl</p>
 </li>
 <li><p>block表示阻止请求，返回403错误，当前表示如果不满足策略invalid_req，或者满足策略timetask_req，则阻止请求。<br>block if !invalid_req || timetask_req</p>
@@ -353,7 +353,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#haproxy实现mysq集群负载均衡"><span class="toc-number">1.</span> <span class="toc-text">haproxy实现mysq集群负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#开始使用"><span class="toc-number">1.1.</span> <span class="toc-text">开始使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#linux启动"><span class="toc-number">1.3.</span> <span class="toc-text">linux启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#负载均衡算法"><span class="toc-number">1.4.</span> <span class="toc-text">负载均衡算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#acl规则"><span class="toc-number">1.5.</span> <span class="toc-text">acl规则</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#acl策略匹配相应"><span class="toc-number">1.5.1.</span> <span class="toc-text">acl策略匹配相应</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始使用"><span class="toc-number">1.</span> <span class="toc-text">开始使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux启动"><span class="toc-number">3.</span> <span class="toc-text">linux启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡算法"><span class="toc-number">4.</span> <span class="toc-text">负载均衡算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#acl规则"><span class="toc-number">5.</span> <span class="toc-text">acl规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#acl策略匹配相应"><span class="toc-number">5.1.</span> <span class="toc-text">acl策略匹配相应</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -506,6 +506,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
@@ -527,10 +531,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
               <li class="article-tag-list-item">

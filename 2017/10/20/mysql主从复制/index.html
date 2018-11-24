@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>mysql主从复制 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mysql主从复制 基本配置Master库1.Master配置">
+  <meta name="description" content="基本配置 Master库1.Master配置">
 <meta name="keywords" content="数据库,实施细节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql主从复制">
 <meta property="og:url" content="http://anning1994.github.io/2017/10/20/mysql主从复制/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="mysql主从复制 基本配置Master库1.Master配置">
+<meta property="og:description" content="基本配置 Master库1.Master配置">
 <meta property="og:image" content="http://anning1994.github.io/img/post/head/mysql.png">
-<meta property="og:updated_time" content="2018-11-24T15:32:00.345Z">
+<meta property="og:updated_time" content="2018-11-24T16:00:36.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql主从复制">
-<meta name="twitter:description" content="mysql主从复制 基本配置Master库1.Master配置">
+<meta name="twitter:description" content="基本配置 Master库1.Master配置">
 <meta name="twitter:image" content="http://anning1994.github.io/img/post/head/mysql.png">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
@@ -176,27 +176,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="mysql主从复制"><a href="#mysql主从复制" class="headerlink" title="mysql主从复制"></a>mysql主从复制</h3><p><img src="/img/post/head/mysql.png" width="77%" height="37%" alt="图片名称" align="center"></p>
-<h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><h5 id="Master库"><a href="#Master库" class="headerlink" title="Master库"></a>Master库</h5><h6 id="1-Master配置"><a href="#1-Master配置" class="headerlink" title="1.Master配置"></a>1.Master配置</h6><a id="more"></a>
+        <h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><p><img src="/img/post/head/mysql.png" width="77%" height="37%" alt="图片名称" align="center"></p>
+<h4 id="Master库"><a href="#Master库" class="headerlink" title="Master库"></a>Master库</h4><h5 id="1-Master配置"><a href="#1-Master配置" class="headerlink" title="1.Master配置"></a>1.Master配置</h5><a id="more"></a>
 <p>修改my.cnf:</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">log-bin</span>=mysql-bin                            #开启二进制文件</div><div class="line"><span class="attr">server-id</span>=<span class="number">2</span>                                  #唯一标识</div><div class="line"><span class="attr">binlog-ignore-db</span>=information_schema          #忽略数据库计入binlog</div><div class="line"><span class="attr">binlog-ignore-db</span>=cluster</div><div class="line"><span class="attr">binlog-ignore-db</span>=mysql</div><div class="line"><span class="attr">binlog-do-db</span>=ufind_db                        #开启数据库计入binlog</div></pre></td></tr></table></figure>
 <p>在Master数据库命令行中输入:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">为从库分配用户，包含文件权限 （5.6以下）</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">GRANT FILE ON *.* TO <span class="string">'为从库分配的用户名'</span>@<span class="string">'从库地址'</span> IDENTIFIED BY <span class="string">'为从库分配的密码'</span>;  </span></div><div class="line"><span class="meta">#</span><span class="bash">为从库分配用户，包含复制二进制文件权限 （5.6及以上）</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">GRANT REPLICATION SLAVE ON *.* TO <span class="string">'为从库分配的用户名'</span>@<span class="string">'从库地址'</span> IDENTIFIED BY <span class="string">'为从库分配的密码'</span>;</span></div><div class="line"><span class="meta">#</span><span class="bash">更新权限</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">FLUSH PRIVILEGES</span></div></pre></td></tr></table></figure>
-<h6 id="2-验证"><a href="#2-验证" class="headerlink" title="2.验证"></a>2.验证</h6><p>键入命令<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show <span class="keyword">master</span> <span class="title">status</span>;</div></pre></td></tr></table></figure></p>
+<h5 id="2-验证"><a href="#2-验证" class="headerlink" title="2.验证"></a>2.验证</h5><p>键入命令<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show <span class="keyword">master</span> <span class="title">status</span>;</div></pre></td></tr></table></figure></p>
 <p>显示以下信息则配置成功</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="code">+------------------+</span>----------<span class="code">+--------------+</span>----------------------------------<span class="code">+-------------------+</span></div><div class="line"><span class="section">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB                 | Executed_Gtid_Set |</span></div><div class="line">+------------------+----------+--------------+----------------------------------+-------------------+</div><div class="line"><span class="section">| mysql-bin.000004 |    28125 | ufind_db     | information_schema,cluster,mysql |                   |</span></div><div class="line">+------------------+----------+--------------+----------------------------------+-------------------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
 <p>如果执行这个步骤始终为 <strong> Empty set(0.00 sec) </strong> ，那说明前面的my.cnf没配置对。</p>
-<h5 id="Slave库"><a href="#Slave库" class="headerlink" title="Slave库"></a>Slave库</h5><h6 id="1-Slave配置"><a href="#1-Slave配置" class="headerlink" title="1.Slave配置"></a>1.Slave配置</h6><p>修改my.cnf:</p>
+<h4 id="Slave库"><a href="#Slave库" class="headerlink" title="Slave库"></a>Slave库</h4><h5 id="1-Slave配置"><a href="#1-Slave配置" class="headerlink" title="1.Slave配置"></a>1.Slave配置</h5><p>修改my.cnf:</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">log-bin</span>=mysql-bin</div><div class="line"><span class="attr">server-id</span>=<span class="number">3</span>                                #不可与主库重复</div><div class="line"><span class="attr">binlog-ignore-db</span>=information_schema</div><div class="line"><span class="attr">binlog-ignore-db</span>=cluster</div><div class="line"><span class="attr">binlog-ignore-db</span>=mysql</div><div class="line"><span class="attr">replicate-do-db</span>=ufind_db                   #同步数据库</div><div class="line"><span class="attr">replicate-ignore-db</span>=mysql                  #忽略同步的数据库</div><div class="line"><span class="attr">log-slave-updates</span>=<span class="number">1</span>                        #io线程同步数据时也计入logbin中</div><div class="line"><span class="attr">slave-skip-errors</span>=all                      #跳过错误</div><div class="line"><span class="attr">slave-net-timeout</span>=<span class="number">60</span></div></pre></td></tr></table></figure>
 <p>开启线程连接主库:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">mysql&gt;</span><span class="bash"> stop slave;  <span class="comment">#关闭Slave</span></span></div><div class="line"><span class="meta">mysql&gt;</span><span class="bash"> change master to master_host=<span class="string">'主库地址'</span>,master_port=主库的端口号,master_user=<span class="string">'主库分配的用户'</span>,master_password=<span class="string">'主库分配的密码'</span>,master_log_file=<span class="string">'主库的File'</span>, master_log_pos=主库的Position;</span></div><div class="line"><span class="meta">mysql&gt;</span><span class="bash"> start slave;  <span class="comment">#开启Slave</span></span></div></pre></td></tr></table></figure>
-<h6 id="2-验证-1"><a href="#2-验证-1" class="headerlink" title="2.验证"></a>2.验证</h6><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; <span class="built_in">show</span> slave <span class="built_in">status</span>\G;</div></pre></td></tr></table></figure>
+<h5 id="2-验证-1"><a href="#2-验证-1" class="headerlink" title="2.验证"></a>2.验证</h5><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; <span class="built_in">show</span> slave <span class="built_in">status</span>\G;</div></pre></td></tr></table></figure>
 <p>在输出的信息中如果出现以下两条则说明主从配置成功<br>Slave_IO_Running: Yes<br>Slave_SQL_Running: Yes</p>
-<h4 id="主从运维命令"><a href="#主从运维命令" class="headerlink" title="主从运维命令"></a>主从运维命令</h4><p>master端：</p>
+<h3 id="主从运维命令"><a href="#主从运维命令" class="headerlink" title="主从运维命令"></a>主从运维命令</h3><p>master端：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show <span class="keyword">master</span> <span class="title">status</span>; <span class="comment">#查看状态：</span></div><div class="line">show processlist; <span class="comment">#查看slave下mysql进程信息</span></div><div class="line">reset <span class="literal">master</span>; <span class="comment">#慎用，将清空日志及同步position</span></div></pre></td></tr></table></figure>
 <p>slave端：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show </span>slave status<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="keyword">show </span>slave logs<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="keyword">show </span>processlist<span class="comment">;</span></div><div class="line"></div><div class="line">reset slave<span class="comment">; #慎用，将清空slave配置信息、日志及同步position在从服务器上跳过错误事件</span></div><div class="line"></div><div class="line">reset slave <span class="comment">#清除日志同步位置标志，并重新生成master.info</span></div><div class="line"></div><div class="line"><span class="keyword">show </span>slave hosts <span class="comment">#主机运行，看连入的从机的情况。</span></div></pre></td></tr></table></figure>
-<h4 id="手动同步（有数据时配置主从时使用）"><a href="#手动同步（有数据时配置主从时使用）" class="headerlink" title="手动同步（有数据时配置主从时使用）"></a>手动同步（有数据时配置主从时使用）</h4><ol>
+<h3 id="手动同步（有数据时配置主从时使用）"><a href="#手动同步（有数据时配置主从时使用）" class="headerlink" title="手动同步（有数据时配置主从时使用）"></a>手动同步（有数据时配置主从时使用）</h3><ol>
 <li>先对主库锁表</li>
 </ol>
 <p>FLUSH TABLES WITH READ LOCK;</p>
@@ -358,7 +358,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql主从复制"><span class="toc-number">1.</span> <span class="toc-text">mysql主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本配置"><span class="toc-number">1.1.</span> <span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Master库"><span class="toc-number">1.1.1.</span> <span class="toc-text">Master库</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-Master配置"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.Master配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-验证"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2.验证</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Slave库"><span class="toc-number">1.1.2.</span> <span class="toc-text">Slave库</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-Slave配置"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.Slave配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-验证-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主从运维命令"><span class="toc-number">1.2.</span> <span class="toc-text">主从运维命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手动同步（有数据时配置主从时使用）"><span class="toc-number">1.3.</span> <span class="toc-text">手动同步（有数据时配置主从时使用）</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本配置"><span class="toc-number">1.</span> <span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Master库"><span class="toc-number">1.1.</span> <span class="toc-text">Master库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Master配置"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.Master配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-验证"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.验证</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Slave库"><span class="toc-number">1.2.</span> <span class="toc-text">Slave库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Slave配置"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.Slave配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-验证-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主从运维命令"><span class="toc-number">2.</span> <span class="toc-text">主从运维命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动同步（有数据时配置主从时使用）"><span class="toc-number">3.</span> <span class="toc-text">手动同步（有数据时配置主从时使用）</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -511,6 +511,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
@@ -532,10 +536,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
               <li class="article-tag-list-item">
