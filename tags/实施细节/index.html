@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>Apache VFS | an&#39;s Blog</title>
+  <title>Tag: 实施细节 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
-<meta name="keywords" content="编程规范">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Apache VFS">
-<meta property="og:url" content="http://anning1994.github.io/2017/03/16/Apache-VFS/index.html">
+  <meta name="description" content="个人博客">
+<meta name="keywords" content="开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="an&#39;s Blog">
+<meta property="og:url" content="http://anning1994.github.io/tags/实施细节/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
-<meta property="og:updated_time" content="2017-08-15T14:22:31.000Z">
+<meta property="og:description" content="个人博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Apache VFS">
-<meta name="twitter:description" content="Apache VFS简要介绍VFS （虚拟文件系统），可以通过程序 去操作文件系统，这里说的文件系统是一个泛称，不同的文件系统有着不同的操作权限，它具体包括下表的几种文件系统（红色标记的是我们之后可能会用到的文件系统）:">
+<meta name="twitter:title" content="an&#39;s Blog">
+<meta name="twitter:description" content="个人博客">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -154,423 +153,148 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Apache-VFS" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Apache VFS
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/10/30/otter/" class="archive-article-date">
+  	<time datetime="2017-10-30T12:51:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/10/30/otter/">otter浅析</a>
     </h1>
   
 
-        
-        <a href="/2017/03/16/Apache-VFS/" class="archive-article-date">
-  	<time datetime="2017-03-16T14:20:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Apache-VFS"><a href="#Apache-VFS" class="headerlink" title="Apache VFS"></a>Apache VFS</h3><h4 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h4><p>VFS （虚拟文件系统），可以通过<strong>程序</strong> 去操作<strong>文件系统</strong>，这里说的文件系统是一个泛称，不同的文件系统有着不同的<strong>操作权限</strong>，它具体包括下表的几种文件系统（<strong>红色标记的是我们之后可能会用到的文件系统</strong>）:</p>
-<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Authentication</th>
-<th>Read</th>
-<th>Write</th>
-<th>Create/Delete</th>
-<th>Random</th>
-<th>Version</th>
-<th>Rename</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> <font color="#FF0000">FILE</font></td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> <font color="#FF0000">FTP</font></td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> <font color="#FF0000">HTTP</font></td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>Read</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> BZIP2</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> FTPS</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> GZIP</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> HDFS</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>Read</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> HTTPS</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>Read</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> Jar</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> RAM</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> RES</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> SFTP</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> Tar</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td> Temp</td>
-<td>NO</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>NO</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> WebDAV</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Read/Write</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td> Zip</td>
-<td>NO</td>
-<td>Yes</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-</tbody>
-</table>
-<p> VFS使得各种不同的文件系统使用一个API。例如本地磁盘上的文件，HTTP服务器上的文件或Zip存档内的文件。</p>
-<h4 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h4><h5 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-vfs2 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-vfs2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-<h5 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h5><h6 id="1-FileSystemManager"><a href="#1-FileSystemManager" class="headerlink" title="1.FileSystemManager"></a>1.FileSystemManager</h6><p>管理文件系统的接口，是最上层的接口，必须先得到FileSystemManager，可以获得具体的FileObject<code>FileObject在下面会有介绍</code>。<br>获取FileSystemManager最常用的方式就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">FileSystemManager fsm = VFS.getManager();</div></pre></td></tr></table></figure></p>
-<h6 id="2-FileObject"><a href="#2-FileObject" class="headerlink" title="2.FileObject"></a>2.FileObject</h6><p>它代表一个文件，和Java File不同，它具有更多延伸的功能和信息。实现FileObject接口的文件对象有很多大部分FileObject实现类都继承AbstractFileObject类,如下是常用的实现类:</p>
-<ol>
-<li><strong>LocalFile</strong></li>
-<li><strong>FtpFileObject</strong></li>
-<li><strong>HttpFileObject</strong></li>
-<li>SftpFileObject</li>
-<li>ZipFileObject</li>
-<li>TarFileObject</li>
-<li>RamFileObject</li>
-<li>UrlFileObject</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> path</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">FileObject fileobject = fsm.resolveFile(path);</div></pre></td></tr></table></figure>
-<p>path是文件的路径，不同的文件系统有不同的<strong>前缀</strong></p>
-<ol>
-<li><p>File</p>
-<blockquote>
-<p>[file://] absolute-path</p>
-<p>Examples:</p>
-<p>file:///home/someuser/somedir<br>file:///C:/Documents and Settings<br>file://///somehost/someshare/afile.txt<br>/home/someuser/somedir<br>c:\program files\some dir<br>c:/program files/some dir</p>
-</blockquote>
-</li>
-<li><p>Ftp</p>
-<blockquote>
-<p>ftp://[ username[: password]@] hostname[: port][ relative-path]</p>
-<p>Examples:</p>
-<p>ftp://lxsoft:123456@127.0.0.1/pub/downloads/somefile.tgz</p>
-</blockquote>
-</li>
-<li><p>Http</p>
-<blockquote>
-<p>http://[ username[: password]@] hostname[: port][ absolute-path]</p>
-<p>Examples:</p>
-<p><a href="http://127.0.0.1:8080/downloads/somefile.jar" target="_blank" rel="external">http://127.0.0.1:8080/downloads/somefile.jar</a><br><a href="http://username@127.0.0.1/index.html" target="_blank" rel="external">http://username@127.0.0.1/index.html</a></p>
-</blockquote>
-</li>
-</ol>
-<p>FileObject表示一个具体文件，文件有两种类型：</p>
-<ol>
-<li>目录</li>
-<li>普通文件</li>
-</ol>
-<p>普通文件拥有数据或者说内容。而目录不含有内容，只能包含其他文件。</p>
-<p>FileObject提供大量的方法，足以满足读取，删除，复制，重命名等基本操作。</p>
-<p><a href="http://commons.apache.org/proper/commons-vfs/apidocs/index.html" target="_blank" rel="external">FileObject接口的API</a></p>
-<h5 id="高级特性及demo"><a href="#高级特性及demo" class="headerlink" title="高级特性及demo"></a>高级特性及demo</h5><h6 id="文件的监听"><a href="#文件的监听" class="headerlink" title="文件的监听"></a>文件的监听</h6><p>FileListener 有两个实现类DelegateFileObject和WeakRefFileListener，时间有限没有研究这两个实现类是干什么的，有兴趣的同学可以研究一下，但是这个监听类是可以绑定到文件系统上面的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">FileSystemManager fsm = VFS.getManager();</div><div class="line">FileObject fileObject = fsm.resolveFile(path);</div><div class="line"><span class="comment">//在文件系统中添加监听器（lambda和匿名内部类都会方便点，也可以直接new个对象传到addListener方法中）</span></div><div class="line">fileObject.getFileSystem().addListener(fileObject,<span class="keyword">new</span> FileListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fileCreated</span><span class="params">(FileChangeEvent fileChangeEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                String name = fileChangeEvent.getFile().getName().getBaseName();</div><div class="line">                System.out.print(<span class="string">"文件创建了"</span>+name);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fileDeleted</span><span class="params">(FileChangeEvent fileChangeEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                String name = fileChangeEvent.getFile().getName().getBaseName();</div><div class="line">                System.out.print(<span class="string">"文件删除了"</span>+name);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fileChanged</span><span class="params">(FileChangeEvent fileChangeEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                String name = fileChangeEvent.getFile().getName().getBaseName();</div><div class="line">                System.out.print(<span class="string">"文件更改了"</span>+name);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">if</span> (fileObject.exists())&#123;</div><div class="line">          <span class="comment">//删除path对应的文件或者目录</span></div><div class="line">          <span class="comment">//fileObject.delete()</span></div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">          <span class="comment">//创建一个文件        </span></div><div class="line">          fileObject.createFile();</div><div class="line">          <span class="comment">//或者创建文件夹</span></div><div class="line">          <span class="comment">//fileObject.createFolder()</span></div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h6 id="文件过滤"><a href="#文件过滤" class="headerlink" title="文件过滤"></a>文件过滤</h6><p>通过看API试出来的方法，这方面网上的资料太少了，只有以后遇到什么需求在查看API去解决。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">FileSystemManager fsm = VFS.getManager();</div><div class="line">FileObject fileObject = fsm.resolveFile(path);</div><div class="line"><span class="comment">//lambda表达式更加直观方便</span></div><div class="line">FileSelector selector = <span class="keyword">new</span> FileFilterSelector((fileSelectInfo)-&gt;&#123;</div><div class="line">            <span class="keyword">boolean</span> isCSV = fileSelectInfo.getFile().getName().getBaseName().endsWith(<span class="string">".txt"</span>);</div><div class="line">            <span class="keyword">return</span> isCSV;</div><div class="line">        &#125;);</div><div class="line"><span class="comment">//匿名内部类，效果等同于上面的lambda</span></div><div class="line"><span class="comment">// FileSelector selector = new FileFilterSelector(new FileFilter() &#123;</span></div><div class="line"><span class="comment">//             @Override</span></div><div class="line"><span class="comment">//             public boolean accept(FileSelectInfo fileSelectInfo) &#123;</span></div><div class="line"><span class="comment">//                 boolean isCSV = fileSelectInfo.getFile().getName().getBaseName().endsWith(".txt");</span></div><div class="line"><span class="comment">//                 return isCSV;</span></div><div class="line"><span class="comment">//             &#125;</span></div><div class="line"><span class="comment">//         &#125;);</span></div><div class="line">        FileObject[] findFiles = fileObject.findFiles(selector);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; findFiles.length; i++) &#123;</div><div class="line">            String name = findFiles[i].getName().getBaseName();</div><div class="line">            System.out.print(name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>这段代码的作用就是过滤出在path下*.txt的所有文件</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程规范</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实施细节</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQW7DMAwFUd//0inQVYHU6vBTLWpqvAqQSNbLgiBFXhd+Xp/P18/r533V3dr1uzY/MmTIeCyDH+juWOt91qQ1j5xNhgwZ5zCqQZb8kq+9AxeCsgwZMmTghG+9c3UfGTJkyMgYZNN1mUpCswwZMmRkRSwJo9XASt61uRaXIUPGAxlZY+BvPv96f0OGDBn/nvEqPqRkXSdznfB6eyoZMmSMZvAXdILv3vBayHBlyJAxgtEZp8hGKPhAWKGFIEOGjNEMHvI4gKR9/aamDBkyzmFk4w689Zit5S2EK/tHZciQ8XBGlhSSQ1RX8fanDBkyZjN4vKoeetewV6E5IUOGjNEMkmVlxScJ5Z0wLUOGjNMY5EKfbEoaAJ2QWihoZciQMYLBX0amNqrtz6zQ/eZbGTJkHMMoD4zia30e9VHH9f33MmTIGM3gJSJP8naNX5CUUYYMGScwMgDZulPQkj1Rz1OGDBmDGGRB51qNF71Z20CGDBmzGdmQxIYuRBRkf/gjZMiQMZSRAXgjIUsQyyMdMmTIOIaRvT4rUKttzkKGK0OGjHGM6oGyErfaPAgBMmTIGMrIxiw6FXPnj7gNzTJkyBjNyIrJXYfjq7KLPBkyZExi9IMsHx3L2gPoAk6GDBkHMLJL+eplHA+s1Ws7GTJkyODFKvk2Sy5RaihDhgwZxQK1GrhbzU4ZMmQcwOBFLB8dyxLBsEUqQ4aM0Yxd12GFqzFSlLaHM2TIkDGC8QFrSVvRC0IAuQAAAABJRU5ErkJggg==" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2017/03/17/代码界的石器时代/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          代码界的石器时代（转载）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/15/关于写博客的一点小想法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于写博客的一点小想法</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/10/22/haproxy实现mysql集群负载均衡/" class="archive-article-date">
+  	<time datetime="2017-10-22T12:51:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-22</time>
+</a>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-VFS"><span class="toc-number">1.</span> <span class="toc-text">Apache VFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简要介绍"><span class="toc-number">1.1.</span> <span class="toc-text">简要介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始使用"><span class="toc-number">1.2.</span> <span class="toc-text">开始使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#依赖"><span class="toc-number">1.2.1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#核心API"><span class="toc-number">1.2.2.</span> <span class="toc-text">核心API</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-FileSystemManager"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1.FileSystemManager</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-FileObject"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.FileObject</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高级特性及demo"><span class="toc-number">1.2.3.</span> <span class="toc-text">高级特性及demo</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#文件的监听"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">文件的监听</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#文件过滤"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">文件过滤</span></a></li></ol></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/10/22/haproxy实现mysql集群负载均衡/">haproxy实现mysq集群负载均衡</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实施细节</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
         </div>
-        
-    </div>
-</aside>
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/10/20/mysql主从复制/" class="archive-article-date">
+  	<time datetime="2017-10-20T12:10:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/10/20/mysql主从复制/">mysql主从复制</a>
+    </h1>
   
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实施细节</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
   
 
-  
-
-  
-
-  
-  <section id="comments" class="comments">
-    <style>
-      .comments{margin:30px;padding:10px;background:#fff}
-      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-    </style>
-    <div id="vcomment" class="comment"></div>
-<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
-<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-   new Valine({
-            av: AV,
-            el: '#vcomment',
-            notify: notify,
-            verify: verify,
-            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
-            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
-            placeholder: "温馨提示 请添加昵称后发表评论",
-            avatar: "monsterid",
-            pageSize: 15
-    });
-</script>
-
-  </section>
-  
+    
 
 
           </div>
@@ -591,7 +315,7 @@
     </div>
   </div>
 </footer>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
     </div>
@@ -599,9 +323,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -677,11 +401,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,11 +413,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">基础是指</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">宏观知识</a>
               </li>
              
               <li class="article-tag-list-item">

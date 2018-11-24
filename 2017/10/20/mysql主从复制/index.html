@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>2017我的书单 | an&#39;s Blog</title>
+  <title>mysql主从复制 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="计算机相关  java编程思想（★★★★★☆）">
-<meta name="keywords" content="资源分享">
+  <meta name="description" content="mysql主从复制 基本配置Master库1.Master配置">
+<meta name="keywords" content="数据库,实施细节">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017我的书单">
-<meta property="og:url" content="http://anning1994.github.io/2018/01/07/2017我的书单/index.html">
+<meta property="og:title" content="mysql主从复制">
+<meta property="og:url" content="http://anning1994.github.io/2017/10/20/mysql主从复制/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="计算机相关  java编程思想（★★★★★☆）">
-<meta property="og:image" content="http://anning1994.github.io/img/post/head/sd.jpeg">
-<meta property="og:updated_time" content="2018-11-20T15:34:30.331Z">
+<meta property="og:description" content="mysql主从复制 基本配置Master库1.Master配置">
+<meta property="og:image" content="http://anning1994.github.io/img/post/head/mysql.png">
+<meta property="og:updated_time" content="2018-11-24T15:32:00.345Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017我的书单">
-<meta name="twitter:description" content="计算机相关  java编程思想（★★★★★☆）">
-<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/sd.jpeg">
+<meta name="twitter:title" content="mysql主从复制">
+<meta name="twitter:description" content="mysql主从复制 基本配置Master库1.Master配置">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/mysql.png">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -156,41 +156,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017我的书单" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mysql主从复制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      2017我的书单
+      mysql主从复制
     </h1>
   
 
         
-        <a href="/2018/01/07/2017我的书单/" class="archive-article-date">
-  	<time datetime="2018-01-07T02:12:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
+        <a href="/2017/10/20/mysql主从复制/" class="archive-article-date">
+  	<time datetime="2017-10-20T12:10:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="计算机相关"><a href="#计算机相关" class="headerlink" title="计算机相关"></a>计算机相关</h4><p><img src="/img/post/head/sd.jpeg" width="77%" height="37%" alt="图片名称" align="center"></p>
-<ol>
-<li>java编程思想（★★★★★☆）</li>
+        <h3 id="mysql主从复制"><a href="#mysql主从复制" class="headerlink" title="mysql主从复制"></a>mysql主从复制</h3><p><img src="/img/post/head/mysql.png" width="77%" height="37%" alt="图片名称" align="center"></p>
+<h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><h5 id="Master库"><a href="#Master库" class="headerlink" title="Master库"></a>Master库</h5><h6 id="1-Master配置"><a href="#1-Master配置" class="headerlink" title="1.Master配置"></a>1.Master配置</h6><a id="more"></a>
+<p>修改my.cnf:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">log-bin</span>=mysql-bin                            #开启二进制文件</div><div class="line"><span class="attr">server-id</span>=<span class="number">2</span>                                  #唯一标识</div><div class="line"><span class="attr">binlog-ignore-db</span>=information_schema          #忽略数据库计入binlog</div><div class="line"><span class="attr">binlog-ignore-db</span>=cluster</div><div class="line"><span class="attr">binlog-ignore-db</span>=mysql</div><div class="line"><span class="attr">binlog-do-db</span>=ufind_db                        #开启数据库计入binlog</div></pre></td></tr></table></figure>
+<p>在Master数据库命令行中输入:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">为从库分配用户，包含文件权限 （5.6以下）</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">GRANT FILE ON *.* TO <span class="string">'为从库分配的用户名'</span>@<span class="string">'从库地址'</span> IDENTIFIED BY <span class="string">'为从库分配的密码'</span>;  </span></div><div class="line"><span class="meta">#</span><span class="bash">为从库分配用户，包含复制二进制文件权限 （5.6及以上）</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">GRANT REPLICATION SLAVE ON *.* TO <span class="string">'为从库分配的用户名'</span>@<span class="string">'从库地址'</span> IDENTIFIED BY <span class="string">'为从库分配的密码'</span>;</span></div><div class="line"><span class="meta">#</span><span class="bash">更新权限</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">FLUSH PRIVILEGES</span></div></pre></td></tr></table></figure>
+<h6 id="2-验证"><a href="#2-验证" class="headerlink" title="2.验证"></a>2.验证</h6><p>键入命令<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show <span class="keyword">master</span> <span class="title">status</span>;</div></pre></td></tr></table></figure></p>
+<p>显示以下信息则配置成功</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="code">+------------------+</span>----------<span class="code">+--------------+</span>----------------------------------<span class="code">+-------------------+</span></div><div class="line"><span class="section">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB                 | Executed_Gtid_Set |</span></div><div class="line">+------------------+----------+--------------+----------------------------------+-------------------+</div><div class="line"><span class="section">| mysql-bin.000004 |    28125 | ufind_db     | information_schema,cluster,mysql |                   |</span></div><div class="line">+------------------+----------+--------------+----------------------------------+-------------------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>如果执行这个步骤始终为 <strong> Empty set(0.00 sec) </strong> ，那说明前面的my.cnf没配置对。</p>
+<h5 id="Slave库"><a href="#Slave库" class="headerlink" title="Slave库"></a>Slave库</h5><h6 id="1-Slave配置"><a href="#1-Slave配置" class="headerlink" title="1.Slave配置"></a>1.Slave配置</h6><p>修改my.cnf:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">log-bin</span>=mysql-bin</div><div class="line"><span class="attr">server-id</span>=<span class="number">3</span>                                #不可与主库重复</div><div class="line"><span class="attr">binlog-ignore-db</span>=information_schema</div><div class="line"><span class="attr">binlog-ignore-db</span>=cluster</div><div class="line"><span class="attr">binlog-ignore-db</span>=mysql</div><div class="line"><span class="attr">replicate-do-db</span>=ufind_db                   #同步数据库</div><div class="line"><span class="attr">replicate-ignore-db</span>=mysql                  #忽略同步的数据库</div><div class="line"><span class="attr">log-slave-updates</span>=<span class="number">1</span>                        #io线程同步数据时也计入logbin中</div><div class="line"><span class="attr">slave-skip-errors</span>=all                      #跳过错误</div><div class="line"><span class="attr">slave-net-timeout</span>=<span class="number">60</span></div></pre></td></tr></table></figure>
+<p>开启线程连接主库:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">mysql&gt;</span><span class="bash"> stop slave;  <span class="comment">#关闭Slave</span></span></div><div class="line"><span class="meta">mysql&gt;</span><span class="bash"> change master to master_host=<span class="string">'主库地址'</span>,master_port=主库的端口号,master_user=<span class="string">'主库分配的用户'</span>,master_password=<span class="string">'主库分配的密码'</span>,master_log_file=<span class="string">'主库的File'</span>, master_log_pos=主库的Position;</span></div><div class="line"><span class="meta">mysql&gt;</span><span class="bash"> start slave;  <span class="comment">#开启Slave</span></span></div></pre></td></tr></table></figure>
+<h6 id="2-验证-1"><a href="#2-验证-1" class="headerlink" title="2.验证"></a>2.验证</h6><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; <span class="built_in">show</span> slave <span class="built_in">status</span>\G;</div></pre></td></tr></table></figure>
+<p>在输出的信息中如果出现以下两条则说明主从配置成功<br>Slave_IO_Running: Yes<br>Slave_SQL_Running: Yes</p>
+<h4 id="主从运维命令"><a href="#主从运维命令" class="headerlink" title="主从运维命令"></a>主从运维命令</h4><p>master端：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show <span class="keyword">master</span> <span class="title">status</span>; <span class="comment">#查看状态：</span></div><div class="line">show processlist; <span class="comment">#查看slave下mysql进程信息</span></div><div class="line">reset <span class="literal">master</span>; <span class="comment">#慎用，将清空日志及同步position</span></div></pre></td></tr></table></figure>
+<p>slave端：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show </span>slave status<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="keyword">show </span>slave logs<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="keyword">show </span>processlist<span class="comment">;</span></div><div class="line"></div><div class="line">reset slave<span class="comment">; #慎用，将清空slave配置信息、日志及同步position在从服务器上跳过错误事件</span></div><div class="line"></div><div class="line">reset slave <span class="comment">#清除日志同步位置标志，并重新生成master.info</span></div><div class="line"></div><div class="line"><span class="keyword">show </span>slave hosts <span class="comment">#主机运行，看连入的从机的情况。</span></div></pre></td></tr></table></figure>
+<h4 id="手动同步（有数据时配置主从时使用）"><a href="#手动同步（有数据时配置主从时使用）" class="headerlink" title="手动同步（有数据时配置主从时使用）"></a>手动同步（有数据时配置主从时使用）</h4><ol>
+<li>先对主库锁表</li>
 </ol>
-<a id="more"></a>
-<blockquote>
-<p>笔者对该书籍的定位就是宏观、全面、权威的java基础知识索引。书如其名，思想即为道，而语法则为术，道为正，术为正，则事半功倍。阅读此书也应该本着悟道而非学术为原则，宏观的去了解具有java特色的面向编程道路。非常不推荐利用该书去学习java基础，应当在对java有一定了解，并对面向编程思想有一定认知之后再来读它。读书获取知识的过程就是一种思想碰撞过程，你首先对书中所讲的内容有自己浅薄的一层认识，而在读的过程中来否定或者肯定你的认知，并要分析你的认知与作者的认知存在不同的原因是那些认知不同造成的？从而会产生出新的浅薄的认知，之后不断的在阅读中重复着这种过程，此为学习思想。</p>
-</blockquote>
+<p>FLUSH TABLES WITH READ LOCK;</p>
 <ol>
-<li>深入理解java虚拟机（★★★★★）</li>
+<li>备份数据</li>
 </ol>
-<blockquote>
-<p>笔者认为编程也遵守巴莱多定律(28定律)，利用20%所学的东西就能解决你在工作中遇到的80%的问题，所以笔者推荐阅读本书，去掌握解决另外20%问题的技能。在网络上但凡涉及到虚拟机、java虚拟机内存划分、jvm内存模型、class文件加载、class文件解析、垃圾回收等博文，有80%都引用本书。所以笔者才找到此书，并在阅读过程中收获颇丰，系统性的认识了java虚拟机的相关知识。</p>
-</blockquote>
-<p>3.</p>
+<p>mysqldump -uroot -p -hlocalhost &gt; mysql.bak.sql</p>
+<ol>
+<li>解锁主库</li>
+</ol>
+<p>unlock tables;</p>
+<ol>
+<li>查看主库的binlog文件和位置</li>
+</ol>
+<p>show master status; 找出File和Position</p>
+<ol>
+<li>使用scp命令把文件移动到从库</li>
+</ol>
+<p>scp mysql.bak.sql root@192.168.128.101:/tmp/</p>
+<ol>
+<li>在从库上停止同步</li>
+</ol>
+<p>mysql&gt; stop slave;</p>
+<ol>
+<li>导入数据</li>
+</ol>
+<p>mysql&gt; source /tmp/mysql.bak.sql</p>
+<ol>
+<li>设置从库的同步开始文件和开始位置</li>
+</ol>
+<p>change master to master_host = ‘主库主机’, master_user = ‘同步用户名’, master_port=3306, master_password=’’, master_log_file = ‘第3步中获取的file’, master_log_pos=第3步中获取的position;</p>
+<ol>
+<li>从库上启动同步并检查</li>
+</ol>
+<p>mysql&gt; start slave;</p>
+<p>mysql&gt; show slave status\G  查看：</p>
 
       
 
@@ -204,7 +246,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实施细节</a>
         		</li>
       		
 		</ul>
@@ -260,7 +306,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3au7KrMAwFUP7/p7nNae5MQrYkKLCXq0we4EWxY8k+jnicX0b+/W/fyd+/YWBgYLyWcV6OZFrXE6peOfn0wx0xMDA2YFwHX/L6Gjx5JwplDAwMjDhSk+vkU8fAwMCYMK6jtlqOYmBgYCSMpJisLgeTR5B8enMtjoGB8ULGXYH4xOtH9jcwMDBexTiLY95Qu3c+f1fGwMBYmpEHXLJkzBtz1WsmV8PAwNiBUT1gkU9xMrlCZGNgYCzKyH+QR22vGdc78PHfChcDA2NRRn77XlAmBWq+hXBUJ4GBgbEEoxqO1aXkJGRHp0UwMDAWZSSLsF6hO2+0/Yh+DAyMzRhJWy1ZDuYHuaqP7MNvMTAwNmBUYy6P4KdJGBgY+zCqLba8TTaJ48LDxcDAWJqR32BS1uZ7FKMNAwwMjA0YvQK1GpHVCB4dtsDAwFiCccbjKI4qO3n9NV0xMDC2YVQPY+UBnS/ymgc1MDAwlmbkByPyoMyjdlLcYmBg7MaoXq63mMtDNonpD+9jYGBsw+gdjOi17ZIHVIhyDAyMzRjVIK4ey+g19X58HwMDY1HGWRy9Qre30CzU3xgYGEszqtFZLTJ7UZuXymUYBgbGaxm9I1lJ+PY2I/PAxcDA2I3R2wbotfsn/wA/SlkMDAyMuKHWW3T27oiBgYHRa4fli8t8sfjI/wYGBsarGL3NgOq2QXOK97bbMDAwXsjoHZvoYXqPrLpgxcDAWIjxDwc3slDZ/EIIAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3awYrDMAxF0fz/T2egq8Jg9z4pLdi+XpVMJs7JQkiWrguv+7XI9fcro7++L77XA0uGDBnLMu7p+n8Px8xfevT8+fXhm8iQIeMAxvzlyAuNQu1Tvz+8swwZMmSAdK0TWMnnkCFDhoyUMQ+RnC1DhgwZnEGK2NpmKfjrtbgMGTIWZKSNgV/+/mJ/Q4YMGYsw7nDxpJC3FnhTYfh8GTJkbM0g7cPasVotZKfR9SJzHDJkyFicUUvUakE2HQjj42UyZMjYm9FpVaathTQozw/sZMiQcQ4jDY7pFf4tSRqKRldlyJCxHYOMavWDL08006QQHbfJkCFjcUZtqKIWdmtHcmhHGTJkHMBIh73Soa7aYAcvaGXIkHEOgzyOX6mlkrWyVoYMGXszUDgD/9zh8bEzRJUhQ8Z2jPnGvBzlJWs6bIHulyFDxjEMHlg7aV9tsCMYtpAhQ8Z2DN4mTAMuGZLoPDOeKZMhQ8ZGjDRpS0cxai0BdI8MGTKOZPCDMJ4U9gP38DPJkCFjU0Y/jXu2ScDHxWTIkCGDJ4L8OIwPT/BDPRkyZJzAiIeuQGHJU8ZaSSxDhozTGHe4aodraThO75EhQ8bejH4ZydO+WombjoPIkCFjV0atlE2TPNI8SEfTZMiQcRqjM2f1myIW1d8yZMg4npEeiqVH/GlYLwZcGTJkHMPoDGTUuhYfnixDhowDGLyI7YyRpQVtUOLKkCFja8ZTjQG+fe0YrtW8lCFDxqqMP4SpHfM0NsBtAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +320,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/29/补码/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/10/22/haproxy实现mysql集群负载均衡/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          补码
+          haproxy实现mysq集群负载均衡
         
       </div>
     </a>
   
   
-    <a href="/2017/10/30/otter/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">otter浅析</div>
+    <a href="/2017/09/17/netty/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">netty浅析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -312,7 +358,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#计算机相关"><span class="toc-number">1.</span> <span class="toc-text">计算机相关</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql主从复制"><span class="toc-number">1.</span> <span class="toc-text">mysql主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本配置"><span class="toc-number">1.1.</span> <span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Master库"><span class="toc-number">1.1.1.</span> <span class="toc-text">Master库</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-Master配置"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.Master配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-验证"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2.验证</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Slave库"><span class="toc-number">1.1.2.</span> <span class="toc-text">Slave库</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-Slave配置"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.Slave配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-验证-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主从运维命令"><span class="toc-number">1.2.</span> <span class="toc-text">主从运维命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手动同步（有数据时配置主从时使用）"><span class="toc-number">1.3.</span> <span class="toc-text">手动同步（有数据时配置主从时使用）</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

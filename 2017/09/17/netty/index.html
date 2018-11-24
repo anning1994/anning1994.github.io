@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>Tag: 宏观编程 | an&#39;s Blog</title>
+  <title>netty浅析 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta name="keywords" content="开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="an&#39;s Blog">
-<meta property="og:url" content="http://anning1994.github.io/tags/宏观编程/index.html">
+  <meta name="description" content="netty浅析 Netty是一个网络通信框架，其出现的原因主要是为了解决NIO的不足。如：">
+<meta name="keywords" content="java,IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="netty浅析">
+<meta property="og:url" content="http://anning1994.github.io/2017/09/17/netty/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="netty浅析 Netty是一个网络通信框架，其出现的原因主要是为了解决NIO的不足。如：">
+<meta property="og:image" content="http://anning1994.github.io/img/post/head/netty.jpg">
+<meta property="og:updated_time" content="2018-11-24T15:19:21.147Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="an&#39;s Blog">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="netty浅析">
+<meta name="twitter:description" content="netty浅析 Netty是一个网络通信框架，其出现的原因主要是为了解决NIO的不足。如：">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/netty.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -153,60 +156,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-netty" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/17/代码界的石器时代/" class="archive-article-date">
-  	<time datetime="2017-03-17T09:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/17/代码界的石器时代/">代码界的石器时代（转载）</a>
+    <h1 class="article-title" itemprop="name">
+      netty浅析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/17/netty/" class="archive-article-date">
+  	<time datetime="2017-09-17T14:51:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="netty浅析"><a href="#netty浅析" class="headerlink" title="netty浅析"></a>netty浅析</h3><p><img src="/img/post/head/netty.jpg" width="77%" height="37%" alt="图片名称" align="center"></p>
+<p>Netty是一个网络通信框架，其出现的原因主要是为了解决NIO的不足。如：</p>
+<a id="more"></a>
+<ol>
+<li>NIO的类库和API繁杂，使用麻烦，你需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等；</li>
+<li>需要具备其它的额外技能做铺垫，例如熟悉Java多线程编程，因为NIO编程涉及到Reactor模式，你必须对多线程和网路编程非常熟悉，才能编写出高质量的NIO程序；</li>
+<li>可靠性能力补齐，工作量和难度都非常大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处理等等，NIO编程的特点是功能开发相对容易，但是可靠性能力补齐工作量和难度都非常大；</li>
+</ol>
+<p>NIO（Non-blocking I/O，在Java领域，也称为New I/O），是一种同步非阻塞的I/O模型，也是I/O多路复用的基础，已经被越来越多地应用到大型应用服务器，成为解决高并发与大量连接、I/O处理问题的有效方式。</p>
+<p>本文会从传统的阻塞I/O和线程池模型面临的问题讲起，然后对比几种常见I/O模型，一步步分析NIO怎么利用事件模型处理I/O，解决线程池瓶颈处理海量连接，包括利用面向事件的方式编写服务端/客户端程序。</p>
+<h4 id="传统BIO模型分析"><a href="#传统BIO模型分析" class="headerlink" title="传统BIO模型分析"></a>传统BIO模型分析</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> ExecutorService executor = Excutors.newFixedThreadPollExecutor(<span class="number">100</span>);<span class="comment">//线程池</span></div><div class="line"> ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket();</div><div class="line"> serverSocket.bind(<span class="number">8088</span>);</div><div class="line"> <span class="keyword">while</span>(!Thread.currentThread.isInturrupted())&#123;<span class="comment">//主线程死循环等待新连接到来</span></div><div class="line"> Socket socket = serverSocket.accept();</div><div class="line"> executor.submit(<span class="keyword">new</span> ConnectIOnHandler(socket));<span class="comment">//为新的连接创建新的线程</span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConnectIOnHandler</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Socket socket;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConnectIOnHandler</span><span class="params">(Socket socket)</span></span>&#123;</div><div class="line">       <span class="keyword">this</span>.socket = socket;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">      <span class="keyword">while</span>(!Thread.currentThread.isInturrupted()&amp;&amp;!socket.isClosed())&#123;死循环处理读写事件</div><div class="line">          String someThing = socket.read()<span class="comment">//读取数据</span></div><div class="line">          <span class="keyword">if</span>(someThing!=<span class="keyword">null</span>)&#123;</div><div class="line">             <span class="comment">//处理数据</span></div><div class="line">             socket.write()<span class="comment">//写数据</span></div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码就是典型的传统BIO服务端监听代码，由于<strong>accept()</strong>、<strong>read()</strong>、<strong>write()</strong> 这三个方法是阻塞的、耗时的。如果是单线程的话，在执行阻塞代码是会使cpu空等，并且最重要的是，如果有10000个并发的话，那么等待时间是不能够接受的。</p>
+<p>使用多线程的本质就是：</p>
+<ol>
+<li>利用多核。</li>
+<li>当I/O阻塞系统，但CPU空闲的时候，可以利用多线程使用CPU资源。</li>
+</ol>
+<p>但是传统IO在使用多线程解决上面的问题时会严重依赖于线程，意味着每个请求都要建立一个线程，当客户端数量达到万级时，就需要建立万级的线程。线程占用的内存，切换线程资源昂贵，最终导致这种方案无法保证系统的伸缩性。</p>
+<h4 id="传统NIO模型分析"><a href="#传统NIO模型分析" class="headerlink" title="传统NIO模型分析"></a>传统NIO模型分析</h4><p>所有的系统I/O都分为两个阶段：等待就绪和操作。举例来说，读函数，分为等待系统可读和真正的读；同理，写函数分为等待网卡可以写和真正的写。</p>
+<p>需要说明的是等待就绪的阻塞是不使用CPU的，是在“空等”；而真正的读写操作的阻塞是使用CPU的，真正在”干活”，而且这个过程非常快，属于memory copy，带宽通常在1GB/s级别以上，可以理解为基本不耗时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ChannelHandler</span></span>&#123;</div><div class="line">     <span class="function"><span class="keyword">void</span> <span class="title">channelReadable</span><span class="params">(Channel channel)</span></span>;</div><div class="line">     <span class="function"><span class="keyword">void</span> <span class="title">channelWritable</span><span class="params">(Channel channel)</span></span>;</div><div class="line">  &#125;</div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Channel</span></span>&#123;</div><div class="line">    Socket socket;</div><div class="line">    Event event;<span class="comment">//读，写或者连接</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//IO线程主循环:</span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">IoThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">  Channel channel;</div><div class="line">  <span class="keyword">while</span>(channel=Selector.select())&#123;<span class="comment">//选择就绪的事件和对应的连接</span></div><div class="line">     <span class="keyword">if</span>(channel.event==accept)&#123;</div><div class="line">        registerNewChannelHandler(channel);<span class="comment">//如果是新连接，则注册一个新的读写处理器</span></div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span>(channel.event==write)&#123;</div><div class="line">        getChannelHandler(channel).channelWritable(channel);<span class="comment">//如果可以写，则执行写事件</span></div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span>(channel.event==read)&#123;</div><div class="line">         getChannelHandler(channel).channelReadable(channel);<span class="comment">//如果可以读，则执行读事件</span></div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">  &#125;</div><div class="line">  Map&lt;Channel，ChannelHandler&gt; handlerMap;<span class="comment">//所有channel的对应事件处理器</span></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>NIO由原来的阻塞读写（占用线程）变成了单线程轮询事件，找到可以进行读写的网络描述符进行读写。除了事件的轮询是阻塞的（没有可干的事情必须要阻塞），剩余的I/O操作都是纯CPU操作，没有必要开启多线程。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">宏观编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IO</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3a0WrDMAwF0P3/T2evgyzhSkrH7Bw/lWBSHxdUWfLXVzyO0/j5/Orzef75nfnzBwYGBsayjON2nOck70me9J5frgQDA+MFjPvAd/U5X+5kI6KgjIGBgXGx9EnATZaOgYGBMWHkc+6Ty/snGBgYGNVDbBJqk3QwSSI/eBbHwMBYkJFX3f/+80f6GxgYGEsxjuKYFPer21RYFQYGxtaM6tfkVyh65bneejAwMN7D6IXa+6V8orUwShAxMDCWZczTtepJc954KP9KGBgYyzISX6/pmCSOvaBc2G8MDIyNGHmwq86vxvgHrllgYGBszcgX0Tv0Vq9W5NuNgYGxN6Na9updhugV5sqJIwYGxqaM5NXN8PdQIyEKzRgYGFszqgGuev2il1Amh9jmURYDA2NBRrVwVi29zduczdwWAwNjI8ZkcVHJfrwp5WYDBgbGdoxq6lY9uOaH3lFpDwMD4wWMvCjfa14mTc38n+GX+RgYGFsz5gX9PGXMW5JJ+lgOxBgYGIsznmpG5ulgdWZ0bMbAwHglI1/0pBU6ud6BgYGBMblsUU0We4W8cl8CAwNjQcZRHJNwXG0GFN6JgYGxNSMfvTZAL8hO2gYYGBi7Mp4tpfWSy0kjAQMD4z2MPPBVvzJh5/8AlyEbAwMDIw98t8+rF8jKRTcMDAyMQdkrD7v32/TBgIuBgfHvGdWWZDWYJu/JwzoGBsbbGHm4fDZQ5u2B6tEaAwNjI8Y3Fkb6CHpIYagAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/10/20/mysql主从复制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          mysql主从复制
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/08/16/java基础3--HashMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java基础3--HashMap</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#netty浅析"><span class="toc-number">1.</span> <span class="toc-text">netty浅析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#传统BIO模型分析"><span class="toc-number">1.1.</span> <span class="toc-text">传统BIO模型分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传统NIO模型分析"><span class="toc-number">1.2.</span> <span class="toc-text">传统NIO模型分析</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "温馨提示 请添加昵称后发表评论",
+            avatar: "monsterid",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+  
 
 
           </div>
@@ -227,7 +390,7 @@
     </div>
   </div>
 </footer>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
     </div>
@@ -235,9 +398,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -313,11 +476,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程规范</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -325,11 +488,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">基础是指</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">宏观知识</a>
               </li>
              
               <li class="article-tag-list-item">
