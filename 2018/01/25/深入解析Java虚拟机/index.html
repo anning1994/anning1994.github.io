@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>Tag: 基础是指 | an&#39;s Blog</title>
+  <title>深入分析Java虚拟机 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta name="keywords" content="开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="an&#39;s Blog">
-<meta property="og:url" content="http://anning1994.github.io/tags/基础是指/index.html">
+  <meta name="description" content="Java虚拟机是相对于物理机的概念，也就是对现有冯诺依曼体系结构的硬件系统的抽象，现有计算机硬件系统是由输入，运算器、控制器、存储器和输出构成的。Java虚拟机则是建立在硬件系统之上，提供自己的规范，使在虚拟机上运行的程序具有跨平台、自动回收内存等诸多特性。">
+<meta name="keywords" content="java,基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入分析Java虚拟机">
+<meta property="og:url" content="http://anning1994.github.io/2018/01/25/深入解析Java虚拟机/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="Java虚拟机是相对于物理机的概念，也就是对现有冯诺依曼体系结构的硬件系统的抽象，现有计算机硬件系统是由输入，运算器、控制器、存储器和输出构成的。Java虚拟机则是建立在硬件系统之上，提供自己的规范，使在虚拟机上运行的程序具有跨平台、自动回收内存等诸多特性。">
+<meta property="og:image" content="http://anning1994.github.io/img/post/head/jvm.jpg">
+<meta property="og:updated_time" content="2019-02-17T09:12:45.538Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="an&#39;s Blog">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="深入分析Java虚拟机">
+<meta name="twitter:description" content="Java虚拟机是相对于物理机的概念，也就是对现有冯诺依曼体系结构的硬件系统的抽象，现有计算机硬件系统是由输入，运算器、控制器、存储器和输出构成的。Java虚拟机则是建立在硬件系统之上，提供自己的规范，使在虚拟机上运行的程序具有跨平台、自动回收内存等诸多特性。">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/jvm.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -153,36 +156,345 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-深入解析Java虚拟机" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/16/java基础1--面向对象思想/" class="archive-article-date">
-  	<time datetime="2017-04-16T08:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/16/java基础1--面向对象思想/">java基础1--面向对象思想</a>
+    <h1 class="article-title" itemprop="name">
+      深入分析Java虚拟机
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/25/深入解析Java虚拟机/" class="archive-article-date">
+  	<time datetime="2018-01-25T12:12:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/post/head/jvm.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
+<p>Java虚拟机是相对于物理机的概念，也就是对现有冯诺依曼体系结构的硬件系统的抽象，现有计算机硬件系统是由输入，运算器、控制器、存储器和输出构成的。Java虚拟机则是建立在硬件系统之上，提供自己的规范，使在虚拟机上运行的程序具有跨平台、自动回收内存等诸多特性。<br><a id="more"></a></p>
+<h3 id="虚拟机内存划分概述"><a href="#虚拟机内存划分概述" class="headerlink" title="虚拟机内存划分概述"></a>虚拟机内存划分概述</h3><p>Java虚拟机对内存划分为5种不同的区域，分别是栈内存、本地方法栈、堆内存、方法区、程序计数器。</p>
+<h4 id="栈内存"><a href="#栈内存" class="headerlink" title="栈内存"></a>栈内存</h4><p>栈内存是线程私有的，它随着线程的创建而创建，随着线程的销毁而销毁，在执行方法时会创建栈帧，栈帧中存放的是局部变量表（方法的参数以及局部变量）、操作数栈（指令所操作的数据存放处）等信息。方法的调用就是栈帧入栈的过程。</p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>执行Native方法时所用到的存储单元</p>
+<h4 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h4><p>堆内存是线程共享的，当虚拟机启动时便会创建。该内存区域是用来存放<strong>对象实例</strong>的，也是垃圾收集器管理的主要区域。</p>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>方法区是线程共享的内存区域，它存储的主要是在类加载时产生的数据，可以理解为是存储Class文件信息或者是类相关信息的。所以编译后的字节码、常量、静态变量等与对象无关只有类有关的数据都放在这里。 </p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>程序计数器作为线程执行时的行号指示器，分支、跳转、循环都是通过它实现的，在任一时刻，一个处理器核都只会执行一条线程中的指令，每一个核对应一个程序计数器。</p>
+<h3 id="Class文件详解"><a href="#Class文件详解" class="headerlink" title="Class文件详解"></a>Class文件详解</h3><p>Java原码中的各种变量，关键字和运算符号的语义最终都是由多条字节码命令组合而成的，而ava原码通过编译器编译为虚拟机可加载的Class文件，Class文件中包含了Java字节码和符号表和其他辅助信息。</p>
+<p>Class文件是一组以8位字节为原子单位的二进制流，各个数据严格按照规定的顺序紧凑的排列（顺序中包含着信息），而Class文件只包含两种数据类型：</p>
+<blockquote>
+<p>无符号数 – 表示数字、索引引用、数量值、或按照UTF-8表示字符串，通过u1、u2、u4表示1字节2字节4字节</p>
+<p>表 – 是由多个无符号数组成的复合结构，所有表都以”_info”结尾</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">u4</td>
+<td style="text-align:left">magic</td>
+<td style="text-align:left">魔数</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">minor_version</td>
+<td style="text-align:left">副版本号</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">major</td>
+<td style="text-align:left">主版本号</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">constant_pool_count</td>
+<td style="text-align:left">常量池数量</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">cp_info</td>
+<td style="text-align:left">constant_pool</td>
+<td style="text-align:left">常量池</td>
+<td style="text-align:left">常量池数量-1</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">access_flags</td>
+<td style="text-align:left">访问标识</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">this_class</td>
+<td style="text-align:left">类索引</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">super_class</td>
+<td style="text-align:left">父类索引</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">interfaces_count</td>
+<td style="text-align:left">接口数量</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">interfaces</td>
+<td style="text-align:left">接口索引集合</td>
+<td style="text-align:left">接口数量</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">fields_count</td>
+<td style="text-align:left">字段数量</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">field_info</td>
+<td style="text-align:left">fields</td>
+<td style="text-align:left">字段表</td>
+<td style="text-align:left">字段数量</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">methods_counts</td>
+<td style="text-align:left">方法数量</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">method_info</td>
+<td style="text-align:left">methods</td>
+<td style="text-align:left">方法表</td>
+<td style="text-align:left">方法数量</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">attributes_count</td>
+<td style="text-align:left">属性数量</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">attributes_info</td>
+<td style="text-align:left">attributes</td>
+<td style="text-align:left">属性表</td>
+<td style="text-align:left">属性数量</td>
+</tr>
+</tbody>
+</table>
+<h4 id="魔数以及版本号"><a href="#魔数以及版本号" class="headerlink" title="魔数以及版本号"></a>魔数以及版本号</h4><p>Class文件的前4个字节是魔数它的唯一作用就是确定这个文件是Class文件，接下来2个字节是副版本号，再接下来两个字节是主版本号，用来确定版本号。</p>
+<h4 id="常量池数量"><a href="#常量池数量" class="headerlink" title="常量池数量"></a>常量池数量</h4><p>由于每个Class文件的常量数量不是固定的，所以紧接着主版本号后面的是常量池数量，用来确定常量的数量</p>
+<h4 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h4><p>根据常量池的数量，后面是常量的具体内容，常量池中包含两大类常量：</p>
+<ol>
+<li><p>字面量：字面量就是没有特殊意义的常量，就是用来表示常量，比如文本字符串（字段名等），或是被final修饰的常量值等</p>
+</li>
+<li><p>符号引用包括以下三类</p>
+<blockquote>
+<p>类和接口的全限定名（用来确定类和接口）</p>
+<p>字段名称和描述符（用来确定字段及字段的其他信息）</p>
+<p>方法名称和描述符（用来确定字段及字段的其他信息）</p>
+</blockquote>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">标识</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CONSTONT_utf8_info</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">utf8编码字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Integer_info</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">整型字面量</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Float_info</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">浮点型字面量</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Long_info</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">长整型字面量</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Double_info</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">双精度浮点型字面量</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Class_info</td>
+<td style="text-align:left">7</td>
+<td style="text-align:left">类或者接口的符号引用</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_String_info</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">字符串类型字面量</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Fieldref_info</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">字段的符号引用</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_Methodref_info</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">方法的符号应用</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_InterfaceMethodref_info</td>
+<td style="text-align:left">11</td>
+<td style="text-align:left">接口方法的符号应用</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_NameAndType_info</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left">字段或方法的部分引用</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_MethodHandle_info</td>
+<td style="text-align:left">15</td>
+<td style="text-align:left">方法的句柄</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_MethodType_info</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">方法的类型</td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTONT_InvokeDynamic_info</td>
+<td style="text-align:left">18</td>
+<td style="text-align:left">动态方法调用点</td>
+</tr>
+</tbody>
+</table>
+<p>常量池中的数据是以_info结尾，前面讲到Class文件只有两种类型，无符号数和表，而常量池的数据全部都是表，也就是由多个无符号数组成的复合结构。</p>
+<p>常量池是提供其他表进行引用的，一个class文件中的所有出现的字符都该在常量池中显示</p>
+<h4 id="访问标识"><a href="#访问标识" class="headerlink" title="访问标识"></a>访问标识</h4><p>在常量池结束之后，接着的是2个字节的访问标识，用于识别该文件是类还是接口、是否为public、是否为abstract等信息</p>
+<h4 id="类索引、父类索引、接口索引集合"><a href="#类索引、父类索引、接口索引集合" class="headerlink" title="类索引、父类索引、接口索引集合"></a>类索引、父类索引、接口索引集合</h4><p>在访问标识后的为类索引，是这个类的的全限定名，指向常量池中的CONSTONT_Class_info</p>
+<h4 id="字段表和方法表"><a href="#字段表和方法表" class="headerlink" title="字段表和方法表"></a>字段表和方法表</h4><p>字段表用于表述接口或者类中声明的变量。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">access_flags</td>
+<td style="text-align:left">描述字段、方法作用域等信息</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">name_index</td>
+<td style="text-align:left">字段、方法简单名称常</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">descriptor_index</td>
+<td style="text-align:left">字段、方法描述符</td>
+</tr>
+<tr>
+<td style="text-align:left">u2</td>
+<td style="text-align:left">attributes_count</td>
+<td style="text-align:left">属性数量</td>
+</tr>
+<tr>
+<td style="text-align:left">attributes_info</td>
+<td style="text-align:left">attributes</td>
+<td style="text-align:left">属性表</td>
+</tr>
+</tbody>
+</table>
+<h4 id="属性表"><a href="#属性表" class="headerlink" title="属性表"></a>属性表</h4><p>属性表的作用是对其他表额外进行描述，下面是一些常用的属性。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">使用位置</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">方法表</td>
+<td style="text-align:left">编译后的字节码指令</td>
+</tr>
+<tr>
+<td style="text-align:left">Exceptions</td>
+<td style="text-align:left">方法表</td>
+<td style="text-align:left">方法抛出的异常</td>
+</tr>
+</tbody>
+</table>
+<p>其中code属性非常重要，如果把Java程序中的信息分为代码和元数据两部分，那么Code属性就是用来描述代码的，其他所有数据项都是用来描述元数据。</p>
+<h3 id="虚拟机类加载过程"><a href="#虚拟机类加载过程" class="headerlink" title="虚拟机类加载过程"></a>虚拟机类加载过程</h3><p>虚拟机类加载过程就是将原来磁盘中的代码加载到内存中。</p>
+<h4 id="类加载过程生命周期"><a href="#类加载过程生命周期" class="headerlink" title="类加载过程生命周期"></a>类加载过程生命周期</h4><p>类加载的生命周期包括：加载、验证、准备、解析、初始化、使用、卸载。</p>
+<p>其中加载、验证、准备、初始化、卸载这五个过程顺序是确定的，而解析阶段有可能在初始化前也有可能在初始化后，在初始化前的解析是静态绑定（前期绑定），也就是可以在编译时确定，而初始化后的解析是动态绑定（后期绑定）。</p>
+<h5 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h5><ol>
+<li>通过类的全限定名来获取类的二进制流</li>
+<li>将类加载到方法区中</li>
+<li>生成这个类的Class对象，获取方法区数据的入口（反射时会使用的）</li>
+</ol>
+<h5 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h5><p>验证合法性</p>
+<h5 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h5><p>分配类变量内存，并且赋初值</p>
+<h5 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h5><p>将运行时常量池（类文件中的常量池加载到方法区）的符号引用替换为直接引用（内存地址）。</p>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>执行<clinit>方法，为准备阶段类变量的初值赋值。<clinit>方法是编译器自动生成的，相当于为静态字段赋值的方法，并且会合并static{}代码块的代码。（加载阶段还为涉及到具体对象）</clinit></clinit></p>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p>上面的生命周期是由类加载器完成的，对于任何一个类，都需要通过类加载器和这个类来确定在JVM中的唯一性。（同一个类不同类加载器加载后的Class对象的equals（）方法返回false）</p>
+<h5 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h5><p>如果有一个类加载器收到加载请求，它首先会请求父加载器去加载，所以会导致所有加载请求都会到顶层的启动类加载器去；当父加载器无法完成加载请求（搜索范围没有这个类），就传递给子加载器加载。</p>
+<h3 id="字节码执行过程"><a href="#字节码执行过程" class="headerlink" title="字节码执行过程"></a>字节码执行过程</h3><p>字节码源代码进过编译又经过类加载器加载到方法区中的，字节码的执行代表着程序运行时一个方法的执行。</p>
+<h4 id="运行时栈帧"><a href="#运行时栈帧" class="headerlink" title="运行时栈帧"></a>运行时栈帧</h4><p>栈帧是方法执行时的数据结构，主要包括：局部变量表、操作数栈、动态连接、方法返回地址等。</p>
+<h5 id="局部变量表"><a href="#局部变量表" class="headerlink" title="局部变量表"></a>局部变量表</h5><p>用来存放方法参数和方法的变量的存储空间。它的大小在编译期间就已经确定，存放到Code属性中。</p>
+<h5 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h5><p>当方法开始执行时，操作数栈是空的，方法执行过程根据字节码会往操作数栈中写入和提取内容。</p>
+<h5 id="动态连接"><a href="#动态连接" class="headerlink" title="动态连接"></a>动态连接</h5><p>每个栈帧都包含一个指向运行时常量池中所属方法的引用，这个引用是为了完成方法调用过程中的动态连接（确定方法），其中静态方法和私有方法是编译器可知，运行期不可变的。所以在编译期就可以确定。如重载就是需要动态连接来确认的</p>
+<h5 id="方法返回地址"><a href="#方法返回地址" class="headerlink" title="方法返回地址"></a>方法返回地址</h5><p>就是方法的返回地址。。。。。</p>
+<h3 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h3><p>垃圾回收是回收堆内存中不使用的对象。</p>
+<h4 id="判断对象是否存活"><a href="#判断对象是否存活" class="headerlink" title="判断对象是否存活"></a>判断对象是否存活</h4><ol>
+<li>引用计数算法<br>每当有一个地方引用对象就将计数加1，当引用失效就减1，当计数器为零就说明对象不再被使用了。（无法解决对象循环引用）</li>
+<li>可达性算法<br>通过一系列GC Root 对象作为起点，当一个对象到GC Root 没有任何引用链相连就证明对象不可使用 </li>
+</ol>
+<h4 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h4><ol>
+<li>标记清除算法<br>标记需要回收的对象，之后统一回收。（会产生内存碎片）</li>
+<li>复制算法<br>将内存二等分，每次使用一半，当一半内存使用完之后触发复制算法，将存活的对象复制到另外一半中。（内存缩小到原来的一半）。<br>适用于新生代，大量对象死去，少量存活，移动很少的对象。</li>
+<li>标记整理<br>标记需要回收的对象，将所有存活对象移动到一端，清除边界意外的内存。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,25 +504,161 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">基础是指</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">基础知识</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQY4iMQwF0L7/pZntSDPA/05Ms3i1Qg2qyktLscv2z098Pf66nn377Jft5+Q+ly88PDy8g6X/ez37TX6HfOn5ffJn4eHh4e3xkuP+Nen1yZyHnGRbkzXj4eHhfScvX9DJ9iW/x8PDw/tmXps0zxL0XwsMeHh4eDEvWVD7+FlJNw8kl2steHh4eDEv7yJ9z+eV/h4eHh7ecVe9TWfzYYKTcYRitXh4eHgLvHa5swT6PF2erRMPDw/vM7zXi5uVAx4HVx5anm4EHh4e3gd5+Y3y9tjrdtds2OtN+MHDw8Nb4O21pvJRg7adVqfdeHh4eAu8HHD+9+Qoz4u8l/t7eHh4eKOxgLy4MEtzZ+Ncw+fi4eHhXeXlDap8ICAvIrTtrrasjIeHh7fBu5VM50WBPNjMWmgr7wp4eHh4o9LA+Ua0Awp5+fhNZRoPDw/vKu885W3Dw6zN1ka5Ikjg4eHhlbzZaFR+xM/GC/KS8dF/DA8PD++AN3vhbxfXpsizEm3d2cPDw8M7TqZnwwF5cpwXKc6HuvDw8PA2eO1g06yFPxsXuBCc8PDw8BZ47TGdlyfyBeXhpC314uHh4W3wZmXTu6EiL/7WeDw8PLwF3q2xp3az9sa58PDw8D7DOxkjaMu1SUjIvy1GsvDw8PCu8vJH5iNZ7X2SlHrYcsPDw8Nb5iWNpcU21aUBAjw8PLxP8pLX/jYtTg76n0tX8a6Ah4eHN+I9ymuW8rYJ9KxI8Z8tw8PDw1vgbZRi28W125ck03h4eHjbvLagkBcp8oO7He0q2nJ4eHh4a7zZoTxbVlsIvlBrwcPDw/sCXt7UL9r8B4w302R4eHh4v8prywSz5PhaCMHDw8Nb450kvrOGVpJwt0EimozAw8PDO+ZdTmHjPltbLN4Y0sLDw8MreX8AzmeSl9gO1wEAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/07/29/补码/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          补码
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/01/07/2017我的书单/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2017我的书单</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟机内存划分概述"><span class="toc-number">1.</span> <span class="toc-text">虚拟机内存划分概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#栈内存"><span class="toc-number">1.1.</span> <span class="toc-text">栈内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本地方法栈"><span class="toc-number">1.2.</span> <span class="toc-text">本地方法栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆内存"><span class="toc-number">1.3.</span> <span class="toc-text">堆内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法区"><span class="toc-number">1.4.</span> <span class="toc-text">方法区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#程序计数器"><span class="toc-number">1.5.</span> <span class="toc-text">程序计数器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class文件详解"><span class="toc-number">2.</span> <span class="toc-text">Class文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#魔数以及版本号"><span class="toc-number">2.1.</span> <span class="toc-text">魔数以及版本号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常量池数量"><span class="toc-number">2.2.</span> <span class="toc-text">常量池数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常量池"><span class="toc-number">2.3.</span> <span class="toc-text">常量池</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问标识"><span class="toc-number">2.4.</span> <span class="toc-text">访问标识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类索引、父类索引、接口索引集合"><span class="toc-number">2.5.</span> <span class="toc-text">类索引、父类索引、接口索引集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字段表和方法表"><span class="toc-number">2.6.</span> <span class="toc-text">字段表和方法表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性表"><span class="toc-number">2.7.</span> <span class="toc-text">属性表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟机类加载过程"><span class="toc-number">3.</span> <span class="toc-text">虚拟机类加载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类加载过程生命周期"><span class="toc-number">3.1.</span> <span class="toc-text">类加载过程生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#加载"><span class="toc-number">3.1.1.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#验证"><span class="toc-number">3.1.2.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#准备"><span class="toc-number">3.1.3.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解析"><span class="toc-number">3.1.4.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#初始化"><span class="toc-number">3.1.5.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类加载器"><span class="toc-number">3.2.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#双亲委派机制"><span class="toc-number">3.2.1.</span> <span class="toc-text">双亲委派机制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节码执行过程"><span class="toc-number">4.</span> <span class="toc-text">字节码执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#运行时栈帧"><span class="toc-number">4.1.</span> <span class="toc-text">运行时栈帧</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#局部变量表"><span class="toc-number">4.1.1.</span> <span class="toc-text">局部变量表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#操作数栈"><span class="toc-number">4.1.2.</span> <span class="toc-text">操作数栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#动态连接"><span class="toc-number">4.1.3.</span> <span class="toc-text">动态连接</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法返回地址"><span class="toc-number">4.1.4.</span> <span class="toc-text">方法返回地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垃圾回收机制"><span class="toc-number">5.</span> <span class="toc-text">垃圾回收机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#判断对象是否存活"><span class="toc-number">5.1.</span> <span class="toc-text">判断对象是否存活</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#垃圾收集算法"><span class="toc-number">5.2.</span> <span class="toc-text">垃圾收集算法</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "温馨提示 请添加昵称后发表评论",
+            avatar: "monsterid",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+  
 
 
           </div>
@@ -220,7 +668,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 an power by Yilai Litten
+    		&copy; 2019 an power by Yilai Litten
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -239,9 +687,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -317,10 +765,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
@@ -329,11 +773,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">基础是指</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
