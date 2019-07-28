@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>补码 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://anning1994.github.io/2018/07/29/补码/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="基本概念 在计算机中，二进制数据有三种形式：原码、反码和补码，要弄清楚补码的意义，首先让我们来了解三种形式的定义。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://anning1994.github.io/img/post/head/bm.jpg">
 <meta property="og:image" content="http://anning1994.github.io/img/post/buma/1.jpg">
 <meta property="og:updated_time" content="2018-11-27T14:10:02.052Z">
@@ -40,7 +41,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -262,7 +263,11 @@
 <p>所以重新考虑原码的减法问题，n-m = n+(MAX-m),其中MAX就是该周期中所能表示的所有数的数量，放到上面原码的例子中就是16个，而放到时钟系统中就是12个。如：</p>
 <blockquote>
 <p>周期性的时钟系统:</p>
+</blockquote>
+<blockquote>
 <p>12 - 1 = 12 + （12 -1）；</p>
+</blockquote>
+<blockquote>
 <p>7 - 4 = 7 +（12-4）；</p>
 </blockquote>
 <h5 id="累加系统加减法转化"><a href="#累加系统加减法转化" class="headerlink" title="累加系统加减法转化"></a>累加系统加减法转化</h5><p>在说原码累加系统加减法转化例子之前，我们再看下图表</p>
@@ -411,7 +416,7 @@
 <li>编码 0100 - 0011 </li>
 </ol>
 <p>//n-m = n+(MAX-m) ==》(10000-0011) 其结果就是0011的补码</p>
-<ol>
+<ol start="2">
 <li><p>转化为 0100 + (10000-0011) = 0100 + 1101 </p>
 </li>
 <li><p>cpu调用加法器得出 10001 </p>
@@ -421,6 +426,8 @@
 <li><p>解码 1</p>
 </li>
 </ol>
+</blockquote>
+<blockquote>
 <p>重新计算 3 - 4 </p>
 <ol>
 <li><p>编码 0011 - 0100 </p>
@@ -431,7 +438,7 @@
 </li>
 </ol>
 <p>//参考A转变B2(也就是原码转补码)</p>
-<ol>
+<ol start="4">
 <li>解码-0001= -1</li>
 </ol>
 </blockquote>
@@ -529,9 +536,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/07/26/机器学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          机器学习
+        
+      </div>
+    </a>
   
-    <a href="/2018/03/25/如何正确的理解CAP/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何正确的理解CAP(转载)</div>
+  
+    <a href="/2018/04/06/Java并发编程详解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入分析Java虚拟机</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -715,14 +731,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -731,7 +739,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,7 +751,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>如何正确的理解CAP(转载) | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://anning1994.github.io/2018/03/25/如何正确的理解CAP/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="原文链接： https://www.jdon.com/bigdata/how-to-understand-cap.html 在大数据领域，被业界广泛谈及的CAP理论存在着一些关键性的认知误区，而只有全面地考察与分析分布式环境中的各种场景，我们才能真正正确地理解它。">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-02-18T02:14:54.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何正确的理解CAP(转载)">
@@ -37,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -175,7 +176,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<p>原文链接： <a href="https://www.jdon.com/bigdata/how-to-understand-cap.html" target="_blank" rel="external">https://www.jdon.com/bigdata/how-to-understand-cap.html</a></p>
+<p>原文链接： <a href="https://www.jdon.com/bigdata/how-to-understand-cap.html" target="_blank" rel="noopener">https://www.jdon.com/bigdata/how-to-understand-cap.html</a></p>
 <p>在大数据领域，被业界广泛谈及的CAP理论存在着一些关键性的认知误区，而只有全面地考察与分析分布式环境中的各种场景，我们才能真正正确地理解它。<br><a id="more"></a><br>目前，CAP（Consistency一致性、Availability可用性、Partition-tolerance分区可容忍性）理论普遍被当作是大数据技术的理论基础。同时，根据该理论，业界有一种非常流行、非常“专业”的认识，那就是：关系型数据库设计选择了C（一致性）与A（可用性），NoSQL数据库设计则不同。其中，HBase选择了C（一致性）与P（分区可容忍性），Cassandra选择了A（可用性）与P（分区可容忍性）。</p>
 <p>该说法现在似乎已经成为一种经典认知，无论是初学大数据技术，还是已经有了相当经验的技术人员，都将其奉为真理。大家大概是认为，从CAP这样著名的理论推导出来的结论，当然是权威而又正确的，最起码在形式上感觉是专业而又严肃的。有人甚至还将这种认知画成一个三角形图，三个顶点分别是C、A、P，三条边分别是关系型数据库、HBase与Cassandra，这样一来，CAP理论就显然更加神圣了。</p>
 <p>实际上，这种认识是不准确的，甚至是不正确的。暂且不说深入的分析与研究，只要先从表面上简单分析一下，你就能发现问题：难道说从理论上讲Cassandra就一定比HBase的可用性更高吗？而要要彻底搞清楚这个问题，还得先从CAP理论本身开始研究。</p>
@@ -280,11 +281,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/29/补码/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/06/Java并发编程详解/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          补码
+          深入分析Java虚拟机
         
       </div>
     </a>
@@ -475,14 +476,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -491,7 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,7 +496,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">

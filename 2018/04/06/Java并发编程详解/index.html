@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>Tag: 随笔 | an&#39;s Blog</title>
+  <title>深入分析Java虚拟机 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta name="keywords" content="开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="an&#39;s Blog">
-<meta property="og:url" content="http://anning1994.github.io/tags/随笔/index.html">
+  <meta name="description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。 其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。  会使处理器缓存行的数据写回到内存中（刷新变量）。 写回内存中的值在其他cpu缓存中失效。  synchr">
+<meta name="keywords" content="java,基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入分析Java虚拟机">
+<meta property="og:url" content="http://anning1994.github.io/2018/04/06/Java并发编程详解/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。 其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。  会使处理器缓存行的数据写回到内存中（刷新变量）。 写回内存中的值在其他cpu缓存中失效。  synchr">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://anning1994.github.io/img/post/head/jvm.jpg">
+<meta property="og:updated_time" content="2019-02-19T11:05:33.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="an&#39;s Blog">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="深入分析Java虚拟机">
+<meta name="twitter:description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。 其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。  会使处理器缓存行的数据写回到内存中（刷新变量）。 写回内存中的值在其他cpu缓存中失效。  synchr">
+<meta name="twitter:image" content="http://anning1994.github.io/img/post/head/jvm.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
   
@@ -154,60 +157,242 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java并发编程详解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/15/关于写博客的一点小想法/" class="archive-article-date">
-  	<time datetime="2017-03-15T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/关于写博客的一点小想法/">关于写博客的一点小想法</a>
+    <h1 class="article-title" itemprop="name">
+      深入分析Java虚拟机
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/04/06/Java并发编程详解/" class="archive-article-date">
+  	<time datetime="2018-04-06T14:12:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/post/head/jvm.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
+<h3 id="Java并发编程的底层实现原理"><a href="#Java并发编程的底层实现原理" class="headerlink" title="Java并发编程的底层实现原理"></a>Java并发编程的底层实现原理</h3><p>主要是对voaltile以及synchronized的JVM层实现进行说明。</p>
+<h4 id="voaltile"><a href="#voaltile" class="headerlink" title="voaltile"></a>voaltile</h4><p>如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。</p>
+<p>其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。</p>
+<ol>
+<li>会使处理器缓存行的数据写回到内存中（刷新变量）。</li>
+<li>写回内存中的值在其他cpu缓存中失效。</li>
+</ol>
+<h4 id="synchronize"><a href="#synchronize" class="headerlink" title="synchronize"></a>synchronize</h4><p>Java中每一个对象都可以作为锁。</p>
+<p>普通方法：锁是该对象的实例。<br>静态方法：锁是当前类的Class对象。<br>同步方法块：锁是synchronize的配置对象</p>
+<p>当一个线程试图访问同步代码时必须获取锁，退出或者抛出异常时必须释放锁。</p>
+<p>Java SE 1.6后为了减少获取和释放锁带来的性能消耗，引入偏向锁和轻量级锁。</p>
+<p>1.偏向锁</p>
+<p>大部分时间不存在线程竞争，且总是由一个线程多次获取锁，为了这种情况代价更低，引入了偏向锁。当一个线程已经获取锁时，会在对象头中的锁记录中存储偏向的线程Id,当线程再次获取该对象的锁时，不需要做任何复杂操作，只需要验证对象头中的偏向线程Id是否为当前线程即可。</p>
+<p>当偏向锁撤销时，即有竞争出现偏向锁才释放锁，当释放偏向锁</p>
+<p>2.轻量级锁</p>
+<p>首先线程将自己栈帧中创建存储对象头的内存空间，之后复制对象头到线程的栈帧中，然后尝试使用CAS方式将对象头替换为指向锁记录的指针，如果成功，当前线程获取锁成功，如果失败表示存在竞争，则通过自旋来再次进行CAS替换。</p>
+<p>当轻量级锁释放时，则是通过CAS换回到对象头，如果成功则表示没有竞争出现，如果失败表示有竞争。通过自旋方式释放。</p>
+<p>自旋操作会一直消耗CPU,当一直自旋获取失败时会将锁升级为重量级锁。</p>
+<p>3.重量级锁</p>
+<p>重量级锁就是通过阻塞线程，需要切换线程上下文的一种方式。</p>
+<h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3><p>JMM是语音级的内存模型，是建立在处理器平台上的，为开发者屏蔽一些细节，如通过禁止特定类型的重排序。为开发者提供一致性的内存和可见性的保证。</p>
+<h4 id="happers-before"><a href="#happers-before" class="headerlink" title="happers-before"></a>happers-before</h4><p>JMM能保证程序按照happens-before规则执行。<br>happens-before规则为</p>
+<p>1.程序顺序规则</p>
+<p>一个线程中的每个操作，happens-before于该线程之后的操作。</p>
+<p>2.监视器锁规则</p>
+<p>对一个锁的解锁，happens-before于随后对这个锁的加锁。</p>
+<p>3.volatile变量规程</p>
+<p>对一个volatile变量的写，happens-before于任意后续对于这个变量的读。</p>
+<p>4.传递性</p>
+<p>A happens-before于 B, B happens-before C,那么A happens-before于 C。</p>
+<p><strong><em>两个操作之间具有happens-before关系，不是指前一个操作必须在后一个操作之前执行，而是只前一个操作对后一个可见</em></strong></p>
+<p>对于Java程序员而言，happens-before规则简单易懂，它避免了Java程序员为理解JMM提供的内存可见性保证而且学习复杂的重排序规则以及规则的具体实现方法。</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程的状态</p>
+<p>1.new</p>
+<p>线程的初始状态，线程被创建，但是还没有start()。</p>
+<p>2.runnable</p>
+<p>运行状态，线程在操作系统中的就绪和运行两种状态统称为运行中。</p>
+<p>3.blocked</p>
+<p>阻塞状态，线程阻塞于锁</p>
+<p>4.waiting </p>
+<p>等待状态，需要等其他线程的操作而做一系列动作如（唤醒，中断）</p>
+<p>4.time_waiting</p>
+<p>超时等待状态，时间到了自动唤醒。 </p>
+<h3 id="Java实现的锁"><a href="#Java实现的锁" class="headerlink" title="Java实现的锁"></a>Java实现的锁</h3><h4 id="Lock接口"><a href="#Lock接口" class="headerlink" title="Lock接口"></a>Lock接口</h4>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">基础知识</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aQXKDMAwF0Nz/0ulMV9kAXxLpFPt5lUkI+HkhZFmvVzzev+Pz8+dIrjz65vxZNw8MDIzHMt6nI7kmme4RePJcDAyM3Rh5kO39mgfuc/zh9xgYGBhxMtcLrNXnYmBgYOSBsvowDAwMjAkj2UzmU5ksx9f34hgYGA9k9A4G/ubz1883MDAw/j3jXRy9u83Tx4tZYWBgLM3IC/STVLKaIOaL9Ur2xxgYGA9nnLd2nf9aXYgkiOfJ4uF7AwMDY2lGtWGiV+KftI4dLhkGBsYGjEn9Kpl0L5UsLBkGBsbSjORvUaNDvOFMppKH4MP7YGBgLMfopXfVcHnvpDEwMHZjTJoq5lPPt7uFmWBgYCzH6B035scGVUDzXBIDA2NRRq8BYl6ASza6BTYGBsbSjCSlywPupC0j3zBfBHcMDIzlGPnfqpvYSSqZt2hgYGDsxsiD5rwto9oodnFnDAyMDRi9Uv5kw3lXwQ4DA2MHRt7UlYP/hoqBgbEPI0/p8gPFcgtXcXWj9wYGBsbSjElSmLd25UeYUdsZBgbG0oxq+Ku2ROQBtHplAYOBgfFwxrs45iWwSZvFYUDHwMBYmtErmfWKa9UNcxLKMTAw9mHcVW6rponJswoNahgYGBswbmhraG2Dq2+AwysxMDAwWseT8yBbTg0xMDAwigE0L9Xlh50X57EYGBhLM/JN7Lw5LF+OQkKJgYGxNKNX7k8CazWM3tvGgYGBsQTjB+F2zFJg6AMUAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/07/29/补码/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          补码
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/03/25/如何正确的理解CAP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何正确的理解CAP(转载)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java并发编程的底层实现原理"><span class="toc-number">1.</span> <span class="toc-text">Java并发编程的底层实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#voaltile"><span class="toc-number">1.1.</span> <span class="toc-text">voaltile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#synchronize"><span class="toc-number">1.2.</span> <span class="toc-text">synchronize</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JMM"><span class="toc-number">2.</span> <span class="toc-text">JMM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#happers-before"><span class="toc-number">2.1.</span> <span class="toc-text">happers-before</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程"><span class="toc-number">3.</span> <span class="toc-text">线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java实现的锁"><span class="toc-number">4.</span> <span class="toc-text">Java实现的锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lock接口"><span class="toc-number">4.1.</span> <span class="toc-text">Lock接口</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js'></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "nUcT3eCrwdNRaoWbE7v1MRfi-gzGzoHsz",
+            app_key: "vdbzJ0Uw8EYCkisfOuzXYYnd",
+            placeholder: "温馨提示 请添加昵称后发表评论",
+            avatar: "monsterid",
+            pageSize: 15
+    });
+</script>
+
+  </section>
+  
 
 
           </div>
@@ -236,9 +421,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

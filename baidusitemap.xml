@@ -1,245 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
+    <loc>http://anning1994.github.io/2019/07/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2019-07-27</lastmod>
+  </url>  <url>
+    <loc>http://anning1994.github.io/2018/04/06/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2019-02-19</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2018/03/25/%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%90%86%E8%A7%A3CAP/</loc>
-    <lastmod>2019-02-18T02:14:54.349Z</lastmod>
-    <data>
-        <display>
-        <title>如何正确的理解CAP(转载)</title>
-        <pubTime>2018-03-25T13:12:44.000Z</pubTime>
-        
-        <tag>宏观知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-02-18</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2018/01/25/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90Java%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
-    <lastmod>2019-02-17T09:12:45.538Z</lastmod>
-    <data>
-        <display>
-        <title>深入分析Java虚拟机</title>
-        <pubTime>2018-01-25T12:12:44.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-02-17</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/04/16/java%E5%9F%BA%E7%A1%801--%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3/</loc>
-    <lastmod>2018-12-04T14:27:53.410Z</lastmod>
-    <data>
-        <display>
-        <title>java基础1--面向对象思想</title>
-        <pubTime>2017-04-16T08:34:32.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-04</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2018/01/07/2017%E6%88%91%E7%9A%84%E4%B9%A6%E5%8D%95/</loc>
-    <lastmod>2018-11-30T15:36:14.433Z</lastmod>
-    <data>
-        <display>
-        <title>2017我的书单</title>
-        <pubTime>2018-01-07T02:12:44.000Z</pubTime>
-        
-        <tag>资源分享</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-30</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/10/30/otter/</loc>
-    <lastmod>2018-11-27T14:11:51.408Z</lastmod>
-    <data>
-        <display>
-        <title>otter浅析</title>
-        <pubTime>2017-10-30T12:51:08.000Z</pubTime>
-        
-        <tag>数据库</tag>
-         
-        <tag>实施细节</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/09/17/netty/</loc>
-    <lastmod>2018-11-27T14:11:38.664Z</lastmod>
-    <data>
-        <display>
-        <title>netty浅析</title>
-        <pubTime>2017-09-17T14:51:05.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>IO</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/10/20/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</loc>
-    <lastmod>2018-11-27T14:11:27.969Z</lastmod>
-    <data>
-        <display>
-        <title>mysql主从复制</title>
-        <pubTime>2017-10-20T12:10:05.000Z</pubTime>
-        
-        <tag>数据库</tag>
-         
-        <tag>实施细节</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/08/16/java%E5%9F%BA%E7%A1%803--HashMap/</loc>
-    <lastmod>2018-11-27T14:11:17.460Z</lastmod>
-    <data>
-        <display>
-        <title>java基础3--HashMap</title>
-        <pubTime>2017-08-16T14:51:05.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/04/24/java%E5%9F%BA%E7%A1%802--%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/</loc>
-    <lastmod>2018-11-27T14:11:07.913Z</lastmod>
-    <data>
-        <display>
-        <title>java基础2--对象的创建</title>
-        <pubTime>2017-04-24T13:39:14.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>基础知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/10/22/haproxy%E5%AE%9E%E7%8E%B0mysql%E9%9B%86%E7%BE%A4%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
-    <lastmod>2018-11-27T14:10:47.566Z</lastmod>
-    <data>
-        <display>
-        <title>haproxy实现mysql集群负载均衡</title>
-        <pubTime>2017-10-22T12:51:05.000Z</pubTime>
-        
-        <tag>数据库</tag>
-         
-        <tag>实施细节</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/03/15/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E7%82%B9%E5%B0%8F%E6%83%B3%E6%B3%95/</loc>
-    <lastmod>2018-11-27T14:10:37.781Z</lastmod>
-    <data>
-        <display>
-        <title>关于写博客的一点小想法</title>
-        <pubTime>2017-03-15T14:04:04.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2017/03/17/%E4%BB%A3%E7%A0%81%E7%95%8C%E7%9A%84%E7%9F%B3%E5%99%A8%E6%97%B6%E4%BB%A3/</loc>
-    <lastmod>2018-11-27T14:10:25.316Z</lastmod>
-    <data>
-        <display>
-        <title>代码界的石器时代（转载）</title>
-        <pubTime>2017-03-17T09:20:00.000Z</pubTime>
-        
-        <tag>宏观知识</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-27</lastmod>
+  </url>  <url>
     <loc>http://anning1994.github.io/2018/07/29/%E8%A1%A5%E7%A0%81/</loc>
-    <lastmod>2018-11-27T14:10:02.052Z</lastmod>
-    <data>
-        <display>
-        <title>补码</title>
-        <pubTime>2018-07-29T08:14:19.000Z</pubTime>
-        
-        <tag>计算机原理</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
+    <lastmod>2018-11-27</lastmod>
+  </url>
 </urlset>

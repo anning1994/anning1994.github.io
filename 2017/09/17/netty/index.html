@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://anning1994.github.io">
   <title>netty浅析 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://anning1994.github.io/2017/09/17/netty/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
 <meta property="og:description" content="为什么使用netty Netty是一个网络通信框架，其出现的原因主要是为了解决NIO的不足。如：">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://anning1994.github.io/img/post/head/netty.jpg">
 <meta property="og:updated_time" content="2018-11-27T14:11:38.664Z">
 <meta name="twitter:card" content="summary">
@@ -39,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -186,7 +187,7 @@
 </ol>
 <p>NIO（Non-blocking I/O，在Java领域，也称为New I/O），是一种同步非阻塞的I/O模型，也是I/O多路复用的基础，已经被越来越多地应用到大型应用服务器，成为解决高并发与大量连接、I/O处理问题的有效方式。</p>
 <p>本文会从传统的阻塞I/O和线程池模型面临的问题讲起，然后对比几种常见I/O模型，一步步分析NIO怎么利用事件模型处理I/O，解决线程池瓶颈处理海量连接，包括利用面向事件的方式编写服务端/客户端程序。</p>
-<h4 id="传统BIO模型分析"><a href="#传统BIO模型分析" class="headerlink" title="传统BIO模型分析"></a>传统BIO模型分析</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> ExecutorService executor = Excutors.newFixedThreadPollExecutor(<span class="number">100</span>);<span class="comment">//线程池</span></div><div class="line"> ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket();</div><div class="line"> serverSocket.bind(<span class="number">8088</span>);</div><div class="line"> <span class="keyword">while</span>(!Thread.currentThread.isInturrupted())&#123;<span class="comment">//主线程死循环等待新连接到来</span></div><div class="line"> Socket socket = serverSocket.accept();</div><div class="line"> executor.submit(<span class="keyword">new</span> ConnectIOnHandler(socket));<span class="comment">//为新的连接创建新的线程</span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConnectIOnHandler</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Socket socket;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConnectIOnHandler</span><span class="params">(Socket socket)</span></span>&#123;</div><div class="line">       <span class="keyword">this</span>.socket = socket;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">      <span class="keyword">while</span>(!Thread.currentThread.isInturrupted()&amp;&amp;!socket.isClosed())&#123;死循环处理读写事件</div><div class="line">          String someThing = socket.read()<span class="comment">//读取数据</span></div><div class="line">          <span class="keyword">if</span>(someThing!=<span class="keyword">null</span>)&#123;</div><div class="line">             <span class="comment">//处理数据</span></div><div class="line">             socket.write()<span class="comment">//写数据</span></div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="传统BIO模型分析"><a href="#传统BIO模型分析" class="headerlink" title="传统BIO模型分析"></a>传统BIO模型分析</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> ExecutorService executor = Excutors.newFixedThreadPollExecutor(<span class="number">100</span>);<span class="comment">//线程池</span></span><br><span class="line"> ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket();</span><br><span class="line"> serverSocket.bind(<span class="number">8088</span>);</span><br><span class="line"> <span class="keyword">while</span>(!Thread.currentThread.isInturrupted())&#123;<span class="comment">//主线程死循环等待新连接到来</span></span><br><span class="line"> Socket socket = serverSocket.accept();</span><br><span class="line"> executor.submit(<span class="keyword">new</span> ConnectIOnHandler(socket));<span class="comment">//为新的连接创建新的线程</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConnectIOnHandler</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Socket socket;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConnectIOnHandler</span><span class="params">(Socket socket)</span></span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.socket = socket;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">while</span>(!Thread.currentThread.isInturrupted()&amp;&amp;!socket.isClosed())&#123;死循环处理读写事件</span><br><span class="line">          String someThing = socket.read()<span class="comment">//读取数据</span></span><br><span class="line">          <span class="keyword">if</span>(someThing!=<span class="keyword">null</span>)&#123;</span><br><span class="line">             <span class="comment">//处理数据</span></span><br><span class="line">             socket.write()<span class="comment">//写数据</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的代码就是典型的传统BIO服务端监听代码，由于<strong>accept()</strong>、<strong>read()</strong>、<strong>write()</strong> 这三个方法是阻塞的、耗时的。如果是单线程的话，在执行阻塞代码是会使cpu空等，并且最重要的是，如果有10000个并发的话，那么等待时间是不能够接受的。</p>
 <p>使用多线程的本质就是：</p>
 <ol>
@@ -196,7 +197,7 @@
 <p>但是传统IO在使用多线程解决上面的问题时会严重依赖于线程，意味着每个请求都要建立一个线程，当客户端数量达到万级时，就需要建立万级的线程。线程占用的内存，切换线程资源昂贵，最终导致这种方案无法保证系统的伸缩性。</p>
 <h4 id="传统NIO模型分析"><a href="#传统NIO模型分析" class="headerlink" title="传统NIO模型分析"></a>传统NIO模型分析</h4><p>所有的系统I/O都分为两个阶段：等待就绪和操作。举例来说，读函数，分为等待系统可读和真正的读；同理，写函数分为等待网卡可以写和真正的写。</p>
 <p>需要说明的是等待就绪的阻塞是不使用CPU的，是在“空等”；而真正的读写操作的阻塞是使用CPU的，真正在”干活”，而且这个过程非常快，属于memory copy，带宽通常在1GB/s级别以上，可以理解为基本不耗时。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ChannelHandler</span></span>&#123;</div><div class="line">     <span class="function"><span class="keyword">void</span> <span class="title">channelReadable</span><span class="params">(Channel channel)</span></span>;</div><div class="line">     <span class="function"><span class="keyword">void</span> <span class="title">channelWritable</span><span class="params">(Channel channel)</span></span>;</div><div class="line">  &#125;</div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Channel</span></span>&#123;</div><div class="line">    Socket socket;</div><div class="line">    Event event;<span class="comment">//读，写或者连接</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//IO线程主循环:</span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">IoThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">  Channel channel;</div><div class="line">  <span class="keyword">while</span>(channel=Selector.select())&#123;<span class="comment">//选择就绪的事件和对应的连接</span></div><div class="line">     <span class="keyword">if</span>(channel.event==accept)&#123;</div><div class="line">        registerNewChannelHandler(channel);<span class="comment">//如果是新连接，则注册一个新的读写处理器</span></div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span>(channel.event==write)&#123;</div><div class="line">        getChannelHandler(channel).channelWritable(channel);<span class="comment">//如果可以写，则执行写事件</span></div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span>(channel.event==read)&#123;</div><div class="line">         getChannelHandler(channel).channelReadable(channel);<span class="comment">//如果可以读，则执行读事件</span></div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">  &#125;</div><div class="line">  Map&lt;Channel，ChannelHandler&gt; handlerMap;<span class="comment">//所有channel的对应事件处理器</span></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ChannelHandler</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">channelReadable</span><span class="params">(Channel channel)</span></span>;</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">channelWritable</span><span class="params">(Channel channel)</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Channel</span></span>&#123;</span><br><span class="line">    Socket socket;</span><br><span class="line">    Event event;<span class="comment">//读，写或者连接</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//IO线程主循环:</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">IoThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">  Channel channel;</span><br><span class="line">  <span class="keyword">while</span>(channel=Selector.select())&#123;<span class="comment">//选择就绪的事件和对应的连接</span></span><br><span class="line">     <span class="keyword">if</span>(channel.event==accept)&#123;</span><br><span class="line">        registerNewChannelHandler(channel);<span class="comment">//如果是新连接，则注册一个新的读写处理器</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(channel.event==write)&#123;</span><br><span class="line">        getChannelHandler(channel).channelWritable(channel);<span class="comment">//如果可以写，则执行写事件</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(channel.event==read)&#123;</span><br><span class="line">         getChannelHandler(channel).channelReadable(channel);<span class="comment">//如果可以读，则执行读事件</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  Map&lt;Channel，ChannelHandler&gt; handlerMap;<span class="comment">//所有channel的对应事件处理器</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>NIO由原来的阻塞读写（占用线程）变成了单线程轮询事件，找到可以进行读写的网络描述符进行读写。除了事件的轮询是阻塞的（没有可干的事情必须要阻塞），剩余的I/O操作都是纯CPU操作，没有必要开启多线程。</p>
 
       
@@ -480,14 +481,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -496,7 +489,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实施细节</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +501,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
