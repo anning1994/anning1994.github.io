@@ -176,15 +176,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/post/head/jvm.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
-<h3 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h3><p><img src="/img/post/jqxx1/1.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
-<p>人脑学习的过程中，需要学习问题以及答案，得到解决这类问题的方法，面对新问题时，通过学习到的方法得出问题的答案。</p>
-<p>机器学习与人脑学习是一致的，输入训练集，训练出解决这类问题的模型，面对新问题时，通过训练出的模型预测出问题的答案。</p>
-<h3 id="机器学习概述"><a href="#机器学习概述" class="headerlink" title="机器学习概述"></a>机器学习概述</h3><h4 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h4><p><img src="/img/post/jqxx1/2.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p><img src="/img/post/jqxx1/3.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
-<h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p><img src="/img/post/jqxx1/4.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
-<h4 id="技术应用"><a href="#技术应用" class="headerlink" title="技术应用"></a>技术应用</h4><p><img src="/img/post/jqxx1/5.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
-
+        <h3 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h3><p><img src="/img/post/jqxx1/1.png" alt="图片名称" width="60%" height="22%" align="center"></p>
+<p>人脑学习的过程中，需要学习问题以及答案，得到解决这类问题的方法，面对新问题时，通过学习到的方法得出问题的答案。<br>
+        
+          <a class="article-more-a" href="/2019/07/26/机器学习/#more">more >></a>
+        
       
 
       
@@ -321,7 +317,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/06/Java并发编程详解/">深入分析Java虚拟机</a>
+      <a class="article-title" href="/2018/04/06/Java并发编程详解/">Java并发编程</a>
     </h1>
   
 
@@ -336,49 +332,10 @@
       
         <p><img src="/img/post/head/jvm.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
 <h3 id="Java并发编程的底层实现原理"><a href="#Java并发编程的底层实现原理" class="headerlink" title="Java并发编程的底层实现原理"></a>Java并发编程的底层实现原理</h3><p>主要是对voaltile以及synchronized的JVM层实现进行说明。</p>
-<h4 id="voaltile"><a href="#voaltile" class="headerlink" title="voaltile"></a>voaltile</h4><p>如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。</p>
-<p>其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。</p>
-<ol>
-<li>会使处理器缓存行的数据写回到内存中（刷新变量）。</li>
-<li>写回内存中的值在其他cpu缓存中失效。</li>
-</ol>
-<h4 id="synchronize"><a href="#synchronize" class="headerlink" title="synchronize"></a>synchronize</h4><p>Java中每一个对象都可以作为锁。</p>
-<p>普通方法：锁是该对象的实例。<br>静态方法：锁是当前类的Class对象。<br>同步方法块：锁是synchronize的配置对象</p>
-<p>当一个线程试图访问同步代码时必须获取锁，退出或者抛出异常时必须释放锁。</p>
-<p>Java SE 1.6后为了减少获取和释放锁带来的性能消耗，引入偏向锁和轻量级锁。</p>
-<p>1.偏向锁</p>
-<p>大部分时间不存在线程竞争，且总是由一个线程多次获取锁，为了这种情况代价更低，引入了偏向锁。当一个线程已经获取锁时，会在对象头中的锁记录中存储偏向的线程Id,当线程再次获取该对象的锁时，不需要做任何复杂操作，只需要验证对象头中的偏向线程Id是否为当前线程即可。</p>
-<p>当偏向锁撤销时，即有竞争出现偏向锁才释放锁，当释放偏向锁</p>
-<p>2.轻量级锁</p>
-<p>首先线程将自己栈帧中创建存储对象头的内存空间，之后复制对象头到线程的栈帧中，然后尝试使用CAS方式将对象头替换为指向锁记录的指针，如果成功，当前线程获取锁成功，如果失败表示存在竞争，则通过自旋来再次进行CAS替换。</p>
-<p>当轻量级锁释放时，则是通过CAS换回到对象头，如果成功则表示没有竞争出现，如果失败表示有竞争。通过自旋方式释放。</p>
-<p>自旋操作会一直消耗CPU,当一直自旋获取失败时会将锁升级为重量级锁。</p>
-<p>3.重量级锁</p>
-<p>重量级锁就是通过阻塞线程，需要切换线程上下文的一种方式。</p>
-<h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3><p>JMM是语音级的内存模型，是建立在处理器平台上的，为开发者屏蔽一些细节，如通过禁止特定类型的重排序。为开发者提供一致性的内存和可见性的保证。</p>
-<h4 id="happers-before"><a href="#happers-before" class="headerlink" title="happers-before"></a>happers-before</h4><p>JMM能保证程序按照happens-before规则执行。<br>happens-before规则为</p>
-<p>1.程序顺序规则</p>
-<p>一个线程中的每个操作，happens-before于该线程之后的操作。</p>
-<p>2.监视器锁规则</p>
-<p>对一个锁的解锁，happens-before于随后对这个锁的加锁。</p>
-<p>3.volatile变量规程</p>
-<p>对一个volatile变量的写，happens-before于任意后续对于这个变量的读。</p>
-<p>4.传递性</p>
-<p>A happens-before于 B, B happens-before C,那么A happens-before于 C。</p>
-<p><strong><em>两个操作之间具有happens-before关系，不是指前一个操作必须在后一个操作之前执行，而是只前一个操作对后一个可见</em></strong></p>
-<p>对于Java程序员而言，happens-before规则简单易懂，它避免了Java程序员为理解JMM提供的内存可见性保证而且学习复杂的重排序规则以及规则的具体实现方法。</p>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程的状态</p>
-<p>1.new</p>
-<p>线程的初始状态，线程被创建，但是还没有start()。</p>
-<p>2.runnable</p>
-<p>运行状态，线程在操作系统中的就绪和运行两种状态统称为运行中。</p>
-<p>3.blocked</p>
-<p>阻塞状态，线程阻塞于锁</p>
-<p>4.waiting </p>
-<p>等待状态，需要等其他线程的操作而做一系列动作如（唤醒，中断）</p>
-<p>4.time_waiting</p>
-<p>超时等待状态，时间到了自动唤醒。 </p>
-<h3 id="Java实现的锁"><a href="#Java实现的锁" class="headerlink" title="Java实现的锁"></a>Java实现的锁</h3><h4 id="Lock接口"><a href="#Lock接口" class="headerlink" title="Lock接口"></a>Lock接口</h4>
+<h4 id="voaltile"><a href="#voaltile" class="headerlink" title="voaltile"></a>voaltile</h4><p>如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。<br>
+        
+          <a class="article-more-a" href="/2018/04/06/Java并发编程详解/#more">more >></a>
+        
       
 
       
@@ -847,7 +804,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 an power by Yilai Litten
+    		&copy; 2020 an power by Yilai Litten
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -964,11 +921,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观知识</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观知识</a>
               </li>
              
               <li class="article-tag-list-item">

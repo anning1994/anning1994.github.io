@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://anning1994.github.io">
-  <title>深入分析Java虚拟机 | an&#39;s Blog</title>
+  <title>Java并发编程 | an&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。 其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。  会使处理器缓存行的数据写回到内存中（刷新变量）。 写回内存中的值在其他cpu缓存中失效。  synchr">
+  <meta name="description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。">
 <meta name="keywords" content="java,基础知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入分析Java虚拟机">
+<meta property="og:title" content="Java并发编程">
 <meta property="og:url" content="http://anning1994.github.io/2018/04/06/Java并发编程详解/index.html">
 <meta property="og:site_name" content="an&#39;s Blog">
-<meta property="og:description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。 其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。  会使处理器缓存行的数据写回到内存中（刷新变量）。 写回内存中的值在其他cpu缓存中失效。  synchr">
+<meta property="og:description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://anning1994.github.io/img/post/head/jvm.jpg">
-<meta property="og:updated_time" content="2019-02-19T11:05:33.145Z">
+<meta property="og:updated_time" content="2020-07-30T14:54:33.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入分析Java虚拟机">
-<meta name="twitter:description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。 其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。  会使处理器缓存行的数据写回到内存中（刷新变量）。 写回内存中的值在其他cpu缓存中失效。  synchr">
+<meta name="twitter:title" content="Java并发编程">
+<meta name="twitter:description" content="Java并发编程的底层实现原理主要是对voaltile以及synchronized的JVM层实现进行说明。 voaltile如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。">
 <meta name="twitter:image" content="http://anning1994.github.io/img/post/head/jvm.jpg">
   
     <link rel="alternative" href="/atom.xml" title="an&#39;s Blog" type="application/atom+xml">
@@ -164,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      深入分析Java虚拟机
+      Java并发编程
     </h1>
   
 
@@ -179,8 +179,7 @@
       
         <p><img src="/img/post/head/jvm.jpg" alt="图片名称" width="60%" height="22%" align="center"></p>
 <h3 id="Java并发编程的底层实现原理"><a href="#Java并发编程的底层实现原理" class="headerlink" title="Java并发编程的底层实现原理"></a>Java并发编程的底层实现原理</h3><p>主要是对voaltile以及synchronized的JVM层实现进行说明。</p>
-<h4 id="voaltile"><a href="#voaltile" class="headerlink" title="voaltile"></a>voaltile</h4><p>如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。</p>
-<p>其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。</p>
+<h4 id="voaltile"><a href="#voaltile" class="headerlink" title="voaltile"></a>voaltile</h4><p>如果一个字段被声明为voaltile,Java内存模型确保所有线程看到这个变量的值是一致的。<br><a id="more"></a><br>其原理是，当声明voaltilede变量在编译后会生成lock前缀指令。</p>
 <ol>
 <li>会使处理器缓存行的数据写回到内存中（刷新变量）。</li>
 <li>写回内存中的值在其他cpu缓存中失效。</li>
@@ -402,7 +401,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 an power by Yilai Litten
+    		&copy; 2020 an power by Yilai Litten
     	</div>
       	<div class="footer-right">
       		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten -->
@@ -519,11 +518,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">宏观知识</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">宏观知识</a>
               </li>
              
               <li class="article-tag-list-item">
